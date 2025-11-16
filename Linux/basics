@@ -1,0 +1,10 @@
+# 入门
+对大多数人来说，Linux操作系统是一个 Windows的替代品，如Ubuntu Desktop。
+但是对于程序员来说，我们不能仅仅停留在这个浅显的层面上。我们需要像庖丁解牛那样，
+先清楚地了解Linux的基本组成部分，然后才能更好地使用它。
+## Linux的组成部分
+Linux操作系统主要由以下几个部分组成：
+- **内核（Kernel）**：
+- **系统库（System Libraries）**
+- **系统工具（System Utilities
+- **用户界面（User Interface）**
