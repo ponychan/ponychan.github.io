@@ -1,0 +1,3485 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/04-shell-tools/note-1-cgctfn2j/">
+      
+      
+        <link rel="prev" href="../note-1-cbtp9nmg/">
+      
+      
+        <link rel="next" href="../note-1-cji8mnwh/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Editor - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#editor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Editor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmjvlnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-clofunpb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csdxmnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-c1edhnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-csqf5nuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="editor">Editor</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="editor_1">Editor</h1>
+<h1 id="vim">VIM</h1>
+<p>前两个是missing semester的老师推荐的网站，第一个是vim的插件，第二个是ctrl控制？</p>
+<p>https://vimawesome.com</p>
+<p>https://github.com/ctrlpvim/ctrlp.vim/blob/master/readme.md</p>
+<p>https://www.vim.org/docs.php</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h1 id="vim_1">vim配置</h1>
+<p>tab-&gt;window绑定到buffer，buffer可以被一个或多个window打开</p>
+<pre><code>    :q只是退出当前window，只有一个window的时候退出vim。:qa退出所有window
+
+    :sp新建tab
+
+    ^An
+</code></pre>
+<p><strong>vim 环境设定与记录(\~/.vimrc, \~/.viminfo)</strong></p>
+<p>:set all "显示目前所有的环境参数设定值</p>
+<p>:set showmode "左下角那一行的状态</p>
+<p>:set nu "显示行号</p>
+<p>:set nonu "取消行号</p>
+<p>:set bg=dark "显示不同的底色色调</p>
+<p>:syntax on "进行语法检验，颜色显示</p>
+<p>:syntax off "关闭语法检验</p>
+<p>：set ic ignorecase 忽略大小写</p>
+<p>：set noic    取消大小写不敏感</p>
+<p>：set hls      设置语法高亮</p>
+<h1 id="_1">编辑模式</h1>
+<p>在一般模式中可以进行删除、复制、粘贴等的操作，但是却无法编辑文件的内容，只有当到你按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式。这时候屏幕的左下方会出现【INSERT或 REPLACE】的字样，此时才可以进行编辑。而如果要回到一般模式时， 则必须要按下【Esc】即可退出编辑模式。</p>
+<p>一般模式切换到编辑模式的可用的按钮说明</p>
+<p>【i, I】 进入编辑模式：</p>
+<p>i 为【从目前光标所在处插入】</p>
+<p>I 为【在目前所在行的第一个非空格符处开始插入】</p>
+<p>【a, A】 进入编辑模式(Insert mode)：</p>
+<p>a 为【从目前光标所在的下一个字符处开始插入】</p>
+<p>A 为【从光标所在行的最后一个字符处开始插入】</p>
+<p>【o, O】 进入编辑模式：</p>
+<p>o 为【在目前光标所在的下一行处插入新的一行】</p>
+<p>O 为在目前光标所在处的上一行插入新的一行</p>
+<p>【r, R】 进入取代模式：</p>
+<p>r 只会取代光标所在的那一个字符一次</p>
+<p>R会一直取代光标所在的文字，直到按下 ESC 为止；</p>
+<p>【Esc】 退出编辑模式，回到一般模式</p>
+<h1 id="_2">底栏<strong>命令行模式：</strong></h1>
+<p>输入【 : / ? 】三个中的任何一个，就可以将光标移动到最底下那一行。在这个模式中， 可以提供查找、读取、存盘、替换字符、离开vi、显示行号等的动作则是在此模式中完成的！</p>
+<p>一般模式切换到命令行模式可用的按钮说明</p>
+<p>【:w】 保存编辑的内容</p>
+<p>【:w!】强制写入该文件，但跟你对该文件的权限有关</p>
+<p>【:q】 离开vi</p>
+<p>【:q!】 不想保存修改强制离开</p>
+<p>【:wq】 保存后离开</p>
+<p>【:x】 保存后离开</p>
+<p>【ZZ】 若文件没有更动，则不保存离开，若文件已经被更改过，则保存后离开</p>
+<p>【:w filename】 将编辑的数据保存成另一个文件（类似另存）</p>
+<p>【:r filename】 在编辑的数据中，读入另一个文件的数据。即将【filename】 这个文件的内容加到光标所在行后面。</p>
+<p>【:n1,n2 w filename】 将n1到n2的内容保存成filename这个文件。</p>
+<p>【:! command】暂时离开vi 到命令行模式下执行command的显示结果！例如 【:! ls /home】即可在 vi 当中察看/home底下以ls输出的文件信息！</p>
+<p>【:set nu】 显示行号</p>
+<p>【:set nonu】 与 set nu 相反，为取消行</p>
+<h1 id="_3">可视化模式</h1>
+<p>ct v进入visual block模式，可以按块选中</p>
+<h1 id="-">一般模式-执行各种指令</h1>
+<h2 id="_4">移动指令</h2>
+<p>思维导图（本地资料，未发布）</p>
+<p>0 移动到行首</p>
+<p>^到本行第一个非空字符</p>
+<p>g到最后一个非空字符</p>
+<p>w 向后移动光标到下一个单词的头</p>
+<p>e 向后移动光标到下一个单词的尾</p>
+<p>\$ 移动到行尾</p>
+<p>gg 移动到第一行</p>
+<p>G 移动到最后一行</p>
+<p>NG  到第N行</p>
+<p>百分号匹配括号移动</p>
+<p>* #匹配当前单词的上一个位置和下一个位置</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>/pattern 搜索字符串 有多个的时候n下一个p前一个</p>
+<p>【Home】移动到这一行的最前面字符处:0数字，但不能用数字小键盘上的数字</p>
+<p>【End】 移动到这一行的最后面字符处</p>
+<p>【H】 光标移动到这个屏幕的最上方那一行的第一个字符</p>
+<p>【M】 光标移动到这个屏幕的中间那一行的第一个字符</p>
+<p>【L】光标移动到这个屏幕的最下方那一行的第一个字符</p>
+<p>【G】 移动到这个文件的最后一行</p>
+<p>【nG】移动到这个文件的第n行(可配合:set nu)</p>
+<p>【gg】 移动到这个文件的第一行，相当于1G</p>
+<p>【n<Enter>】光标向下移动n行</p>
+<h2 id="_5">操作指令</h2>
+<p>思维导图（本地资料，未发布）</p>
+<table>
+<thead>
+<tr>
+<th>d</th>
+<th>delete</th>
+<th>删除行/剪切行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>change</td>
+<td>更改</td>
+</tr>
+<tr>
+<td>u</td>
+<td>undo</td>
+<td>撤销</td>
+</tr>
+<tr>
+<td>a</td>
+<td>append</td>
+<td>追加</td>
+</tr>
+<tr>
+<td>o/O</td>
+<td></td>
+<td>在上/下面添加行</td>
+</tr>
+<tr>
+<td>g</td>
+<td>goto</td>
+<td>前往</td>
+</tr>
+<tr>
+<td>Ct g</td>
+<td></td>
+<td>显示行号</td>
+</tr>
+</tbody>
+</table>
+<p>p粘贴   </p>
+<p>:help  显示帮助</p>
+<p>a 在光标后插入  o在行后插入新行    O在行前插入新行   cw 替换光标到行尾的字符</p>
+<p>yy拷贝当前行</p>
+<p>p在当前位置之后粘贴</p>
+<p>P在当前位置之前粘贴</p>
+<p>u 撤销</p>
+<p>Ct+r   redo</p>
+<h3 id="_6">查找与替换</h3>
+<table>
+<thead>
+<tr>
+<th>%s</th>
+<th></th>
+<th>在整个文件匹配字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s/old/new</td>
+<td></td>
+<td>替换该行第一个匹配到的字符串</td>
+</tr>
+<tr>
+<td>s/old/new/g</td>
+<td></td>
+<td>替换该行全部字符串</td>
+</tr>
+</tbody>
+</table>
+<p>【/word】 向光标向下寻找一个名称为word的字符串</p>
+<p>【?word】 向光标向上寻找一个名称为word的字符串</p>
+<p>【n】 代表重复前一个查找的动作</p>
+<p>【N】 与n刚好相反，为【反向】进行行前一个查找动作</p>
+<p>【:n1,n2s/word1/word2/g】  n1与n2为数字，在第n1与n2行之间查找word1 这个字符串，并将该字符串替换为word2</p>
+<p>【:1,\$s/word1/word2/g】 从第一行到最后一行查找word1字符串，并将该字符串替换为word2</p>
+<p>【:1,\$s/word1/word2/gc】 从第一行到最后一行查找word1字符串，并将该字符串替换为word2 ，且在替换前提示用户确认是否进行替换</p>
+<h3 id="_7"><strong>删除</strong></h3>
+<ul>
+<li>[x] 【x】 为向后删除一个字符 (相当于【del】键)</li>
+</ul>
+<p>【nx】 连续向后删除n个字符</p>
+<p>【dd】 删除光标所在行</p>
+<p>【ndd】 删除光标所在的向下n行</p>
+<p>【d1G】 删除光标所在行到第一行的所有数据</p>
+<p>【dG】 删除光标所在到最后一行的所有数据</p>
+<p>【d\$】 删除光标所在处，到该行的最后一个字符</p>
+<p>【d0】 删除光标所在处，到该行的最前一个字符</p>
+<p>d -delete 删除行，同时复制内容到剪贴板</p>
+<p>x -删除字符</p>
+<p>【X】 为向前删除一个字符(相当于【backspace】键)</p>
+<h3 id="_8"><strong>复制</strong></h3>
+<p>y-yank复制                                    yy gg重复两遍代表对整行应用操作</p>
+<p>【yy】 复制光标所在的那一行</p>
+<p>【nyy】 复制光标所在的向下n列</p>
+<p>【y1G】 复制光标所在行到第一行的所有数据</p>
+<p>【yG】 复制光标所在行到最后一行的所有数据</p>
+<p>【y0】 复制光标所在的那个字符到该行行首的所有数据</p>
+<p>【y\$】 复制光标所在的那个字符到该行行尾的所有数据</p>
+<h3 id="_9"><strong>粘贴</strong></h3>
+<p>【p】paste粘贴将已复制的数据在光标下一行粘贴上</p>
+<p>【P】 则为贴在光标的上一行</p>
+<p>【u】 恢复前一个操作</p>
+<p>【Ctrl+r】重做上一个操作</p>
+<p>【.】 是重复前一个操作</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h1 id="_10">其他功能</h1>
+<h2 id="_11"><strong>缓存与恢复</strong></h2>
+<p>打开终端，输入命令，将etc目录下面的manpath.config复制到tmp目录下面，并且更改当前工作目录为tmp：</p>
+<p>cp /etc/manpath.config /tmp</p>
+<p>cd /tmp</p>
+<p>用vim编辑manpath.config文件：vim manpath.config。</p>
+<p>我们在vim的一般模式下按下Ctrl+z组合键，vim就会被丢到后台执行。回到命令提示符环境后，我们模拟将vim的工作不正常中断。</p>
+<p>kill -9 %1;强制杀死制定的进程。</p>
+<p>这样导致暂存盘无法通过正常的流程结束，所以暂存文件不会消失，而是继续保留下来。当再次编辑那个文件时(输入命令vim manpath.config)，出现(ubuntu 11.10)：</p>
+<p>这时，有六个按钮可以使用：</p>
+<p>O(pen for Read-Only):打开成只读文件。</p>
+<p>E(dit):用正常方式打开要编辑的文件，并不会载入暂存文件的内容。这很容易出现两个用户相互改变对方的文件的问题。</p>
+<p>R(ecover)：加载暂存文件的内容。</p>
+<p>D(elete)：如果你确定这个暂存文件是没有用的，则可以删除。</p>
+<p>Q(uit)：不进行任何操作，回到命令行。</p>
+<p>A(bort)：忽略这个编辑行为，和Q类似。</p>
+<p>需要注意的是：这个暂存文件不会应为你结束vim后自动删除，必须要手动删除。否则每次打开对应的文件时都会出现这样的提示。</p>
+<p>vim的缓存文件、恢复与开启时的警告信息</p>
+<p>我们知道一些常用的编辑软件，都有个恢复的功能，就是说当你的系统因为某些原因而导致类似当机的情况时，还可以利用这个恢复功能将之前未保存的数据找回来。我们的VIM也有这个功能。</p>
+<p>当我们在使用vim编辑时，vim会在与被编辑的文件的目录下，再建立一个名为 .filename.swp的文件。如果你的系统因为某些原因断线了， 导致你编辑的文件还没有保存，这个时候 .filenam.swp 就能够发会救援的功能了。</p>
+<p>我们来演示一下</p>
+<p>vim man.config</p>
+<p>ctrl+z放到后台执行</p>
+<p>我们停止VI的进程</p>
+<p>一种方法</p>
+<p>ps aux |grep vi</p>
+<p>kill -9 n</p>
+<p>另外一种方法</p>
+<p>jobs</p>
+<p>kill -9 %1</p>
+<p>我们用ls -l 命令来查看一下目录里面，会发现有个.man.config.swp的文件，这个文件就是个缓存的文件</p>
+<p>我们再来编辑</p>
+<p>vim man.config</p>
+<p>这时候会出现一些信息</p>
+<p>问题一：可能有其他人或程序同时在编辑这个文件：</p>
+<p>问题二：在前一个vim的环境中，可能因为某些不知名原因导致vim中断 (crashed)：</p>
+<p>右下角会出现六个命令项，其作用说明如下：</p>
+<p>(O)pen Read-Only：打开此文件成为只读档， 可以用在你只是想要查阅该文件内容并不想要进行编辑行为时。一般来说，在上课时，如果你是登入到同学的计算机去看他的配置文件， 结果发现其实同学他自己也在编辑时，可以使用这个模式；</p>
+<p>(E)dit anyway：还是用正常的方式打开你要编辑的那个文件， 并不会载入暂存盘的内容。如果说两个人都在编辑这个文件的话，很容易出现互相改变对方的文件等问题。</p>
+<p>(R)ecover：就是加载暂存盘的内容，用在你要救回之前未保存的工作。 不过当你救回来并且储存离开vim后，还是要手动自行删除那个暂存档。</p>
+<p>(D)elete it：你确定那个暂存档是无用的！那么开启文件前会先将这个暂存盘删除</p>
+<p>(Q)uit：按下 q 就离开vim，不会进行任何动作回到命令提示字符。</p>
+<p>(A)bort：忽略这个编辑行为，感觉上与 quit 非常类似！</p>
+<p>alias这个命令来查看是不是有alias vi=’vim’这一行。</p>
+<p>块选择</p>
+<p>【v】字符选择，会将光标经过的地方反白选择</p>
+<p>【V】 行选择，会将光标经过的行反白选择</p>
+<p>【Ctrl+v】 块选择，可以用长方形的方式选择资料 （提制竖列）</p>
+<p>【y】 将反白的地方复制</p>
+<p>【d】 将反白的地方删除</p>
+<p>【1】块选择：</p>
+<h2 id="_12"><strong>多文件编辑</strong></h2>
+<p>大家在使用vim的时候，可能会碰到你需要复制一个文件中的某段到另外一个文件中，而vim不能够在关闭的时候，把这段保留住。或者是用其它的方法复制。</p>
+<p>【vim file1 file2】</p>
+<p>【:n】编辑下一个文件</p>
+<p>【:N】编辑上一个文件</p>
+<p>【:files】列出目前这个vim编辑的所有文件</p>
+<h2 id="_13"><strong>多窗口功能</strong></h2>
+<p>有两个需要对照着看的文件</p>
+<p>【:sp filename】开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新文件，否则表示两个窗口为同一个文件内容(同步显示)。</p>
+<p>【ctrl+w+j】</p>
+<p>【ctrl+w+↓】按键的按法是：先按下 【ctrl】 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</p>
+<p>【ctrl+w+k】</p>
+<p>【ctrl+w+↑】同上，不过光标移动到上面的窗口。</p>
+<p>下面列出平时用的最多的vi命令：</p>
+<p>移动光标的方法：</p>
+<p>[Ctrl]+[f]：屏幕向下移动一页，相当于[PageDown]按键。</p>
+<p>[Ctrl]+[b]：屏幕向上移动一页，相当于[PageUp]按键。</p>
+<p>0或功能键[Home]：移动到这一行的最前面字符处。</p>
+<p>\$或功能键[End]：移动到这一行的最后面字符处。</p>
+<p>G：移动到这个文件的最后一行。</p>
+<p>gg：移动到这个文件的第一行，相当于1G.</p>
+<p>N[Enter]：N为数字，光标向下移动N行。</p>
+<p>查找和替换：</p>
+<p>/word：向下寻找一个名称为word的字符串。</p>
+<p>?word：向上寻找一个名称为word的字符串。</p>
+<p>:n1,n2s/word1/word2/g：在第n1行和n2行之间寻找word1这个字符串，并且将其替换为word2.</p>
+<p>:1,\$s/word1/word2/g：从第一行到最后一行寻找word1这个字符串，并且将其替换为word2.</p>
+<p>:1,\$s/word1/word2/gc：从第一行到最后一行寻找word1这个字符串，并且将其替换为word2.且在替换前显示提示字符给用户确认是否需要替换。</p>
+<p>删除、复制和粘贴：</p>
+<p>x,X：在一行字中，x为向后删除一个字符（相当于[Del]键），X为向前删除一个字符（相当于[Backspace]）。</p>
+<p>dd：删除光标所在的一整行。</p>
+<p>ndd：删除光标所在的向下n行。</p>
+<p>yy：复制光标所在的一行。</p>
+<p>nyy：复制光标所在的向下n行。</p>
+<p>p,P：p为将已复制的内容在光标的下一行粘贴，P则为粘贴在光标的上一行。</p>
+<p>u：复原前一个操作。</p>
+<p>[Ctrl]+r：重做上一个操作。</p>
+<p>.：小数点，重复前一个操作。</p>
+<p>一般模式切换到编辑模式：</p>
+<p>i,I：进入插入模式，i为从目前光标所在处插入。I为在目前所在行的第一个非空格字符处开始插入。</p>
+<p>a，A：进入插入模式。a为从目前光标所在处的下一个字符处开始插入。A为从所在行的最后一个字符处开始插入。</p>
+<p>o，O：进入插入模式。o为在下一行插入。O为在上一行插入。</p>
+<p>r，R：进入替换模式。r只替换光标所在那个字符一次。R会一直替换光标所在字符，直到按下Esc键。</p>
+<p>一般模式切换到命令行：</p>
+<p>:w：将编辑的数据写入到硬盘中。</p>
+<p>:q：离开vi.后面加！为强制离开。</p>
+<p>:wq：保存后离开。:wq!为强制保存后离开。</p>
+<p>ctrl w删除光标所在的单词</p>
+<p>ctrl f向前搜索</p>
+<p>ctrl b向后搜索</p>
+<p>ctrl+o在插入模式下插入新行</p>
+<p>ctrl+i在插入模式下插入新行，并把光标移动到新行的开头</p>
+<h1 id="split-vsplit">分屏编辑—— :split  :vsplit</h1>
+<h1 id="-ctrlx-ctrlo">代码补全-ctrl+x ctrl+o</h1>
+<h1 id="-qa-q-a">宏录制- qa 开始录制宏  q 结束录制宏 @a执行宏</h1>
+<h1 id="ctrl-v">多光标编辑ctrl v 多光标编辑模式</h1>
+<h1 id="tabnewgtgt">多标签页：tabnew创建新的标签页，gt或gT切换标签页</h1>
+<h1 id="_14">安装插件</h1>
+<h2 id="vi"><strong>VI编辑器</strong></h2>
+<h3 id="_15"><strong>常用命令</strong></h3>
+<p>x 删除当前光标所在的一个字符</p>
+<p>:wq保存退出</p>
+<p>dd删除当前行</p>
+<p>p粘贴   hjkl上下左右   :help  显示帮助</p>
+<p>a 在光标后插入  o在行后插入新行    O在行前插入新行   cw 替换光标到行尾的字符</p>
+<p>数字0，到行首</p>
+<p>^到本行第一个非空字符</p>
+<p>\$到行尾</p>
+<p>g到最后一个非空字符</p>
+<p>NG  到第N行</p>
+<p>gg到第一行</p>
+<p>按单词移动：w e</p>
+<p>百分号匹配括号移动</p>
+<ul>
+<li>* #匹配当前单词的上一个位置和下一个位置</li>
+</ul>
+<p>p粘贴</p>
+<p>yy拷贝当前行</p>
+<p>u 撤销</p>
+<h3 id="_16">移动光标：</h3>
+<p>【h、j、k、l】，分别控制光标左、下、上、右移一格</p>
+<p>按【ctrl+b】屏幕往"后"移动一页</p>
+<p>按【ctrl+f】屏幕往"前"移动一页</p>
+<p>【n<space>】光标向右移动n个字符</p>
+<p>【Home】移动到这一行的最前面字符处:0数字，但不能用数字小键盘上的数字</p>
+<p>【End】 移动到这一行的最后面字符处</p>
+<p>【w】光标跳到下个字的开头</p>
+<p>【e】光标跳到下个字的字尾</p>
+<p>【H】 光标移动到这个屏幕的最上方那一行的第一个字符</p>
+<p>【M】 光标移动到这个屏幕的中间那一行的第一个字符</p>
+<p>【L】光标移动到这个屏幕的最下方那一行的第一个字符</p>
+<p>【G】 移动到这个文件的最后一行</p>
+<p>【nG】移动到这个文件的第n行(可配合:set nu)</p>
+<p>【gg】 移动到这个文件的第一行，相当于1G</p>
+<p>【n<Enter>】光标向下移动n行</p>
+<h3 id="_17">查找与替换</h3>
+<p>【/word】 向光标向下寻找一个名称为word的字符串</p>
+<p>【?word】 向光标向上寻找一个名称为word的字符串</p>
+<p>【n】 代表重复前一个查找的动作</p>
+<p>【N】 与n刚好相反，为【反向】进行行前一个查找动作</p>
+<p>【:n1,n2s/word1/word2/g】  n1与n2为数字，在第n1与n2行之间查找word1 这个字符串，并将该字符串替换为word2</p>
+<p>【:1,\$s/word1/word2/g】 从第一行到最后一行查找word1字符串，并将该字符串替换为word2</p>
+<p>【:1,\$s/word1/word2/gc】 从第一行到最后一行查找word1字符串，并将该字符串替换为word2 ，且在替换前提示用户确认是否进行替换</p>
+<h3 id="_18"><strong>删除、复制与粘贴</strong></h3>
+<ul>
+<li>[x] 【x】 为向后删除一个字符 (相当于【del】键)</li>
+</ul>
+<p>【X】 为向前删除一个字符(相当于【backspace】键)</p>
+<p>【nx】 连续向后删除n个字符</p>
+<p>【dd】 删除光标所在行</p>
+<p>【ndd】 删除光标所在的向下n行</p>
+<p>【d1G】 删除光标所在行到第一行的所有数据</p>
+<p>【dG】 删除光标所在到最后一行的所有数据</p>
+<p>【d\$】 删除光标所在处，到该行的最后一个字符</p>
+<p>【d0】 删除光标所在处，到该行的最前一个字符</p>
+<p>【yy】 复制光标所在的那一行</p>
+<p>【nyy】 复制光标所在的向下n列</p>
+<p>【y1G】 复制光标所在行到第一行的所有数据</p>
+<p>【yG】 复制光标所在行到最后一行的所有数据</p>
+<p>【y0】 复制光标所在的那个字符到该行行首的所有数据</p>
+<p>【y\$】 复制光标所在的那个字符到该行行尾的所有数据</p>
+<p>【p】将已复制的数据在光标下一行粘贴上</p>
+<p>【P】 则为贴在光标的上一行</p>
+<p>【u】 恢复前一个操作</p>
+<p>【Ctrl+r】重做上一个操作</p>
+<p>【.】 是重复前一个操作</p>
+<h3 id="_19"><strong>编辑模式：</strong></h3>
+<p>在一般模式中可以进行删除、复制、粘贴等的操作，但是却无法编辑文件的内容，只有当到你按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式。这时候屏幕的左下方会出现【INSERT或 REPLACE】的字样，此时才可以进行编辑。而如果要回到一般模式时， 则必须要按下【Esc】即可退出编辑模式。</p>
+<p>一般模式切换到编辑模式的可用的按钮说明</p>
+<p>【i, I】 进入编辑模式：</p>
+<p>i 为【从目前光标所在处插入】</p>
+<p>I 为【在目前所在行的第一个非空格符处开始插入】</p>
+<p>【a, A】 进入编辑模式(Insert mode)：</p>
+<p>a 为【从目前光标所在的下一个字符处开始插入】</p>
+<p>A 为【从光标所在行的最后一个字符处开始插入】</p>
+<p>【o, O】 进入编辑模式：</p>
+<p>o 为【在目前光标所在的下一行处插入新的一行】</p>
+<p>O 为在目前光标所在处的上一行插入新的一行</p>
+<p>【r, R】 进入取代模式：</p>
+<p>r 只会取代光标所在的那一个字符一次</p>
+<p>R会一直取代光标所在的文字，直到按下 ESC 为止；</p>
+<p>【Esc】 退出编辑模式，回到一般模式</p>
+<h3 id="_20"><strong>命令行模式：</strong></h3>
+<p>输入【 : / ? 】三个中的任何一个，就可以将光标移动到最底下那一行。在这个模式中， 可以提供查找、读取、存盘、替换字符、离开vi、显示行号等的动作则是在此模式中完成的！</p>
+<p>一般模式切换到命令行模式可用的按钮说明</p>
+<p>【:w】 保存编辑的内容</p>
+<p>【:w!】强制写入该文件，但跟你对该文件的权限有关</p>
+<p>【:q】 离开vi</p>
+<p>【:q!】 不想保存修改强制离开</p>
+<p>【:wq】 保存后离开</p>
+<p>【:x】 保存后离开</p>
+<p>【ZZ】 若文件没有更动，则不保存离开，若文件已经被更改过，则保存后离开</p>
+<p>【:w filename】 将编辑的数据保存成另一个文件（类似另存）</p>
+<p>【:r filename】 在编辑的数据中，读入另一个文件的数据。即将【filename】 这个文件的内容加到光标所在行后面。</p>
+<p>【:n1,n2 w filename】 将n1到n2的内容保存成filename这个文件。</p>
+<p>【:! command】暂时离开vi 到命令行模式下执行command的显示结果！例如 【:! ls /home】即可在 vi 当中察看/home底下以ls输出的文件信息！</p>
+<p>【:set nu】 显示行号</p>
+<p>【:set nonu】 与 set nu 相反，为取消行</p>
+<h3 id="_21"><strong>缓存与恢复</strong></h3>
+<p>打开终端，输入命令，将etc目录下面的manpath.config复制到tmp目录下面，并且更改当前工作目录为tmp：</p>
+<p>cp /etc/manpath.config /tmp</p>
+<p>cd /tmp</p>
+<p>用vim编辑manpath.config文件：vim manpath.config。</p>
+<p>我们在vim的一般模式下按下Ctrl+z组合键，vim就会被丢到后台执行。回到命令提示符环境后，我们模拟将vim的工作不正常中断。</p>
+<p>kill -9 %1;强制杀死制定的进程。</p>
+<p>这样导致暂存盘无法通过正常的流程结束，所以暂存文件不会消失，而是继续保留下来。当再次编辑那个文件时(输入命令vim manpath.config)，出现(ubuntu 11.10)：</p>
+<p>这时，有六个按钮可以使用：</p>
+<p>O(pen for Read-Only):打开成只读文件。</p>
+<p>E(dit):用正常方式打开要编辑的文件，并不会载入暂存文件的内容。这很容易出现两个用户相互改变对方的文件的问题。</p>
+<p>R(ecover)：加载暂存文件的内容。</p>
+<p>D(elete)：如果你确定这个暂存文件是没有用的，则可以删除。</p>
+<p>Q(uit)：不进行任何操作，回到命令行。</p>
+<p>A(bort)：忽略这个编辑行为，和Q类似。</p>
+<p>需要注意的是：这个暂存文件不会应为你结束vim后自动删除，必须要手动删除。否则每次打开对应的文件时都会出现这样的提示。</p>
+<p>vim的缓存文件、恢复与开启时的警告信息</p>
+<p>我们知道一些常用的编辑软件，都有个恢复的功能，就是说当你的系统因为某些原因而导致类似当机的情况时，还可以利用这个恢复功能将之前未保存的数据找回来。我们的VIM也有这个功能。</p>
+<p>当我们在使用vim编辑时，vim会在与被编辑的文件的目录下，再建立一个名为 .filename.swp的文件。如果你的系统因为某些原因断线了， 导致你编辑的文件还没有保存，这个时候 .filenam.swp 就能够发会救援的功能了。</p>
+<p>我们来演示一下</p>
+<p>vim man.config</p>
+<p>ctrl+z放到后台执行</p>
+<p>我们停止VI的进程</p>
+<p>一种方法</p>
+<p>ps aux |grep vi</p>
+<p>kill -9 n</p>
+<p>另外一种方法</p>
+<p>jobs</p>
+<p>kill -9 %1</p>
+<p>我们用ls -l 命令来查看一下目录里面，会发现有个.man.config.swp的文件，这个文件就是个缓存的文件</p>
+<p>我们再来编辑</p>
+<p>vim man.config</p>
+<p>这时候会出现一些信息</p>
+<p>问题一：可能有其他人或程序同时在编辑这个文件：</p>
+<p>问题二：在前一个vim的环境中，可能因为某些不知名原因导致vim中断 (crashed)：</p>
+<p>右下角会出现六个命令项，其作用说明如下：</p>
+<p>(O)pen Read-Only：打开此文件成为只读档， 可以用在你只是想要查阅该文件内容并不想要进行编辑行为时。一般来说，在上课时，如果你是登入到同学的计算机去看他的配置文件， 结果发现其实同学他自己也在编辑时，可以使用这个模式；</p>
+<p>(E)dit anyway：还是用正常的方式打开你要编辑的那个文件， 并不会载入暂存盘的内容。如果说两个人都在编辑这个文件的话，很容易出现互相改变对方的文件等问题。</p>
+<p>(R)ecover：就是加载暂存盘的内容，用在你要救回之前未保存的工作。 不过当你救回来并且储存离开vim后，还是要手动自行删除那个暂存档。</p>
+<p>(D)elete it：你确定那个暂存档是无用的！那么开启文件前会先将这个暂存盘删除</p>
+<p>(Q)uit：按下 q 就离开vim，不会进行任何动作回到命令提示字符。</p>
+<p>(A)bort：忽略这个编辑行为，感觉上与 quit 非常类似！</p>
+<p>alias这个命令来查看是不是有alias vi=’vim’这一行。</p>
+<p>块选择</p>
+<p>【v】字符选择，会将光标经过的地方反白选择</p>
+<p>【V】 行选择，会将光标经过的行反白选择</p>
+<p>【Ctrl+v】 块选择，可以用长方形的方式选择资料 （提制竖列）</p>
+<p>【y】 将反白的地方复制</p>
+<p>【d】 将反白的地方删除</p>
+<p>【1】块选择：</p>
+<h3 id="_22"><strong>多文件编辑</strong></h3>
+<p>大家在使用vim的时候，可能会碰到你需要复制一个文件中的某段到另外一个文件中，而vim不能够在关闭的时候，把这段保留住。或者是用其它的方法复制。</p>
+<p>【vim file1 file2】</p>
+<p>【:n】编辑下一个文件</p>
+<p>【:N】编辑上一个文件</p>
+<p>【:files】列出目前这个vim编辑的所有文件</p>
+<h3 id="_23"><strong>多窗口功能</strong></h3>
+<p>有两个需要对照着看的文件</p>
+<p>【:sp filename】开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新文件，否则表示两个窗口为同一个文件内容(同步显示)。</p>
+<p>【ctrl+w+j】</p>
+<p>【ctrl+w+↓】按键的按法是：先按下 【ctrl】 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</p>
+<p>【ctrl+w+k】</p>
+<p>【ctrl+w+↑】同上，不过光标移动到上面的窗口。</p>
+<h3 id="vim-vimrc-viminfo"><strong>vim 环境设定与记录(\~/.vimrc, \~/.viminfo)</strong></h3>
+<p>:set all "显示目前所有的环境参数设定值</p>
+<p>:set showmode "左下角那一行的状态</p>
+<p>:set nu "显示行号</p>
+<p>:set nonu "取消行号</p>
+<p>:set bg=dark "显示不同的底色色调</p>
+<p>:syntax on "进行语法检验，颜色显示</p>
+<p>:syntax off "关闭语法检验</p>
+<p>下面列出平时用的最多的vi命令：</p>
+<p>移动光标的方法：</p>
+<p>[Ctrl]+[f]：屏幕向下移动一页，相当于[PageDown]按键。</p>
+<p>[Ctrl]+[b]：屏幕向上移动一页，相当于[PageUp]按键。</p>
+<p>0或功能键[Home]：移动到这一行的最前面字符处。</p>
+<p>\$或功能键[End]：移动到这一行的最后面字符处。</p>
+<p>G：移动到这个文件的最后一行。</p>
+<p>gg：移动到这个文件的第一行，相当于1G.</p>
+<p>N[Enter]：N为数字，光标向下移动N行。</p>
+<p>查找和替换：</p>
+<p>/word：向下寻找一个名称为word的字符串。</p>
+<p>?word：向上寻找一个名称为word的字符串。</p>
+<p>:n1,n2s/word1/word2/g：在第n1行和n2行之间寻找word1这个字符串，并且将其替换为word2.</p>
+<p>:1,\$s/word1/word2/g：从第一行到最后一行寻找word1这个字符串，并且将其替换为word2.</p>
+<p>:1,\$s/word1/word2/gc：从第一行到最后一行寻找word1这个字符串，并且将其替换为word2.且在替换前显示提示字符给用户确认是否需要替换。</p>
+<p>删除、复制和粘贴：</p>
+<p>x,X：在一行字中，x为向后删除一个字符（相当于[Del]键），X为向前删除一个字符（相当于[Backspace]）。</p>
+<p>dd：删除光标所在的一整行。</p>
+<p>ndd：删除光标所在的向下n行。</p>
+<p>yy：复制光标所在的一行。</p>
+<p>nyy：复制光标所在的向下n行。</p>
+<p>p,P：p为将已复制的内容在光标的下一行粘贴，P则为粘贴在光标的上一行。</p>
+<p>u：复原前一个操作。</p>
+<p>[Ctrl]+r：重做上一个操作。</p>
+<p>.：小数点，重复前一个操作。</p>
+<p>一般模式切换到编辑模式：</p>
+<p>i,I：进入插入模式，i为从目前光标所在处插入。I为在目前所在行的第一个非空格字符处开始插入。</p>
+<p>a，A：进入插入模式。a为从目前光标所在处的下一个字符处开始插入。A为从所在行的最后一个字符处开始插入。</p>
+<p>o，O：进入插入模式。o为在下一行插入。O为在上一行插入。</p>
+<p>r，R：进入替换模式。r只替换光标所在那个字符一次。R会一直替换光标所在字符，直到按下Esc键。</p>
+<p>一般模式切换到命令行：</p>
+<p>:w：将编辑的数据写入到硬盘中。</p>
+<p>:q：离开vi.后面加！为强制离开。</p>
+<p>:wq：保存后离开。:wq!为强制保存后离开。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

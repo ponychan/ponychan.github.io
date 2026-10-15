@@ -1,0 +1,3888 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/07-build/note-1-csdxmnib/">
+      
+      
+        <link rel="prev" href="../note-1-csgdln4e/">
+      
+      
+        <link rel="next" href="../note-1-c1edhnib/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CI-CD - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ci-cd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CI-CD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmjvlnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgctfn2j/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-clofunpb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c1edhnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-csqf5nuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ci-cd">CI-CD</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="ci-cd_1">CI-CD</h1>
+<p>原始时代：compile-linking-packaging-running-debug、</p>
+<p>进化：build tool-testing tools-profiling</p>
+<p>高级：build system- testing system- profiling system</p>
+<h1 id="build-tool">build tool</h1>
+<p>make</p>
+<h1 id="build-system">build system</h1>
+<p>MSbuild、CMake、XMake、gradle、Bazel、Maven 、Buck</p>
+<p>CMake及其姊妹CTest、CPack和CDash</p>
+<h1 id="gcc-toolchain">GCC toolchain</h1>
+<h2 id="_1">编译器</h2>
+<h2 id="gnu-binutils">GNU Binutils</h2>
+<pre><code class="language-PowerShell">ls /usr/bin/ | grep linux-gnu-
+</code></pre>
+<p>Ld 链接器</p>
+<p>As 汇编器</p>
+<p>cpp预处理器</p>
+<p>ar 归档管理器：处理静态库</p>
+<p>nm 符号表查看器：查看符号表</p>
+<p>objdump目标文件查看器</p>
+<p>strings字符串提取器</p>
+<p>reloc重定位工具</p>
+<p>size大小查看器</p>
+<p>objcopy二进制转换工具</p>
+<h2 id="_2"><strong>编译软件</strong></h2>
+<p>下载源代码后解压</p>
+<ol>
+<li>
+<ol>
+<li>cd到该目录，执行./configure配置脚本配置编译器</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>make编译软件</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>make install 安装软件，通常需要加sudo</li>
+</ol>
+</li>
+</ol>
+<h2 id="gcc-makefile"><strong>GCC &amp; Makefile</strong></h2>
+<p>GCC编译程序的四个阶段：</p>
+<p>为了更好的理解GCC的工作过程，我们可以让GCC在预处理、编译、汇编、链接任何一个阶段停止下来，只要加上相关的参数：</p>
+<p>-E 预处理后停下来，生成后缀为.i的预编译文件；</p>
+<p>-S 汇编后停下来，生成后缀为.s的汇编源文件；</p>
+<p>-c 编译后停下来，生成后缀为.o的目标文件。</p>
+<p>现在来理清下整个过程，GCC编译的预处理、编译、汇编、链接四个阶段对应调用的四个工具是cpp、cc1、as、ld，预处理后生成.i的文件，cc1将预处理后的.i文件编译成汇编源文件，as将汇编源文件汇编成.o的目标代码文件，然后通过ld链接成可执行文件。</p>
+<p>1、  预处理（也称预编译）</p>
+<p>进行预编译使用-E参数让gcc在预处理结束后停止编译过程:</p>
+<p>&gt;gcc–E my.c –o my.i</p>
+<p>会发现多了一个my.i的文件，按照gcc首先调用cpp进行预编译，刚好发现MinGW安装目录bin有cpp.exe这个工具，把之前生成的my.i删除，尝试使用cpp –Emy.c –o my.i进行预编译，发现也会生成一个my.i，my.i文件是预编译文件，查看该文件发现stdio.h的内容确实插到文件中去了，其他应当被预处理的宏定义也作了相应的处理。</p>
+<p>2、  编译将源代码文件编译成汇编代码</p>
+<p>gcc –S my.c –o my.s也可以使用gcc –S my.i –o my.s效果是一样的，为了更好理解GCC编译过程，使用gcc –S my.i –o my.s刚好利用了前面第一步预处理生成的my.i文件。按照GCC是调用cc1进行编译的，开始在MinGW安装位置的Bin文件夹并没找着cc1.exe，后来在MinGW安装位置的libexec目录往下找找到了，将my.i文件放到cc1.exe的同级目录下，用cc1 –S my.i –o my.s发现GCC的确是调用cc1进行编译。</p>
+<p>3、  汇编</p>
+<p>第三步，汇编。将第二步生成的my.s源文件汇编成目标代码文件，使用gcc –c my.c –o my.o或gcc –c my.i –o my.o或gcc –c my.s –o my.o或as my.s –o my.o，根据GCC在编译阶段是调用as将汇编源代码进行编译，使用as my.s –o my.o进行编译。</p>
+<p>4、  链接</p>
+<p>第四步，链接。将第三步生成的my.o目标文件链接成可执行文件，使用gcc my.c –o my或gcc my.i –o my或gcc my.o –o my，按照GCC是调用ld来链接的可是使用ld my.o –o my会出现undefined reference to <code>__main'、undefined referenceto</code>printf'的错误，加上-lc参数又显示找不到-lc，但是在linux下使用ld –e main my.o –lc –o my没问题，我用的是Fedora23的虚拟机，估计在windows下对应的c库没找着，暂时放在这。</p>
+<p>GCC文件类型：</p>
+<p>.c为后缀的文件，C语言源文件</p>
+<p>.a为后缀的文件是由目标文件构成的档案库文件</p>
+<p>.C、.cc、.cpp、.C++、.cp或.cxx为后缀的文件，是C++源文件</p>
+<p>.h为后缀的文件，是程序所包含的头文件</p>
+<p>.i为后缀的文件是已经预处理过的C源代码文件</p>
+<p>.ii为后缀的文件是已经预处理过的C++源代码文件</p>
+<p>.m为后缀的Objective-C源代码文件</p>
+<p>.o为后缀的文件是编译后的目标文件</p>
+<p>.s为后缀的文件是汇编语言源代码文件</p>
+<p>.S为后缀的文件是经过预编译的汇编语言源代码文件</p>
+<p>GCC在各阶段的角色</p>
+<p>Gcc首先调用cpp进行预处理，在预处理过程中队源代码文件中的文件包含（include）、预编译语句（如宏定义define等）进行分析。接着调用cc1进行编译，这个阶段根据输入文件生成以.o为后缀的目标文件。汇编过程就是针对汇编语言的步骤，调用as进行工作，一般来讲，.S为后缀的汇编语言源代码文件和.s为后缀的汇编语言文件经过预编译和汇编后都生成以.o为后缀的目标文件。当所有的目标文件都生成之后，Gcc就调用ld来完成最后的关键性工作，这个阶段就是链接，在链接阶段所有的目标文件被安排在可执行程序的恰当位置，同时，该程序所调用到的库函数也从各自所在的库连到合适的地方。</p>
+<p>.c.h源文件</p>
+<p>编译compile</p>
+<p>.o 中间代码文件 .a库文件</p>
+<p>链接link</p>
+<p>\是换行符</p>
+<p>代表注释</p>
+<p>/转义字符</p>
+<p>https://zhuanlan.zhihu.com/p/645135367</p>
+<h1 id="meta-programming">meta programming</h1>
+<p>The process that surrounds the work that you do when working with software.</p>
+<p>It is not about programming itself necessarily, but about the process.</p>
+<p>This can be things like how your system is built how it's tested how you add dependencies to your software that sort of stuff because really relevant when you build parger pieces of software, but they are not programming and of themselves </p>
+<h2 id="the-notion-of-build-systems">The notion of build systems</h2>
+<p>make 适用于小型和中型项目</p>
+<p><a href="https://www.gnu.org/software/make/manual/make.html">www.gnu.org</a></p>
+<p>vim Makefile</p>
+<pre><code class="language-Makefile">paper.pdf: paper.tex plot-data.png
+    pdflatex paper.tex
+#latex是数学语言，用latex文件生产pdf的工具叫做pdflatex
+#wildcard通配符
+#percentile百分位数
+plot-%.png: %.dat plot.py
+    ./plot.py -i $*.dat -o $@
+    运行的时候会查找目标的所有依赖项，
+    找不到依赖项，也找不到如何构建依赖项时报错
+生成过一次之后，再次生成，只会重新编译变化的部分
+未变化的部分不会重新编译
+
+</code></pre>
+<p>Make 不仅仅是完成编译，还可以在编译完成后执行打包命令，乃至上传命令</p>
+<p>可以创建子命令，如make test，编译并运行测试，make release，使用编译优化进行编译并生成tarball，and uploads。</p>
+<p>可以完成整个pipeline，idea is to reduce the effort that you have to do as any part of your build process，就是减少每个过程中需要做的事情</p>
+<p>依赖项会很多，比如shell脚本里调用的函数，会默认目标机器上有这个。所以并不需要声明所有你需要的依赖项。在所有需要依赖项的地方，都会有管理依赖项的工具。大多数时候依赖项都被存储在代码仓库repository里。代码仓库是一个可以安装的代码的集合。creat.io for rust npm for node.js，cryptographic keys，有一种仓库是系统自带的，apt在Ubuntu。仓库有些是官方的，有些是open的。使用open的仓库要注意安全性。</p>
+<p>当你开始使用仓库时，很常见的现象是软件是有版本的，为什么软件有版本，因为没有版本的话，API的改变会导致依赖该API的软件崩溃。</p>
+<p>semantic versioning语义版本号</p>
+<p>major versioning，minor version，patch(补丁) version</p>
+<p>引入了不兼容的东西的情况，一般需要升级大版本号</p>
+<p>3.5能跑的代码，理论上3.6 3.7 3.8也能跑，但是3.5能跑的代码，3.4就不一定能跑，这样就使得在不同的软件之间共享依赖成为可能。</p>
+<p>想要兼容性越好，就需要在大版本号相同的前提下让依赖的版本号尽可能低一点</p>
+<p>if you can depend on major and then minor and patch zero zero that is the best possible dependency you can have. Because it is completely liberal as to which version of that major you're depending on. sometimes this is hard right, sometines you genuinely need a feature that was added but the lower you can get the better it is for those who want to depend on your software in turn</p>
+<p>lock files，用来表明软件依赖的版本。如果没有lockfile，那就需要每次下载最新版本的依赖，然后进行编译，会很费时。有了lockfile就可以手动选择升级的时间，编译过程就会快很多。再有就是获得reproducible builds，不然的话在不同的机器上进行编译或者安装，就有可能因为依赖项不同，导致编译出来的软件也不同。例如依赖项引入了新的bug。但是开发者使用的老版本是OK的。lockfile冻结了ecosystem</p>
+<p>vendering</p>
+<p>CI持续集成</p>
+<p>build系统不只在本地，而是会在一个越来越大的系统里面，此时就会需要用到continuous integration持续集成，essentially本质上大体上是一个cloud build system。例如当你发布新分支时，自动编译包发送到pypi，例如当有人提起pull request时运行测试套件suite，例如在每次commit时检查code style。coverage testing</p>
+<p>可以理解为由事件触发的action。</p>
+<p>encapsulate概括：Azure pipeline，github actions are all broad system</p>
+<p>通常使用CI的方式：</p>
+<p>使用一个recipe（食谱，诀窍）文件，描述dependence cycle，类似于Makefile</p>
+<p>当进行了一次commit，或者当commit message包含了哪些信息，或者当某人提交了pull request</p>
+<p>dependent bot 会hook up仓库扫描依赖是否有新版本，并且没有被使用</p>
+<p>A bunch of badges</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>Github pages,可以把仓库生成blog essentially</p>
+<p>接受markdown文件并生成网站，因为github有服务器，所以在某个域名下，可以访问到网站。这就是classic website的工作方式。网站不再是一堆html文件，相反，是一个仓库</p>
+<p>测试套件suite，有很多种测试，首先是unit test，只测试很具体的东西</p>
+<p>然后是integration test，测试interaction betweendifferent subsystems</p>
+<p>regression test回归测试，有bug，然后修复了，此时进行回归测试。然后当提交了新的bugfix之后，之前的测试就不会重复进行了。</p>
+<p>mocking：being able to replace parts of your system with a sort of dummy versioning of itself。就是你要测试一个功能是基于某个条件的，mocking 工具可以实现这个条件，让你专注于测试要测试的功能</p>
+<p>make和cmake的区别：</p>
+<p>Implicit</p>
+<p>cmake会检测项目结构，以及系统的库，</p>
+<h2 id="_3">基础知识</h2>
+<p>软件开发三大部分</p>
+<p>1 语法、标准库、第三方库</p>
+<p>2 工具链     编译工具GCC，G++，多文件编译，makefile，单元测试，自动化测试，版本控制，</p>
+<p>3 工具链的使用</p>
+<p>使用strace追踪程序的执行过程，每一个C库函数，都对应了系统调用systemcall。</p>
+<p>例：库函数printf，系统调用write mmap</p>
+<p>Linux使用execve向程序传递参数，程序使用argc argv接收参数</p>
+<h2 id="linux"><strong>Linux服务器编程</strong></h2>
+<ol>
+<li>
+<p>System函数调用，原型为int system(const char *string)。运行以字符串参数的形式传递给它的命令并等待该命令的完成。相当于在shell中执行sh –c string。如果无法启动shell，就返回127，其他返回-1，成功返回命令的退出码。</p>
+</li>
+<li>
+<p>替换进程映像——使用exec系列函数。会把当前进程替换为一个新进程，新进程由path或file参数指定。</p>
+</li>
+<li>
+<p>复制进程映像——fork函数。原型为pid_t fork（）；在父进程中返回子进程的pid，在子进程中返回0.用这个来判断父进程和子进程。</p>
+</li>
+</ol>
+<p>内核开发教aid=986577892&amp;bvid=BV1D44y1f7kk&amp;cid=859961386&amp;page=1" </p>
+<p>开发流程：</p>
+<p>配置开发环境：</p>
+<p>编译并安装内核</p>
+<p>准备并发送第一个补丁</p>
+<p>测试和debug</p>
+<p>已剪辑自: <a href="https://www.cnblogs.com/Torrance/p/8409112.html">https://www.cnblogs.com/Torrance/p/8409112.html</a></p>
+<h1 id="_4">编译运行调试</h1>
+<p>hello.c</p>
+<pre><code class="language-Shell">#include &lt;stdio.h&gt;
+#define STR &quot;hello world\n&quot;
+void main() {
+  printf(STR);
+}
+</code></pre>
+<h2 id="gcc-proc">gcc proc</h2>
+<p>https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html#Overall-Options</p>
+<p>预处理（preprocess）：头文件展开、宏定义替换、条件编译去除</p>
+<pre><code class="language-Shell">gcc -E hello.c -o hello.i
+</code></pre>
+<p>编译（compile）：转换成汇编语言</p>
+<pre><code class="language-Shell">gcc -S hello.i -o hello.s
+</code></pre>
+<p>汇编（assemble）：转换成 ELF relocatable</p>
+<pre><code class="language-Shell">gcc -c hello.s -o hello.o
+</code></pre>
+<p>链接（link）：符号解析</p>
+<pre><code class="language-Shell"># 动态链接
+gcc hello.o -o hello
+# 静态链接
+gcc hello.o -o hello -static
+</code></pre>
+<p>静态库制作</p>
+<pre><code class="language-Shell">ar rcs libflash.a flashadd.o flashsub.o
+</code></pre>
+<h2 id="elf-type">ELF type</h2>
+<p>relocatable 可重定位文件：.o .a</p>
+<p>executable 可执行文件：无扩展名</p>
+<p>shared object 共享目标文件：.so</p>
+<p>core dump 核心转储文件：core dump</p>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/Readelf"><code>readelf</code></a>显示elf文件</li>
+<li><a href="https://zh.wikipedia.org/wiki/Objdump"><code>objdump</code></a>显示elf和object格式文件，解码elf文件中高级语言语句所对应的机器语言语句段落，汇编语言语句段落。</li>
+<li><a href="https://zh.wikipedia.org/wiki/Nm_(Unix)"><code>nm</code></a>显示elf文件中变量名和地址</li>
+</ul>
+<h3 id="doc">doc</h3>
+<p>https://sourceware.org/binutils/docs-2.39/ld.html</p>
+<p>http://www.skyfree.org/linux/references/ELF_Format.pdf</p>
+<p>https://refspecs.linuxfoundation.org/elf/elf.pdf</p>
+<h2 id="_5">编译</h2>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h3 id="_6">编译：根据指令集手册, 把汇编代码(指令的符号化表示)翻译成二进制目标文件(指令的编码表示)</h3>
+<p>预处理 -&gt; 编译 -&gt; 汇编 -&gt; 链接 -&gt; 执行</p>
+<p>GCC文件类型</p>
+<p>https://www.runoob.com/w3cnote/gcc-parameter-detail.html</p>
+<table>
+<thead>
+<tr>
+<th>源文件</th>
+<th>编译预处理后</th>
+<th>汇编文件</th>
+<th>目标文件/等待链接</th>
+<th>可执行/库文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C语言.c .h</td>
+<td>.i为后缀的文件是已经预处理过的C源代码文件</td>
+<td>.s为后缀的文件是汇编语言源代码文件</td>
+<td>.o为后缀的文件是编译后的目标文件</td>
+<td>.a为后缀的文件是由目标文件构成的静态库文件</td>
+</tr>
+<tr>
+<td>C++ .h .cpp .C、.cc、.cp或.cxx</td>
+<td>.ii为后缀的文件是已经预处理过的C++源代码文件</td>
+<td>.S为后缀的文件是经过预编译的汇编语言源代码文件</td>
+<td></td>
+<td>.so为后缀的动态库文件</td>
+</tr>
+<tr>
+<td>.m为后缀的Objective-C源码文件</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>GCC编译程序的四个阶段：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>GCC工具</th>
+<th>Clang工具</th>
+<th>参数</th>
+<th>处理前文件类型</th>
+<th>处理后文件类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编译预处理</td>
+<td>cpp</td>
+<td></td>
+<td>-E</td>
+<td>源代码.h .c .cpp</td>
+<td>预编译文件.i</td>
+</tr>
+<tr>
+<td>汇编</td>
+<td>cc1</td>
+<td></td>
+<td>-S</td>
+<td></td>
+<td>汇编文件 .s</td>
+</tr>
+<tr>
+<td>编译</td>
+<td>as</td>
+<td></td>
+<td>-c</td>
+<td></td>
+<td>目标文件 .o</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>ld</td>
+<td>lld</td>
+<td></td>
+<td></td>
+<td>可执行文件</td>
+</tr>
+</tbody>
+</table>
+<p>Gcc首先调用cpp进行预处理，在预处理过程中对源代码文件中的文件包含（include）、预编译语句（如宏定义define等）进行分析。</p>
+<p>接着调用cc1进行编译，这个阶段根据输入文件生成以.o为后缀的目标文件。</p>
+<p>汇编过程就是针对汇编语言的步骤，调用as进行工作，一般来讲，.S为后缀的汇编语言源代码文件和.s为后缀的汇编语言文件经过预编译和汇编后都生成以.o为后缀的目标文件。</p>
+<p>当所有的目标文件都生成之后，Gcc就调用ld来完成最后的关键性工作，这个阶段就是链接，在链接阶段所有的目标文件被安排在可执行程序的恰当位置，同时，该程序所调用到的库函数也从各自所在的库连到合适的地方。</p>
+<h3 id="preprocessing-">preprocessing预处理-处理头文件包含、宏替换、条件编译等预处理指令</h3>
+<p>思维导图（本地资料，未发布）</p>
+<h4 id="_7">宏</h4>
+<ol>
+<li>宏定义#define #undef</li>
+</ol>
+<p>宏定义分为有参数和无参数</p>
+<h1 id="define">define 宏名（形参表）字符串</h1>
+<p>调用：宏名（实参表）</p>
+<ol>
+<li>文件包含#include</li>
+<li>条件编译#if #ifdef #ifndef  #else #elif #endif</li>
+</ol>
+<h1 id="ifndef">ifndef 标识符</h1>
+<p>程序段1</p>
+<h1 id="else">else</h1>
+<p>程序段2</p>
+<h1 id="endif">endif</h1>
+<p>标识符被定义过则编译1段，否则编译2段</p>
+<p>进行预编译使用-E参数让gcc在预处理结束后停止编译过程:</p>
+<h4 id="_8">预处理</h4>
+<p>&gt;gcc–E my.c –o my.i</p>
+<p>会发现多了一个my.i的文件，按照gcc首先调用cpp进行预编译，刚好发现MinGW安装目录bin有cpp.exe这个工具，把之前生成的my.i删除，尝试使用cpp –E my.c –o my.i进行预编译，发现也会生成一个my.i，my.i文件是预编译文件，查看该文件发现stdio.h的内容确实插到文件中去了，其他应当被预处理的宏定义也作了相应的处理。</p>
+<h3 id="compile-">compile编译-将源代码文件编译成汇编代码</h3>
+<p>思维导图（本地资料，未发布）</p>
+<p>gcc –S my.c –o my.s也可以使用gcc –S my.i –o my.s效果是一样的，为了更好理解GCC编译过程，使用gcc –S my.i –o my.s刚好利用了前面第一步预处理生成的my.i文件。按照GCC是调用cc1进行编译的，开始在MinGW安装位置的Bin文件夹并没找着cc1.exe，后来在MinGW安装位置的libexec目录往下找找到了，将my.i文件放到cc1.exe的同级目录下，用cc1 –S my.i –o my.s发现GCC的确是调用cc1进行编译。</p>
+<h3 id="assemble-">assemble-汇编</h3>
+<p>思维导图（本地资料，未发布）</p>
+<p>第三步，汇编。将第二步生成的my.s源文件汇编成目标代码文件，使用gcc –c my.c –o my.o或gcc –c my.i –o my.o或gcc –c my.s –o my.o或as my.s –o my.o，根据GCC在编译阶段是调用as将汇编源代码进行编译，使用as my.s –o my.o进行编译。</p>
+<h3 id="linking">链接linking</h3>
+<p>思维导图（本地资料，未发布）</p>
+<p>第四步，链接。将第三步生成的my.o目标文件链接成可执行文件，使用gcc my.c –o my或gcc my.i –o my或gcc my.o –o my，按照GCC是调用ld来链接的，可是使用ld my.o –o my会出现undefined reference to <code>__main'、undefined referenceto</code>printf'的错误，加上-lc参数又显示找不到-lc，但是在linux下使用ld –e main my.o –lc –o my没问题，</p>
+<p>\是换行符</p>
+<h1 id="_9">代表注释</h1>
+<p>/转义字符</p>
+<h3 id="_10">并行编译</h3>
+<p>并行编译 - make -j \$(nproc)，可以充分利用多核资源</p>
+<h3 id="_11">编译库文件</h3>
+<p>.a静态库文件</p>
+<p>.so动态库文件</p>
+<p>目标文件格式</p>
+<p>可执行目标文件（程序）</p>
+<p>可重定位目标文件（.O文件）</p>
+<p>共享目标文件（共享库）</p>
+<p>linux ELF可执行可链接格式</p>
+<p>Windows portable executable可移植可执行格式</p>
+<h4 id="_12">静态库文件</h4>
+<p>思维导图（本地资料，未发布）</p>
+<p>相当于主程序和函数库分开编译，每次只用重新编译修改的部分所在的库。体积大、运行速度快，但是升级不方便。</p>
+<p>举例：main.c show.c show.h三个文件</p>
+<ol>
+<li>Gcc-o show.o -c show.c   //生成show.o</li>
+<li>Ar -rcs libshow.a show.o //生成libshow.a静态库文件</li>
+<li>Gcc -o main main.c -L ./ -lshow -L指定静态库路径 -l+libname为固定格式。libshow的lib省略。   或者gcc -o main main.c libshow.a</li>
+</ol>
+<h4 id="_13">动态库文件</h4>
+<p>相当于Windows的DLL，Linux的动态库后缀为so，命名规则为libname.so.x.y.z。lib后面跟库名称，so为固定后缀，x主版本号，y次版本号，z发行版本号。动态库在升级了函数库之后依然可以使用老版本，可以指定某个特定程序的时候可以覆盖特定库或函数，可以在使用的过程中修改。</p>
+<p>编译方法：</p>
+<h2 id="_14">运行</h2>
+<pre><code class="language-Shell">file a.out  查看文件类型
+./a.out     把可执行文件加载到内存, 跳转到程序, 执行编译出的指令序列
+</code></pre>
+<h3 id="_15">文件执行过程</h3>
+<ul>
+<li>程序和操作系统之间也是有交互的。操作系统通过ELF文件识别可执行程序，使用exev函数向程序传递信息。程序在main里通过int argc，char** argv接收参数。</li>
+<li>程序在运行过程中和静态链接库和动态链接库发生交互。</li>
+<li>strace追踪程序执行</li>
+</ul>
+<p>关于库函数和系统调用</p>
+<p>库函数是高层的，完全运行在用户空间， 为程序员提供调用真正的在幕后完成实际事务的系统调用的更方便的接口。系统调用在内核态运行并且由内核自己提供。标准C库函数<code>printf()</code> 可以被看做是一个通用的输出语句，但它实际做的是将数据转化为符合格式的字符串并且调用系统调用 <code>write()</code> 输出这些字符串。</p>
+<p>是否想看一看<code>printf()</code> 究竟使用了哪些系统调用? 这很容易，编译下面的代码。</p>
+<pre><code class="language-C++">＃include int main(void) { printf(&quot;hello&quot;); return 0; }
+</code></pre>
+<p>使用命令<strong>gcc -Wall -o hello hello.c</strong> 编译。</p>
+<h4 id="elf">ELF文件</h4>
+<p>Executable and Linkable Format</p>
+<p>可执行和可链接格式</p>
+<p>汇编器和链接器生成的文件都属于ELF文件</p>
+<p>可重定位文件relocatable file</p>
+<p>可执行文件 excutable file</p>
+<p>共享库文件shared object file</p>
+<p>elf文件包括</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>Elf header其实是一个结构体</p>
+<h2 id="-strace">调试-strace</h2>
+<p>System call trace</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>用命令 <strong>strace hello</strong> 跟踪该执行文件</p>
+<pre><code class="language-C">[root@VM-4-8-centos strace]# strace ./hello
+execve(&quot;./hello&quot;, [&quot;./hello&quot;], 0x7ffcdc0bf4c0 /* 33 vars */) = 0
+brk(NULL)                               = 0x799000
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa5a4091000
+access(&quot;/etc/ld.so.preload&quot;, R_OK)      = 0
+open(&quot;/etc/ld.so.preload&quot;, O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=18, ...}) = 0
+mmap(NULL, 18, PROT_READ|PROT_WRITE, MAP_PRIVATE, 3, 0) = 0x7fa5a4090000
+close(3)                                = 0
+readlink(&quot;/proc/self/exe&quot;, &quot;/root/strace/hello&quot;, 4096) = 18
+open(&quot;/lib64/libonion.so&quot;, O_RDONLY|O_CLOEXEC) = 3
+read(3, &quot;\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0`\20\0\0\0\0\0\0&quot;..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=42880, ...}) = 0
+mmap(NULL, 1072448, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fa5a3f8a000
+mprotect(0x7fa5a3f8d000, 1048576, PROT_NONE) = 0
+mmap(0x7fa5a408d000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000) = 0x7fa5a408d000
+mmap(0x7fa5a408e000, 7488, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fa5a408e000
+close(3)                                = 0
+munmap(0x7fa5a4090000, 18)              = 0
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=51541, ...}) = 0
+mmap(NULL, 51541, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fa5a3f7d000
+close(3)                                = 0
+open(&quot;/lib64/libc.so.6&quot;, O_RDONLY|O_CLOEXEC) = 3
+read(3, &quot;\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0`&amp;\2\0\0\0\0\0&quot;..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=2156592, ...}) = 0
+mmap(NULL, 3985920, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fa5a3aa3000
+mprotect(0x7fa5a3c67000, 2093056, PROT_NONE) = 0
+mmap(0x7fa5a3e66000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c3000) = 0x7fa5a3e66000
+mmap(0x7fa5a3e6c000, 16896, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fa5a3e6c000
+close(3)                                = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa5a4090000
+open(&quot;/lib64/libdl.so.2&quot;, O_RDONLY|O_CLOEXEC) = 3
+read(3, &quot;\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0P\16\0\0\0\0\0\0&quot;..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=19248, ...}) = 0
+mmap(NULL, 2109744, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fa5a389f000
+mprotect(0x7fa5a38a1000, 2097152, PROT_NONE) = 0
+mmap(0x7fa5a3aa1000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7fa5a3aa1000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa5a3f7b000
+arch_prctl(ARCH_SET_FS, 0x7fa5a3f7b740) = 0
+access(&quot;/etc/sysconfig/strcasecmp-nonascii&quot;, F_OK) = -1 ENOENT (No such file or directory)
+access(&quot;/etc/sysconfig/strcasecmp-nonascii&quot;, F_OK) = -1 ENOENT (No such file or directory)
+mprotect(0x7fa5a3e66000, 16384, PROT_READ) = 0
+mprotect(0x7fa5a3aa1000, 4096, PROT_READ) = 0
+mprotect(0x600000, 4096, PROT_READ)     = 0
+mprotect(0x7fa5a4092000, 4096, PROT_READ) = 0
+munmap(0x7fa5a3f7d000, 51541)           = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 0), ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fa5a3f89000
+write(1, &quot;hello&quot;, 5hello)                    = 5
+exit_group(0)                           = ?
++++ exited with 0 +++
+</code></pre>
+<p>strace是一个非常有用的程序，它可以告诉你程序使用了哪些系统调用和这些系统调用的参数，返回值。 这是一个极有价值的查看程序在干什么的工具。</p>
+<p>在输出的末尾，你应该看到这样类似的一行 <code>write(1, "hello", 5hello)</code> 。</p>
+<p>这就是我们要找的。藏在面具<code>printf()</code> 的真实面目。</p>
+<p>既然绝大多数人使用库函数来对文件I/O进行操作(像 fopen, fputs, fclose)。 </p>
+<h2 id="-gdb">调试-gdb</h2>
+<p>https://lldb.llvm.org/use/map.html#breakpoint-commands</p>
+<h3 id="_16">启动调试</h3>
+<p>思维导图（本地资料，未发布）</p>
+<h3 id="_17">设置断点</h3>
+<p>思维导图（本地资料，未发布）</p>
+<p>l 列出源码</p>
+<h1 id="_18">调试的内部原理</h1>
+<h1 id="makecmake-gtest-profiling">构建Make/CMake-测试GTEST-profiling</h1>
+<p>思维导图（本地资料，未发布）</p>
+<h2 id="-makefile">构建--Makefile</h2>
+<h3 id="makemakefile">make与makefile</h3>
+<p>https://zhuanlan.zhihu.com/p/362915681</p>
+<p>递归删除所有二进制文件</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>https://www.tutorialspoint.com/makefile/index.htm</p>
+<p>https://www.gnu.org/software/make/manual/make.html#Reading</p>
+<p>https://www.gnu.org/software/make/manual/</p>
+<p>https://www.gnu.org/software/autoconf/</p>
+<p>https://makefiletutorial.com/</p>
+<p>https://seisman.github.io/how-to-write-makefile/</p>
+<p>\#代表批注</p>
+<p>Tab 需要在命令行的第一个字符</p>
+<p>目标target与依赖文件之间以冒号：分割</p>
+<p>例如</p>
+<pre><code class="language-Plaintext">目标（target）：目标文件1 目标文件2
+&lt;tab&gt;         gcc -o 欲建立的执行文件 目标文件1 目标文件2
+</code></pre>
+<p>make的好处，提供了增量编译的机制，</p>
+<h2 id="-cmake">构建--CMake</h2>
+<p>CMakeLists.txt</p>
+<pre><code class="language-Shell">cmake_minimum_required(VERSION 3.10)
+project(hello)
+add_executable(hello main.c add.c)
+
+</code></pre>
+<h2 id="-gtest">测试--GTEST</h2>
+<h2 id="profiling">Profiling</h2>
+<p>使用logger，使用终端打印彩色的日志，在大型的系统里，使用日志，Linux日志在/var/log</p>
+<p>现在的趋势是大家都使用同一个systemlog，然后使用journalctl进行查看，在mac上，命令是log show，log show --last 10s，然后就需要data wrangling教授的方法进行处理</p>
+<p>logger命令可以向系统日志添加自己的日志</p>
+<p>logger "hello logs"</p>
+<p>运行一个Python程序：Python xxx.py</p>
+<p>调试一个Python程序：Python -m ipdb xxx.py</p>
+<p>l，list，列出代码</p>
+<p>s，step，单步执行</p>
+<p>c，continue，继续</p>
+<p>p，print，打印</p>
+<p>q，quit，退出</p>
+<p>b 6，breakpoint，断点</p>
+<p>gdb --args sleep 20</p>
+<p>Sudo strace ls -l &gt;/dev/null</p>
+<p>忽略ls的输出但不忽略strace的输出</p>
+<p>sudo strace -e lstat ls -l &gt;/dev/null</p>
+<p>Python的静态检查工具pyflakes，mypy</p>
+<p>wirtegood英语语法检查</p>
+<p>web开发的debugger在浏览器有内置</p>
+<p>real time：entire length of time from start to finish</p>
+<p>user time：the amount of time your program spent on CPU doing user level cycles</p>
+<p>system time：kernel mode instructions</p>
+<p>time curl https://baidu.com &amp;&gt; /dev/null</p>
+<p>Timing profiler</p>
+<p>Tracing profiler 记录进入了哪些函数，调用了哪些函数，用了多长时间</p>
+<p>Sampling profiler 每隔一段时间停止，并查看stack trace</p>
+<p>下面是example of tracing profiler</p>
+<pre><code class="language-Python">#!/usr/bin/env python
+
+import sys,re
+
+def grep(pattern,file):
+    with open(file,'r') as f:
+        print(file)
+        for i, line in enumerate(f.readlines()):
+            pattern = re,compile(pattern)
+            match=pattern.search(line)
+            if match is not None:
+                print(&quot;{}:{}&quot;.format(i,line),end=&quot;&quot;)
+ if __name__ == '__main__':
+     times=int(sys.argv[1])
+     pattern = sys.argv[2]
+     for i in range(times):
+         for file in sys.argv[3:];
+             grep(pattern,file)
+
+python -m cProfile -s tottime grep.py 1000 '^(import|\s*def)[^*$' *.py
+</code></pre>
+<pre><code class="language-Python">from bs4 import BeautifulSoup
+
+#This is a decorator that tells line_profiler
+#that we want to analyze this function
+#@profile
+def get_urls():
+    response = request.get('https://missing.casil.mit.edu')
+    s=BeautifulSoup(response.content,'lxml')
+    urls=[]
+    for url in s.find_all('a'):
+        urls.append(url['href'])
+if __name__=='__main__':
+    get_urls()
+
+kernprof -l -v urls.py
+ tac
+</code></pre>
+<p>Memory profilers:</p>
+<p>C--Valgrind</p>
+<p>Sudo perf stat stress -c 1</p>
+<p>Sudo perf record stress -c 1</p>
+<p>Sudo perf report</p>
+<p>Flame graph</p>
+<p>Call graph</p>
+<p>htop</p>
+<p>Stress -c 4</p>
+<p>Du  disk usage,查看内存占用  du -h /folder</p>
+<p>Lsof  list opened files</p>
+<p>benchmark</p>
+<p>在一些情况下fd比find快，因为fd使用的是索引</p>
+<p>Hyperfine --warmup 3 'fd -e jpg' 'find . -iname "*.jpg"'</p>
+<h1 id="cicd">CICD</h1>
+<h2 id="cicd-gitgithub">CICD的基础-git与github</h2>
+<h1 id="git"><strong>Git</strong></h1>
+<h3 id="_19">版本控制基础</h3>
+<h4 id="diff">diff文本比较</h4>
+<p>以下关于diff的内容来自阮一峰的博客</p>
+<p>http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html</p>
+<p>normal diff正常格式</p>
+<pre><code class="language-Shell">　diff file1 file2　
+  4c4    file1的第四行 c(change)为file2的第4行
+　　&lt; a   &lt;表示删除这一行  a是从file1中删除的内容
+　　---
+　　&gt; b   向file2中添加一行，b是增加的的内容
+</code></pre>
+<p>context diff上下文格式</p>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+</blockquote>
+<p>unified diff合并格式</p>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+</blockquote>
+<p>git diff算是unified diff的变体</p>
+<pre><code class="language-Shell">git diff
+diff --git a/f1 b/f1
+　　index 6f8a38c..449b072 100644
+　　--- a/f1
+　　+++ b/f1
+　　@@ -1,7 +1,7 @@
+　　 a
+　　 a
+　　 a
+　　-a
+　　+b
+　　 a
+　　 a
+　　 a
+ 第一行表示结果为git格式的diff。
+ 进行比较的是，a版本的f1（即变动前）和b版本的f1（即变动后）。
+第二行表示两个版本的git哈希值（index区域的6f8a38c对象，与工作目录区域的449b072对象进行比较），
+最后的六位数字是对象的模式（普通文件，644权限）
+第三行表示进行比较的两个文件
+后面的行都与官方的合并格式diff相同
+</code></pre>
+<p>把<code>git diff</code>的结果打成一个patch，然后在其他地方打上这个patch：</p>
+<p>\$ git diff --no-color &gt; saved.patch<br />
+\$ patch -p1 \$lt; saved.patch</p>
+<h4 id="git_1">git简单教程</h4>
+<p>首先，明白一个道理：已经交由git保存的文件就不能像原来那样随意的进行手动删除了。任何改动，都应该先告知git，由git通过后，再用手动的方式删除。你不是一个人在工作，而是通过git和版本控制系统协同工作。</p>
+<p>理解git的数据模型，然后再理解在每一条命令背后，Git对数据模型做了哪些操作。</p>
+<p>先讲datamodel，then some git commands，finally resources and exercise and link to some tutorials</p>
+<h5 id="datamodel">datamodel</h5>
+<p>git采用树形数据结构</p>
+<p>每一个snapshot是一棵树，是被追踪的文件夹的最顶层的树，这棵树除了包含两部分信息：</p>
+<p>一部分是这个快照自己的信息：author，commit message，hash code</p>
+<p>另一部分是这个快照包含的修改信息：tree和blob的集合。把folder作为tree，把file作为blob，tree 可以包含tree和blob</p>
+<p>snapshot之间是线性关系，所有的snapshot构成一个directed acyclic graph有向无环图，这就是git的历史记录history，其中每个快照都有其父节点、提交不可被改变、提交中的错误可以用新的提交修正</p>
+<p>type blob=array<byte></p>
+<p>type tree=map<string, tree|blob></p>
+<p>type commit=struct+something</p>
+<pre><code>    parents=array&lt;commit&gt;
+
+    author string
+
+    snapshot  tree
+</code></pre>
+<p>对于git来说：</p>
+<ol>
+<li>提交/tree/blob都是对象                          type object = blob|tree|commit</li>
+<li>git不保存对象本身，而是保存其哈希值     object=map<string object></li>
+<li>引用是指向提交的指针，并且可读性好。如master和head</li>
+</ol>
+<p>git仓库只存储对象和引用                               reference=map<string,string></p>
+<p>这里存储的只是id，并非真正的对象。所有的对象都通过hash追踪</p>
+<p>哈希值是160个字符，</p>
+<p>所有的git命令都只是在操作引用数据和对象数据</p>
+<p>in git, all objects are cotent addressed</p>
+<h5 id="git-commands">git commands</h5>
+<p>git init 创建一个git 仓库</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>所有的数据都存放在objects和refs</p>
+<p>git help</p>
+<p>git status</p>
+<p>git commit会默认跳出文本编辑器用于编辑commit信息</p>
+<p>：x</p>
+<p>git log</p>
+<p>git cat-file -p 提交的hashcode</p>
+<p>得到此次提交的文件的hash</p>
+<p>git add 添加文件</p>
+<p>git add :/</p>
+<p>git commit -a 提交所有已经被git追踪的文件的改变</p>
+<p>git commit并不是对整个仓库做snapshot，只是对改变的文件做snapshot，因为有时候你并不想追踪所有的文件，可以同时修改两个文件，然后一个追踪A，另一个追踪B</p>
+<p>在找bug的过程中，添加了打印语句，在提交的时候要删除打印语句</p>
+<p>git log --graph --decorate</p>
+<p>head -&gt;master</p>
+<p>master是一个分支</p>
+<p>head是指向当前的分支？</p>
+<p>git checkout  hashcode 切换到某一个snapshot</p>
+<p>切换到某一个snapshot，然后修改了一些文件，再尝试切回去，会发生错误，用-f可以强行切换并且丢弃修改</p>
+<p>git diff  filename   从上一次snapshot到现在发生的变化</p>
+<p>git diff  hash  filename 从哈希值到现在的变化</p>
+<p>git diff  hash  head  filename 从哈希值到head的变化</p>
+<h5 id="branching-and-merging">branching and merging</h5>
+<p>git checkout filename  丢弃现在的修改，返回到最近一次snapshot的状态。</p>
+<p>git branch -vv 查看带提交日志的信息。</p>
+<p>git branch 分支名 创建分支</p>
+<p>git log --all --graph --decorate --oneline</p>
+<p>创建两个分支，然后运行git merge，如果只有其中一个有修改，会出现fast forward，也就是仅仅把其中一个的头指针移动到和另一个平齐的位置，没有创建新的snapshot。如果两个都有修改的情况，就不会有fast forward。</p>
+<p>git mergetool  vimdiff</p>
+<p>合并冲突发生的时候，打开冲突的文件，删除冲突标记，然后把代码改成需要的样子，保存退出，然后重新添加文件，然后git merge --continue</p>
+<h5 id="git-remote">git remote</h5>
+<p>git remote会列出所有的远程仓库</p>
+<p>git fetch 从远程仓库获取最新的变更</p>
+<p>git init --bare，创建一个空仓库</p>
+<p>git remote add name：url</p>
+<p>git add origin ../remote</p>
+<p>git push send changes to remote</p>
+<p>git push remote localbranch: remotebranch</p>
+<p>Git clone url folder</p>
+<p>Git branch --set-upstream-to=origin/master</p>
+<p>Git config</p>
+<p>Vim \~./.gitconfig</p>
+<p>git clone --shallow 只获取最新的仓库的snapshot，没有历史</p>
+<p>git commit -p filename  提交文件</p>
+<p>git blame filename 谁在什么时间修改了该文件</p>
+<p>git show 哈希值 显示某一个提交的详情</p>
+<p>git bisect 可以接受一个脚本，因此可以被用来作为单元测试</p>
+<h5 id="tutorials">Tutorials</h5>
+<p>https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html</p>
+<p>https://git-scm.com/book/zh/</p>
+<p>https://learngitbranching.js.org/?locale=zh_CN</p>
+<h4 id="git_2">安装并配置git</h4>
+<ol>
+<li>安装 Git </li>
+</ol>
+<p>Centos手动安装git</p>
+<pre><code class="language-Shell">yum remove git                删除老版本
+tar -zxf git-2.24.0.tar.gz    解压下载好的新版本
+cd ./git-2.24.0/              进入文件夹
+make prefix=/usr/local/git all make
+make prefix=/usr/local/git install  make install
+vim /etc/profile                    添加环境变量
+git --version
+source /etc/profile                 刷新环境变量
+git --version                       检查环境变量生效
+</code></pre>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>通过下面的命令来配置Git, <code>" "</code>中的内容根据实际情况进行替换。</p>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<ol>
+<li>使用<code>git config -l</code>可以查看当前环境中的Git配置情况。</li>
+</ol>
+<p>删除DS_Store文件的命令</p>
+<p>```Plain Text
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch</p>
+<pre><code>
+1. 查看git配置
+
+\$ git config --list --local    本仓库的配置
+
+\$ git config --list --global  当前用户的所有仓库的配置
+
+\$ git config --list --system 系统所有登录用户的配置（Linux是多用户操作系统）
+
+#### 情况1 向本地拉取一个仓库
+
+```Bash
+git clone https://gitlab.com/1111111111114/11111111111111.git
+#切换到仓库
+cd 11111111111111
+# 创建main分支，并切换到main分支
+git switch --create main
+# 添加readme文件并交由git管理
+touch README.md
+git add README.md
+# 提交变更
+git commit -m &quot;add README&quot;
+# 推送变更，把本地仓库的main分支推送到origin分支
+git push --set-upstream origin main
+</code></pre>
+<h4 id="2push">情况2，向远端push一个已存在的文件夹</h4>
+<pre><code class="language-Bash">cd existing_folder
+#初始化git仓库，并把当前的内容作为main分支
+git init --initial-branch=main
+#和remote仓库做关联
+git remote add origin https://gitlab.com/1111111111114/11111111111111.git
+# 添加所有文件
+git add .
+git commit -m &quot;Initial commit&quot;
+git push --set-upstream origin main
+</code></pre>
+<p>如果你有一个尚未进行版本控制的项目目录，想要用 Git 来控制它，那么首先需要进入该项目目录中。并运行<code>git init</code>，该命令将创建一个名为<code>.git</code>的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干。 但是，在这个时候，我们仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪。执行 <code>git init</code> 在当前目录下初始化Git仓库</p>
+<h4 id="3">情况3，向远端推送一个已存在的仓库</h4>
+<pre><code class="language-Bash">cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://gitlab.com/1111111111114/11111111111111.git
+git push --set-upstream origin --all
+git push --set-upstream origin --tags
+</code></pre>
+<p>思维导图（本地资料，未发布）</p>
+<ol>
+<li>Git包含三个区域：工作目录(Working Directory)、 暂存区域(Staging Area)以及仓库本身。开发者首先在工作目录中对文件进行修改， 修改完成后将修改提交到暂存区域，并最终提交到仓库中。</li>
+<li>Git的核心思想之一就是将开发活动分散的尽量小和频繁的提交中(small and frequent)。 暂存区域可以很好的帮助开发者每次只从工作目录中选取一部分修改提交到仓库中。</li>
+<li>使用 <code>git status</code> 查看当前目录状态，可以看到有一个未被跟踪的文件<code>untracked</code>使用 <code>git add untracked</code> 添加该文件(修改)到暂存区域(Staging Area)。</li>
+</ol>
+<p>再次使用 <code>git status</code> 查看当前目录状态，可以看到所有文件已被跟踪。</p>
+<ol>
+<li>如果你对某些文件进行了重命名或删除，你可能需要再次将其添加 到暂存区域(Staging Area)，你也可以使用<code>git mv</code>和<code>git rm</code> 来进行相应的操作，这样Git会自动完成其他工作。</li>
+<li>现在的暂存区已经准备就绪，可以进行你的第一次提交了。Git提交通常需要包含提交消息(Commit Message)以便帮助你和其他合作者理解这次提交的内容。可以使用<code>git commit -m "commit message"</code> 来创建提交并将提交信息与命令放在同一行。运行下面的命令，创建你的第一个提交(提交untracked到仓库)，<code>" "</code>中的内容请自行替换。</li>
+</ol>
+<p><code>git commit -m "your commit message"</code></p>
+<p>运行 <code>git log</code> 查看最新的提交记录。</p>
+<p>在 <code>git commit</code> 后添加 <code>-s</code> 选项可以自动在commit message中添加 <code>signed-off-by: xxx</code> 信息。</p>
+<ol>
+<li>一般我们总会有些文件无需纳入 Git 的管理，也不希望它们总出现在未跟踪文件列表。 通常都是些自动生成的文件，比如日志文件，或者编译过程中创建的临时文件等。 在这种情况下，我们可以创建一个名为 <code>.gitignore</code> 的文件，列出要忽略的文件的模式。</li>
+</ol>
+<p>运行下面的命令为你的Git目录创建<code>.gitignore</code>文件：</p>
+<p><code>echo '*.tmp' &gt; .gitignore</code></p>
+<p><code>git add .gitignore</code></p>
+<p><code>git commit -m 'add .gitigonre file'</code></p>
+<p>文件 <code>.gitignore</code> 的格式规范如下：</p>
+<ul>
+<li>所有空行或者以 <code>#</code> 开头的行都会被 Git 忽略。</li>
+<li>可以使用标准的 <code>glob</code> 模式匹配，它会递归地应用在整个工作区中。</li>
+<li>匹配模式可以以 <code>/</code> 开头防止递归。</li>
+<li>匹配模式可以以 <code>/</code> 结尾指定目录。</li>
+<li>要忽略指定模式以外的文件或目录，可以在模式前加上叹号 <code>!</code> 取反。</li>
+</ul>
+<p>来自码农高天的视频教程</p>
+<table>
+<thead>
+<tr>
+<th>未被git管理</th>
+<th>git工作区</th>
+<th>git暂存区</th>
+<th>本地git仓库</th>
+<th>远程git仓库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>未修改/已修改</td>
+<td>在提交之前可以确定要改动的东西</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Untracked</td>
+<td>修改后not stagged</td>
+<td>to be commited</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>git add-&gt;tobe committed</td>
+<td>git add-&gt;tobe committed</td>
+<td>已暂存</td>
+<td>每一次提交commit，创建一个快照snapshot</td>
+<td>head指针</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>git commit-&gt;</td>
+<td>head指针指向其中一个快照</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>分支</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>合并</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C2后面分成两个分支C3和C4</td>
+<td>chechout到experiment，执行rebasemaster的z操作</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>此时experiment所在分支的所有操作都会被应用到master上面</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>checkout到master，执行merge experiment操作，即快进合并</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>一部分人认为应当通过变基合并分支，而不是通过merge</p>
+<p>rebase把其中一个分支所做的所有修改应用到另一个分支上</p>
+<h4 id="4">情况4，远程仓库有了更新</h4>
+<ol>
+<li>Git status获取代码状态，如果只有package.json或者env.development被修改了，就执行<code>git restore .</code> 丢弃这些更改，并执行第2条。如果有代码文件被修改了，就执行<code>git diff</code> 查看被修改的部分有哪些</li>
+<li>如果本地代码没有修改，远程仓库代码有了修改，可以通过fast-forward快速前进更新代码</li>
+</ol>
+<p>执行<code>git pull</code>，获取最新代码并进行快速前进</p>
+<ol>
+<li>如果本地代码有修改，远程代码也有修改，需要合并冲突</li>
+</ol>
+<p>执行<code>git fetch</code>获取远程代码，然后执行<code>git merge 远程分支</code>，合并代码，git会自动检测冲突，然后手动解决冲突，然后<code>git merge --continue</code>？</p>
+<p>还是<code>git commit</code>重新进行一次提交？</p>
+<p>又或者<code>git stash</code>?</p>
+<h4 id="github">github</h4>
+<p>https://docs.github.com/zh/get-started/quickstart</p>
+<p>C已废弃</p>
+<p>Linux C和dotfile两个</p>
+<p>下一步整理文件</p>
+<p>git log --all --graph --decorate</p>
+<p>Git branch</p>
+<p>git remote add origin </p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<h2 id="ci-buildtestmerge">CI持续集成-build+test+merge</h2>
+<h2 id="cd-">CD持续交付-发布到存储仓库</h2>
+<h2 id="cd-_1">CD持续部署-上线运行环境</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

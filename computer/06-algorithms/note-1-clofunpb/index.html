@@ -1,0 +1,5193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/06-algorithms/note-1-clofunpb/">
+      
+      
+        <link rel="prev" href="../note-1-cbxg5nkp/">
+      
+      
+        <link rel="next" href="../note-1-csnvfnzg/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CSP - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#csp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CSP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmjvlnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgctfn2j/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csdxmnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-c1edhnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-csqf5nuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="csp">CSP</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="csp_1">CSP</h1>
+<h1 id="csp_2">CSP</h1>
+<h2 id="201312">201312</h2>
+<h3 id="1">1</h3>
+<pre><code class="language-C++">//201312-1        
+出现次数最多的数：用下标作为出现的数，用数组的元素存储出现的次数 
+#include &lt;iostream&gt;
+using namespace std;
+int main(int argc, char** argv) {
+        //输入和运算阶段 
+        int n,temp;
+        cin&gt;&gt;n;
+        int array[10000]={0};
+        //将输入位置的值加一 
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;temp;
+                array[temp]++;
+        }
+        //从前往后扫描
+        int maxvalue=array[0];
+        int position=0;
+        for(int i=1;i&lt;10000;i++){
+                if(array[i]&gt;maxvalue){//仅大于时改变，从而获得最小的数 
+                        position=i;
+                        maxvalue=array[i];
+                }
+        }
+        cout&lt;&lt;position; 
+        return 0;
+}
+</code></pre>
+<h3 id="2">2</h3>
+<pre><code class="language-C++">//201312-2ISBN号码
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        //输入，一个ISBN号
+        char input[13];
+
+        //读入数据 
+        for(int i=0;i&lt;13;i++)
+        {
+                cin&gt;&gt;input[i];
+        }
+
+        //获得有效的9位数字的数字表示,检查前12个字符，如果不是减号，就转换成数字型存入数组 
+        int code[9]={0,0,0,0,0,0,0,0,0}; 
+        int j=0;
+        for(int i=0;i&lt;12;i++)
+        {        
+                if(input[i]!='-')
+                {
+                        code[j]=input[i]-48;
+                        j++;
+                }
+        }
+
+        //计算正确识别码 
+        int  checkcode=0;
+        for(int i=0;i&lt;9;i++)
+        {
+                checkcode+=code[i]*(i+1); 
+        }
+
+        checkcode=checkcode%11;
+        char charcode;
+        if(10==checkcode)
+        {
+                charcode='X';
+        }
+        else
+        {
+                charcode=char(checkcode+48);
+        }
+        //判断是否正确
+        if(charcode==input[12])
+        {
+                cout&lt;&lt;&quot;Right&quot;&lt;&lt;endl;
+        }
+        else
+        {
+                input[12]=charcode;
+                for(int i=0;i&lt;13;i++){
+                        cout&lt;&lt;input[i];
+                }
+                cout&lt;&lt;endl;
+        }
+        //输出 
+        return 0;
+}
+
+</code></pre>
+<h3 id="3">3</h3>
+<pre><code class="language-C++"> //201312-3最大的矩形：从第一个矩形开始，依次计算所有可能的矩形的面积，记录最大值 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        //输入
+        int n; 
+        cin&gt;&gt;n;
+        int *array=new int[n];
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;array[i];
+        } 
+        //计算
+        int maxsquare=0,thissquare;
+        for(int i=0;i&lt;n;i++){//从第n个矩形开始，所有可能的组合的面积 
+                int height=array[i];//高度
+                for(int j=i;j&lt;n;j++){
+                        if(array[j]&lt;height){//按照最小的高度计算 
+                                height=array[j]; 
+                        }
+                        thissquare=(j-i+1)*height;
+                        if(maxsquare&lt;thissquare){
+                                maxsquare=thissquare;
+                        }
+                } 
+        } 
+        cout&lt;&lt;maxsquare;
+        return 0;
+}
+
+</code></pre>
+<h2 id="201403">201403</h2>
+<h3 id="1_1">1</h3>
+<pre><code class="language-C++">////新想法：因为同一个数不会出现两次，所以，直接把绝对值作为下标，检查有多少个值为2
+
+//201403-1-待优化-90 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        int n,temp,result=0;//temp用来在排序时进行交换 
+        bool flag0=false;
+        cin&gt;&gt;n;
+        int a[n];
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;a[i];
+        }
+
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;n;j++){
+                        if(a[j]&gt;=a[j+1]){
+                                temp=a[j];
+                                a[j]=a[j+1];
+                                a[j+1]=temp;
+                                flag0=true; 
+                        }
+                }
+                if(flag0==false){
+                        break;
+                }
+        }
+
+        for(int i=0;i&lt;n-1;i++){
+                if(a[i]+1==a[i+1]){
+                        result++;
+                }
+        }
+
+        cout&lt;&lt;result;
+
+        return 0;
+}
+
+
+//201403-1
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        int n,temp,num=0,result=0;//n为数的个数,temp用于暂存输入的内容,num用来存储已经存入数组的数的个数 
+        bool flag0=false;
+        cin&gt;&gt;n; 
+        int array[n][2];//定义一个二维数用于存储
+        for(int i=0;i&lt;n;i++){
+                array[i][0]=0;
+                array[i][1]=0;
+        }
+
+
+        for(int i=0;i&lt;n;i++){
+                flag0=false;
+                cin&gt;&gt;temp;//每输入一个数，先用temp暂存 
+
+                //然后检查现有的数里有没有与之对应的相反数，        
+                for(int j=0;j&lt;num;j++){
+                        if(temp==-array[j][0]){//如果有，则将对应位置的第二维下标加一，
+                                array[j][1]=1;
+                                flag0=true;
+                                break;
+                        }
+                }
+                //否则，将其存入新位置中 
+                if(flag0==false){
+                        array[num][0]=temp;
+                        num++;
+                }
+        } 
+
+        //输出数组
+/*        for(int i=0;i&lt;num;i++){
+                cout&lt;&lt;&quot;a[&quot;&lt;&lt;i&lt;&lt;&quot;][0]=&quot;&lt;&lt;array[i][0]&lt;&lt;&quot;        &quot;;
+                cout&lt;&lt;&quot;a[&quot;&lt;&lt;i&lt;&lt;&quot;][1]=&quot;&lt;&lt;array[i][1]&lt;&lt;endl;
+        } */
+        //计算数组第二维中有多少为1 
+        for(int i=0;i&lt;num;i++){
+                if(array[i][1]==1){
+                        result++;
+                }
+        }
+        cout&lt;&lt;result;
+        return 0;
+}
+
+</code></pre>
+<h3 id="2_1">2</h3>
+<pre><code class="language-C++">#include &lt;iostream&gt;
+using namespace std;
+struct Window{
+        int id;
+        int x1,y1,x2,y2;
+};
+struct Click{
+        int cx,cy;
+};
+
+int main(int argc, char** argv) {
+        int N,M;                                                        //窗口数、点击数 
+        cin&gt;&gt;N&gt;&gt;M;
+        Window *win=new Window[N];
+        Click *click=new Click[M];
+        for(int i=N-1;i&gt;=0;i--){
+                win[i].id=N-i;
+                cin&gt;&gt;win[i].x1;
+                cin&gt;&gt;win[i].y1;
+                cin&gt;&gt;win[i].x2;
+                cin&gt;&gt;win[i].y2;
+        }
+        for(int i=0;i&lt;M;i++){
+                cin&gt;&gt;click[i].cx;
+                cin&gt;&gt;click[i].cy;
+        }
+
+        bool find;
+        Window temp;
+        int position;
+        for(int i=0;i&lt;M;i++){//每次循环代表一次点击 
+                position=0;
+                find=false;
+                for(int j=0;j&lt;N;j++){//每次循环代表和一个窗体对比 
+                        if((click[i].cx&gt;=win[j].x1)&amp;&amp;(click[i].cx&lt;=win[j].x2)&amp;&amp;(click[i].cy&gt;=win[j].y1)&amp;&amp;(click[i].cy&lt;=win[j].y2)){
+                                position=j;
+                                find=true; 
+                                break; //如果找到，就立刻结束循环 
+                        }
+                        else{
+                                continue;
+                        }
+                }//遍历一遍以后 
+                if(true==find){//找到点击的窗口后输出信息并调整位置 
+                        cout&lt;&lt;win[position].id&lt;&lt;endl;
+                        temp=win[position];//把position位置的结点拿出来
+                        for(int i=position;i&gt;0;i--){
+                                win[i]=win[i-1];
+                        } 
+                        win[0]=temp;
+                }
+                else{
+                        cout&lt;&lt;&quot;IGNORED&quot;&lt;&lt;endl;
+                }
+        }
+        return 0;
+}
+</code></pre>
+<h3 id="3_1">3</h3>
+<pre><code class="language-C++">//201403-3
+#include &lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;cctype&gt;
+using namespace std;
+const int N=26;
+int option[N]={0};        //存储参数 0代表空、1代表无参、2代表有参 
+bool visited[N];        //存储访问标记 
+string parameter[N];//存储选项的参数 
+
+int main(int argc, char** argv){
+        int length;                                        //长度 
+        string cmd,temp;                        //cmd用于存储命令行，temp用于临时存储 
+        cin&gt;&gt;cmd; 
+        length=cmd.length();
+        for(int i=0;i&lt;length;i++){        //0代表空、1代表无参、2代表有参  
+                int k=cmd[i]-'a';                //在字母表中的位置 
+                if(cmd[i+1]==':'){
+                        option[k]=2; 
+                        i++;                                //通过这个i++防止数组越界 
+                }
+                else{
+                        option[k]=1;
+                } 
+        }
+        int lines;                                        //命令行个数 
+        cin&gt;&gt;lines;
+        getchar();
+        for(int cas=1;cas&lt;=lines;cas++){//n条命令行 
+                int tag=0;                                //用于记录当前数组的位置 
+                int v=-1;                                 //用于标记是命令行还是参数，-1代表选项 ，其他代表位置 
+                getline(cin,cmd);                //输入当前命令行 
+                length=cmd.length();        //获取长度 
+                for(int j=0;j&lt;N;j++){        //清空上一轮的访问标记和参数 
+                        visited[j]=false;
+                        parameter[j]=&quot;&quot;;
+                }
+                while(cmd[tag]!=' '&amp;&amp;tag&lt;length) tag++;//找到第一个空格 
+                tag++;                                //跳过空格 
+                for(;tag&lt;length;){        //没有到命令行结尾时处理选项 
+                        temp=&quot;&quot;;                //临时字符串置空 
+                        while(cmd[tag]!=' '&amp;&amp;tag&lt;length) temp+=cmd[tag++];//获取一整个字符串到temp中 
+                        if(v==-1){                //是选项 
+                                if(temp.length()==2&amp;&amp;temp[0]=='-'&amp;&amp;islower(temp[1])){//判断选项 
+                                        v=temp[1]-'a';//获取在字符列表中的位置 
+                                        if(option[v]==0)//如果选项列表中没有就跳出 
+                                                break;
+                                        if(visited[v]==false)//选项列表中有但是访问过要更新参数 
+                                                visited[v]=true;
+                                        if(option[v]==1)        v=-1;//如果为1表示无参选项，现在修改为-1表示下一个是无参 
+                                }
+                                else break;
+                        } 
+                        else{//是参数 
+                                parameter[v]=temp;//把所带参数放到对应下标对应的位置 
+                                v=-1;
+                        }
+                        tag++;
+                }
+                cout&lt;&lt;&quot;Case &quot;&lt;&lt;cas&lt;&lt;&quot;: &quot;;
+                for(int x=0;x&lt;N;x++){
+                        //cout&lt;&lt;visited[x]; 
+                        if(visited[x]==false) continue;
+                        cout&lt;&lt;&quot;-&quot;&lt;&lt;char(x+'a')&lt;&lt;&quot; &quot;;
+                        if(option[x]==2)cout&lt;&lt;&quot; &quot;&lt;&lt;parameter[x]&lt;&lt;&quot; &quot;;
+                }
+                cout&lt;&lt;endl;
+        } 
+        return 0;
+}
+/*
+#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+#include&lt;cctype&gt;
+using namespace std;
+const int N=26;
+int m[N]; //0代表不存在，1代表不带参数选项，2代表带参数选项 
+bool vis[N]; //访问标记 
+string a[N]; //参数 
+int main()
+{
+        int n;
+        string s,c;
+        cin&gt;&gt;s;
+        int l=s.length();
+        memset(m,0,sizeof(m));
+        for(int i=0;i&lt;l;i++) //保存选项类型 
+        {
+                int k=s[i]-'a';
+                if(s[i+1]==':')
+                {
+                        m[k]=2;
+                        i++;
+                }
+                else m[k]=1;
+        } 
+        cin&gt;&gt;n;
+        getchar();
+        for(int kase=1;kase&lt;=n;kase++)
+        {
+                memset(vis,false,sizeof(vis));
+                getline(cin,s);
+                int v=-1; //-1代表接下来是应该是选项，其他数代表接下来应该是参数 
+                int t=0;
+                l=s.length();
+                while(s[t]!=' '&amp;&amp;t&lt;l) t++; //略去ls 
+                t++;
+                for(;t&lt;l;)
+                {
+                        c=&quot;&quot;;
+                        while(s[t]!=' '&amp;&amp;t&lt;l) c+=s[t++];
+                        if(v==-1) //输入并判断选项 
+                        {
+                                if(c.length()==2&amp;&amp;c[0]=='-'&amp;&amp;islower(c[1]))
+                                {
+                                        v=c[1]-'a';
+                                        if(!m[v]) break;
+                                        if(!vis[v])
+                                        vis[v]=true;
+                                        if(m[v]==1) v=-1;
+                                }
+                                else break;
+                        }
+                        else //输入参数 
+                        { 
+                                a[v]=c;
+                                v=-1;
+                        }
+                        t++;
+                }
+                cout&lt;&lt;&quot;Case &quot;&lt;&lt;kase&lt;&lt;&quot;:&quot;;
+                for(int i=0;i&lt;N;i++) //按字母升序输出 
+                {
+                        if(!vis[i]) continue;
+                        cout&lt;&lt;&quot; -&quot;&lt;&lt;(char)('a'+i);
+                        if(m[i]==2) cout&lt;&lt;&quot; &quot;&lt;&lt;a[i]; 
+                }
+                cout&lt;&lt;endl;
+        }
+    return 0;
+}*/
+</code></pre>
+<h2 id="201409">201409</h2>
+<h3 id="1_2">1</h3>
+<p>```Plain Text
+201409-1</p>
+<h1 id="include">include <iostream></h1>
+<h1 id="include_1">include<algorithm></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n;
+        int result=0;
+        cin&gt;&gt;n;
+        int *array=new int[n];
+        for(int i=0;i<n;i++){
+                cin>&gt;array[i];
+        }
+        sort(array,array+n);
+        for(int i=0;i&lt;n-1;i++){
+                if(array[i]+1==array[i+1]){
+                        result++;
+                }
+        }
+        cout&lt;&lt;result;
+        return 0;
+}</p>
+<pre><code>
+### 2
+
+```C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        int n,x1,y1,x2,y2;
+        int matrix[100][100]={0};
+        cin&gt;&gt;n;
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2;
+                for(int j=x1;j&lt;x2;j++){
+                        for( int k=y1;k&lt;y2;k++){
+                                matrix[j][k]++;
+                        }
+                }
+        }
+        int result=0;
+        for(int i=0;i&lt;100;i++){
+                for(int j=0;j&lt;100;j++){
+                        if(matrix[i][j]!=0){
+                                result++;
+                        }
+                }
+        }
+        cout&lt;&lt;result;
+        return 0;
+}
+
+
+</code></pre>
+<h3 id="3_2">3</h3>
+<pre><code class="language-C++">//201409-3 
+#include &lt;iostream&gt;
+#include&lt;string&gt; 
+#include&lt;algorithm&gt;
+using namespace std;
+
+int main(int argc, char** argv){
+        string s,temp;
+        int lines,length,sense=1;//sense默认为1，即默认敏感 
+
+        cin&gt;&gt;s&gt;&gt;sense&gt;&gt;lines;
+        length=s.length();
+        if(sense==0){
+                transform(s.begin(),s.end(),s.begin(),towlower);
+        }
+        for(int i=0;i&lt;lines;i++){
+                cin&gt;&gt;temp;
+                string temp2=temp; 
+                if(temp.length()&lt;length)        continue;
+                if(sense==0){
+                        transform(temp.begin(),temp.end(),temp.begin(),towlower);
+                }
+                for(int j=0;j&lt;temp.length()-length+1;j++){
+                        if(s==temp.substr(j,length)){
+                                cout&lt;&lt;temp2&lt;&lt;endl;
+                                break;//不加break会导致有些字符串输出多遍 
+                        }
+                }
+        }
+        return 0;
+}
+
+</code></pre>
+<h2 id="201412">201412</h2>
+<h3 id="1_3">1</h3>
+<p>```Plain Text
+//201412-1</p>
+<h1 id="include_2">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,temp;
+        int array[1000];
+        for(int i=0;i&lt;1000;i++){
+                array[i]=1;
+        }
+        cin&gt;&gt;n;
+        for(int i=0;i<n;i++){
+                cin>&gt;temp;
+                cout&lt;&lt;array[temp]&lt;&lt;" ";
+                array[temp]++;
+        }
+        return 0;
+}</p>
+<pre><code>
+### 2
+
+```C++
+//201412-2 
+#include&lt;iostream&gt;
+using namespace std;
+
+const int E=0;
+const int S=1;
+const int SW=2;
+const int NE=3;
+struct{
+        int x;
+        int y;
+}direct[]={{0,1},{1,0},{1,-1},{-1,1}}; 
+int matrix[500][500];
+
+int main(){
+        int n;
+        cin&gt;&gt;n;
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;n;j++){
+                        cin&gt;&gt;matrix[i][j];
+                }
+        }
+
+        int row=0,col=0,next=E;
+        cout&lt;&lt;matrix[row][col];
+
+        while(row!=n-1||col!=n-1){
+                row+=direct[next].x;
+                col+=direct[next].y;
+                cout&lt;&lt;&quot; &quot;&lt;&lt;matrix[row][col];
+
+                         if(next==E &amp;&amp; row==0)                next=SW;
+                else if(next==E &amp;&amp; row==n-1)        next=NE;
+                else if(next==S &amp;&amp; col==0)                next=NE;
+                else if(next==S &amp;&amp; col==n-1)        next=SW;
+                else if(next==SW &amp;&amp; row==n-1)         next=E; 
+                else if(next==SW &amp;&amp; col==0)                next=S;
+                else if(next==NE &amp;&amp; col==n-1)        next=S;
+                else if(next==NE &amp;&amp; row==0)                next=E;
+
+        }
+        cout&lt;&lt;endl; 
+    return 0;
+}
+</code></pre>
+<h3 id="3_3">3</h3>
+<pre><code class="language-C++">//201412-3
+/*最后是按开盘价交易，开盘价实际上是划一条线，出价太低的买家和出价太高的卖家都交易失败。
+为此，只能先确定一定可以交易成功的订单，然后再交易可能被开盘价影响到的订单
+因为要实现撤销选项，所以需要一个数组来标记撤销的行，先用结点数组存放，等待输入完成后改用优先队列存放不同的结点，
+在改的过程中去掉被取消的行，然后优先匹配出价高的买单和出价低的卖单（获得最高的开盘价），等到无法匹配时就有最大成交量*/ 
+#include &lt;iostream&gt;
+#include&lt;string&gt; 
+#include&lt;queue&gt; 
+#include&lt;algorithm&gt;
+using namespace std;
+const int N=5001//下标从1到5000
+int operation[N]; //0代表未使用或取消，1代表买入，2代表卖出 
+struct Node{
+        long long exchangenum;
+        double        price;
+        bool operator &lt; (const Node&amp; a)const{//重载&lt;操作符 
+                return price&lt;a.price;
+        }
+}input[N];//结构体末尾有分号,同时定义N个结构体存放 
+
+priority_queue &lt;Node,vector&lt;Node&gt;,less&lt;Node&gt; &gt;buy;//第一个参数表示存储的数据结构是Node，第二个表示内部实现是vector，
+priority_queue &lt;Node,Vector&lt;Node&gt;,less&lt;Node&gt; &gt;sell;//第三个表示按照从大到小排列，从小到大写greater。两个&gt;号要分开写 
+int main(int argc, char** argv){
+        string bsc;//buy sell cancel
+        int temp,flag=1;
+        float price;
+        Node n;
+        long long exchnum;
+        while(cin&gt;&gt;bsc){
+                if(bsc[0]=='c'){
+                        cin&gt;&gt;temp;
+                        operation[temp]=0;//被取消的行 
+                        operation[flag]=0;//当前行 
+                        flag++;
+                }
+                else{
+                        cin&gt;&gt;pirce&gt;&gt;exchnum;
+                        if(bsc[0]=='b'){
+                                operation[flag]=1;
+                                n.price=price;
+                                n.exchangenum=exchunm;
+                        }
+                        if(bsc[0]=='s'){
+                                operation[flag]=2;
+                                n.price=-price;
+                                n.exchangenum=exchunm;// 
+                        }
+                        input[flag]=n;
+                        flag++;
+                } 
+        } 
+        //将数据放入优先队列中 
+        for(int i=1;i&lt;5001;i++){
+                if(operation[i]==1){
+                        buy.push(input[i]);
+                }
+                else if(operation[i]==2){
+                        sell.push(input[i]);
+                }
+                else        continue;
+        }
+
+        long long sharenum=0;
+        float shareprice;
+        //优先匹配出价高的买单和出价低的卖单（获得最高的开盘价）
+        while(!sell.empty()&amp;&amp;!buy.empty()){
+                Node b,s;//b和s分别为最高买的单和最低卖的单 
+                b=buy.top();
+                s=sell.top();
+                buy.pop();
+                sell.pop();
+                long long thischange=b.exchangenum&lt;s.exchangenum ? b.exchangenum&lt;s.exchangenum;//true是前面false是后面 
+
+        } 
+
+        return 0;
+}
+</code></pre>
+<h2 id="201503">201503</h2>
+<h3 id="1_4">1</h3>
+<p>```Plain Text
+//201503-1待优化 40分</p>
+<h1 id="include_3">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,m;//n=2行数        m=3列数 
+        cin&gt;&gt;n&gt;&gt;m;
+        int array0[n][m];
+        //存储输入的数据 
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j<m;j++){
+                        cin>&gt;array0[i][j];
+                }
+        }</p>
+<pre><code>    //输出原数组
+</code></pre>
+<p>/*        cout&lt;&lt;"横纵交换前"&lt;&lt;endl;
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;m;j++){
+                        cout&lt;&lt;array0[i][j]&lt;&lt;" ";
+                }
+                cout&lt;&lt;endl;
+        }  </p>
+<p>*/</p>
+<pre><code>    int array1[m][n];
+
+    //逆时针旋转九十度可以通过先将行列交换
+    for(int i=0;i&lt;n;i++){
+            for(int j=0;j&lt;m;j++){
+                    array1[j][i]=array0[i][j];
+            }
+    }
+</code></pre>
+<p>/*        cout&lt;&lt;"横纵交换后"&lt;&lt;endl; 
+        for(int i=0;i&lt;m;i++){
+                for(int j=0;j&lt;n;j++){
+                        cout&lt;&lt;array1[i][j]&lt;&lt;" ";
+                }
+                cout&lt;&lt;endl;
+        } </p>
+<pre><code>    */
+
+
+    //然后通过纵向对称 
+    int array2[m][n];//m=3,n=2
+    for(int i=0;i&lt;m;i++){
+            for(int j=0;j&lt;n;j++){
+
+                    array2[i][j]=array1[m-i-1][j];
+            }
+    }
+
+    //然后输出
+    for(int i=0;i&lt;m;i++){
+            for(int j=0;j&lt;n;j++){
+                    cout&lt;&lt;array2[i][j]&lt;&lt;" ";
+            }
+            cout&lt;&lt;endl;
+    }
+
+
+    return 0;
+</code></pre>
+<p>}</p>
+<p>201503-1图像旋转</p>
+<h1 id="include_4">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        //输入
+        int line,colume;
+        cin&gt;&gt;line&gt;&gt;colume;
+        int matrix[line][colume];
+        for(int i=0;i&lt;line;i++)
+        {
+                for(int j=0;j<colume;j++)
+                {
+                        cin>&gt;matrix[i][j];
+                }
+        } </p>
+<pre><code>    //输出 
+    for(int i=colume-1;i&gt;=0;i--)
+    {
+            for(int j=0;j&lt;line;j++)
+            {
+                    cout&lt;&lt;matrix[j][i]&lt;&lt;" ";
+            }
+            cout&lt;&lt;endl;
+    }
+
+    return 0;
+</code></pre>
+<p>}</p>
+<h1 id="include_5">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,m;
+        short matrix[1000][1000];
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j<m;j++){
+                        cin>&gt;matrix[i][j];
+                }
+        }
+        for(int i=m-1;i&gt;=0;i--){
+                for(int j=0;j&lt;n;j++){
+                        cout&lt;&lt;matrix[j][i]&lt;&lt;" ";
+                }
+                cout&lt;&lt;endl;
+        }</p>
+<pre><code>    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+#### 解1
+
+```C++
+//201503-2数字排序 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv){
+        //输入 
+        int n;
+        int array[1001]={0};
+
+        cin&gt;&gt;n;
+        int temp;
+        for(int i=0;i&lt;n;i++){//输入位置的值加一 
+                cin&gt;&gt;temp;
+                array[temp]++;
+        }
+
+        //获取出现次数的最大值 
+        int maxtime=0;
+        for(int i=0;i&lt;1001;i++){
+                if(array[i]&gt;maxtime){
+                        maxtime=array[i];
+                }
+        }
+        //从出现次数最大值开始输出，出现次数相同时按照从小到大输出 
+        while(maxtime&gt;0){
+                for(int i=0;i&lt;1001;i++){
+                        if(array[i]==maxtime){
+                                cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;maxtime&lt;&lt;endl;
+                        }
+                }
+                maxtime--;
+        }
+        return 0;
+}
+</code></pre>
+<h4 id="2_2">解2</h4>
+<pre><code class="language-C++">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;iterator&gt;
+#include&lt;algorithm&gt;
+#include&lt;functional&gt;
+using namespace std;
+
+double square(double x){
+        return x*x;
+} 
+
+template&lt;class T,class InputIterator,class OutputIterator&gt;
+void mySort(InputIterator first, InputIterator last, OutputIterator result){
+        vector&lt;T&gt;s;
+        for(;first!=last;++first)
+                s.push_back(*first);
+        sort(s.begin(),s.end())
+        ;
+        copy(s.begin(),s.end(),result);
+} 
+
+int main(int argc, char** argv) {
+        /*const int N=5;
+        vector&lt;int&gt;s(N);//定义一个大小为N的向量容器
+        //从标准输入读入向量容器的内容
+        for(int i=0;i&lt;N;i++)
+                cin&gt;&gt;s[i];
+
+        /*ostream_iterator是一个输出迭代器，通过一个构造函数建立了一个对象，negate&lt;int&gt;是一个函数对象。
+        negate是一个类模板，重载了括号运算符来接收参数，返回该参数的相反数 
+        transform是一个算法*/ 
+        /*transform(s.begin(),s.end(),ostream_iterator&lt;int&gt;(cout,&quot; &quot;),negate&lt;int&gt;());        //输出向量容器中每个元素的相反数 
+        cout&lt;&lt;endl; */
+
+        /*使用输入流迭代器从标准输入流cin中读取double类型的数据，使用square函数平方后，用输出流迭代器输出到标准输出流cout
+        transform(istream_iterator&lt;double&gt;(cin),istream_iterator&lt;double&gt;(),ostream_iterator&lt;double&gt;(cout,&quot;\t&quot;),square);
+        cout&lt;&lt;endl;*/
+
+        double a[5]={1.2, 2.4, 0.8, 3.3, 3.2};
+        mySort&lt;int&gt;(istream_iterator&lt;int&gt;(cin),istream_iterator&lt;int&gt;(),ostream_iterator&lt;int&gt;(cout,&quot; &quot;));
+        cout&lt;&lt;endl;
+        return 0;
+}
+
+</code></pre>
+<h3 id="3_4">3</h3>
+<pre><code class="language-C++">//201503-3
+/*平年365天，比52周多一天，闰年366天，比52周多两天，确定了每年的第一天后，
+即可确定每年的第i个月的第一天，然后找到第一个星期c，然后找第n个星期c*/
+/*其次考虑如何设计数据结构：确定年的第一天可以用数组存储确定月的第一天可以用数组*/ 
+#include &lt;iostream&gt;
+#include&lt;iomanip&gt; 
+using namespace std;
+const int period=2060;
+int year[period]={0};//存放每年第一天是星期几 
+
+int ordyear[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};//存放平年各个月份的天数 
+int leapyear[13]={0,31,29,31,30,31,30,31,31,30,31,30,31};//存放闰年各个月份的天数 
+int yearfirstday,monthfirstday,fromfristday=0;//每年的第一天是星期几，每月的第一天是星期几，这个月的第一天是这一年的第几天 
+
+int main(int argc, char** argv){
+        year[1850]=2;//1850年的第一天是周二 
+        for(int i=1850;i&lt;2050;i++){//是不是闰年影响的是后面那一年的第一天是星期几 
+                if((i%4==0&amp;&amp;i%100!=0)||(i%400==0)){//如果是闰年 
+                        year[i+1]=year[i]+2;//计算星期 
+                        if(year[i+1]&gt;7){
+                                year[i+1]=year[i+1]%7;
+                        } 
+                }
+                else{
+                        year[i+1]=year[i]+1;
+                        if(year[i+1]&gt;7){
+                                year[i+1]=year[i+1]%7;
+                        } 
+                }
+        }
+        for(int i=1850;i&lt;=2050;i++){
+        //        cout&lt;&lt;i&lt;&lt;&quot;年第一天是星期：&quot;&lt;&lt;year[i]&lt;&lt;endl;
+        }
+        int a,b,c,y1,y2;
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;y1&gt;&gt;y2;//从y1年到y2年的a月的第b个星期c 
+        for(int i=y1;i&lt;=y2;i++){//从y1年到y2年 
+                fromfristday=0;
+                //        cout&lt;&lt;&quot;现在计算第&quot;&lt;&lt;i&lt;&lt;&quot;年 &quot;; 
+                bool thisfind=false;//这一年的a月的第b个星期c是否存在 
+                bool isleapyear=(i%4==0&amp;&amp;i%100!=0)||(i%400==0);//是否是闰年的标志位，每年更新一次 
+                //        cout&lt;&lt;&quot;它是&quot;&lt;&lt;isleapyear&lt;&lt;&quot;年 &quot;; 
+                yearfirstday=year[i];//这一年的第一天是星期几
+                //        cout&lt;&lt;&quot;这一年的第一天是星期&quot;&lt;&lt;yearfirstday; 
+                for(int j=1;j&lt;a;j++){//第a个月前面一共多少天 
+                        if(isleapyear){//闰年 
+                                fromfristday+=leapyear[j]; 
+                        }
+                        else{//平年 
+                                fromfristday+=ordyear[j];
+                        } 
+                }
+        //        cout&lt;&lt;&quot;在这个月前面一共&quot;&lt;&lt;fromfristday&lt;&lt;&quot;天&quot;;
+                monthfirstday=(fromfristday%7+yearfirstday);//这一个月的第一天是星期几
+                if(monthfirstday&gt;7){
+                                monthfirstday=monthfirstday%7;
+                } 
+        //        cout&lt;&lt;&quot;这个月的第一天是星期&quot;&lt;&lt;monthfirstday&lt;&lt;&quot; &quot;; 
+                int days=isleapyear? leapyear[a]:ordyear[a];//第a个月的天数 
+                int temp=0;//这是第几个星期c 
+                int whichday=0;//这一天是周几 
+                for(int k=1;k&lt;=days;k++){
+                        whichday=((k-1)%7+monthfirstday);
+                        if(whichday&gt;7){
+                                whichday=whichday%7;
+                        } 
+        //                        cout&lt;&lt;&quot;今天是&quot;&lt;&lt;k&lt;&lt;&quot;号，星期&quot;&lt;&lt;whichday&lt;&lt;&quot; &quot;; 
+                        if(whichday==c){//遇到要找的星期几，temp加一 
+                                temp++;
+                        } 
+                        if(temp==b){//如果这就是第b个星期c 
+                                cout&lt;&lt;i&lt;&lt;&quot;/&quot;&lt;&lt;setw(2)&lt;&lt;setfill('0')&lt;&lt;a&lt;&lt;&quot;/&quot;&lt;&lt;setw(2)&lt;&lt;setfill('0')&lt;&lt;k&lt;&lt;endl;
+                                thisfind=true;
+                                break; 
+                        } 
+                }
+                if(thisfind==false){
+                        cout&lt;&lt;&quot;none&quot;&lt;&lt;endl; 
+                } 
+        }
+        return 0;
+}
+
+
+
+</code></pre>
+<h2 id="201509">201509</h2>
+<h3 id="1_5">1</h3>
+<p>```Plain Text
+//201509-1</p>
+<h1 id="include_6">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int temp0,temp1,num,result=0;
+        cin&gt;&gt;num;
+        cin&gt;&gt;temp0;
+        for(int i=0;i<num-1;i++){
+                cin>&gt;temp1;
+                if(temp0!=temp1){
+                        temp0=temp1;
+                        result++;
+                }
+        }</p>
+<pre><code>    cout&lt;&lt;result+1;
+
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201509-2 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        int year,month,day,temp=0;
+        bool run;
+        int mon[12]={31,28,31,30,31,30,31,31,30,31,30,31}; 
+
+        cin&gt;&gt;year&gt;&gt;day;
+
+        //判断闰年 
+        if((year%4==0&amp;&amp;year%100!=0)||year%400==0){
+                mon[1]=29;
+        }
+
+
+        while(day&gt;mon[temp]){
+                day-=mon[temp];
+                temp++;
+        }
+
+        cout&lt;&lt;temp+1&lt;&lt;endl;
+        cout&lt;&lt;day;
+
+
+        return 0;
+}
+
+</code></pre>
+<h3 id="3_5">3</h3>
+<pre><code class="language-C++">//201509-3
+#include &lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;sstream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+string codeline[100]=&quot;&quot;; 
+string varline[100]=&quot;&quot;;
+int lines,vars;//行数和变量数 
+
+int main(int argc, char** argv){
+        cin&gt;&gt;lines&gt;&gt;vars;
+        cin.get();//读掉前一行的空格 
+        for(int i=0;i&lt;lines;i++){
+                getline(cin,codeline[i]);
+        }
+        for(int i=0;i&lt;vars;i++){
+                getline(cin,varline[i]);
+        }
+        //至此输入完毕 
+
+        cout&lt;&lt;endl;
+        for(int i=0;i&lt;vars;i++){//每次替换一个变量 
+                string thsvar=varline[i].substr(0,varline[i].find(&quot; &quot;,0));//获取变量的名字，先用find找到空格出现的位置，然后用substr截取从0到空格出现位置的字符 
+                string thsval=varline[i].substr(varline[i].find(&quot; &quot;,0)+2,varline[i].length()-3-thsvar.length());//要被替换成的值，先找到空格出现的地方，和该串的长度，然后用substr截取 
+                stringstream ss;
+                ss&lt;&lt;&quot;{{ &quot;&lt;&lt;thsvar&lt;&lt;&quot; }}&quot;; //加上前后的括号和空格
+                thsvar=ss.str();
+                for(int j=0;j&lt;lines;j++){//从第一行开始 
+                        while(codeline[j].find(thsvar,0)!=-1){//循环替换，直到当前行找不到 
+                                codeline[j].replace(codeline[j].find(thsvar,0),thsvar.length(),thsval);//从第一次找到要替换字符串的地方开始的thsvar的长度的字符串被thsval替换掉 
+                        }
+                }
+        }
+        //至此替换完成了有标记的部分
+
+        //替换未标记的部分
+        for(int i=0;i&lt;lines;i++){
+                string temp1=&quot;{{ &quot;;
+                string temp2=&quot; }}&quot;;
+                if((codeline[i].find(temp1,0)!=-1)&amp;&amp;(codeline[i].find(temp2,0)!=-1)){//如果还有未替换的标记 
+                        string temp3=codeline[i].substr(0,codeline[i].find(temp1,0));
+                        string temp4=codeline[i].substr(codeline[i].find(temp2,0)+3,codeline[i].length());
+                        stringstream temp5;
+                        temp5&lt;&lt;temp3&lt;&lt;temp4;
+                        codeline[i]=temp5.str(); 
+                }
+        } 
+        for(int i=0;i&lt;lines;i++){
+                cout&lt;&lt;codeline[i]&lt;&lt;endl;
+        }
+
+        return 0;
+}
+
+
+#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;map&gt;
+#include&lt;string&gt;
+using namespace std;
+const int N=100;
+string s[N];
+map&lt;string,string&gt; m;
+int main(){
+        int n,m0;
+        string a,b,c;
+        cin&gt;&gt;n&gt;&gt;m0;
+        cin.ignore();
+        for(int i=0;i&lt;n;i++)
+                getline(cin,s[i]);
+        for(int i=0;i&lt;m0;i++){
+                cin&gt;&gt;a; 
+                getline(cin,c);
+                m[a]=c.substr(2,c.length()-3);//通过map键值对存储变量名和值 
+        }
+        for(int i=0;i&lt;n;i++){
+                int prev=0,next;
+        for(;;){
+            if((prev = s[i].find(&quot;{{ &quot;, prev)) == (int)string::npos)//find函数找不到的情况下返回npos 
+                    break;
+            if((next = s[i].find(&quot; }}&quot;, prev)) == (int)string::npos)
+                    break;
+                        a=s[i].substr(prev+3,next-prev-3);
+                        s[i].replace(s[i].begin()+prev,s[i].begin()+next+3,m.count(a)?m[a]:&quot;&quot;);
+                    prev+=m.count(a)?m[a].length():0;
+                }
+        }
+        for(int i=0;i&lt;n;i++)
+        cout&lt;&lt;s[i]&lt;&lt;endl;
+        return 0;
+}
+
+
+</code></pre>
+<h2 id="201512">201512</h2>
+<h3 id="1_6">1</h3>
+<p>```Plain Text
+//201512-1</p>
+<h1 id="include_7">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        long n,temp,result=0;
+        cin&gt;&gt;n;</p>
+<pre><code>    while(n&gt;0){
+            temp=n%10;
+            n=n/10;
+            result+=temp;
+    }
+
+    cout&lt;&lt;result;
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201512-2        错误的思路是挨个扫描，大于等于3时修改标记，正确的应该为三个一组扫描，修改标记 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv) {
+        int n,m;//n行m列 
+        int matrix[31][31];
+        bool result[31][31]={false};
+        //输入 
+        cin&gt;&gt;n&gt;&gt;m;
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;m;j++){
+                        cin&gt;&gt;matrix[i][j];
+                }
+        }
+        //运算 
+        for(int i=0;i&lt;n;i++){//对每一行进行扫描，有m个元素 
+                for(int j=1;j&lt;m-1;j++){
+                        if(matrix[i][j-1]==matrix[i][j]&amp;&amp;matrix[i][j]==matrix[i][j+1]){
+                                result[i][j-1]=true;
+                                result[i][j]=true;
+                                result[i][j+1]=true;
+                        }
+                }
+        }
+        for(int j=0;j&lt;m;j++){//对每一列进行扫描 ，有n个元素
+                for(int i=1;i&lt;n-1;i++){
+                        if(matrix[i-1][j]==matrix[i][j]&amp;&amp;matrix[i][j]==matrix[i+1][j]){
+                                result[i-1][j]=true;
+                                result[i][j]=true;
+                                result[i+1][j]=true;
+                        }
+                } 
+        }
+        //修改 
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;m;j++){
+                        if(result[i][j]==true){
+                                matrix[i][j]=0;
+                        }
+                }
+        }
+        //输出 
+        for(int i=0;i&lt;n;i++){
+                for(int j=0;j&lt;m;j++){
+                        cout&lt;&lt;matrix[i][j]&lt;&lt;&quot; &quot;;
+                }
+                cout&lt;&lt;endl;
+        }
+        return 0;
+}
+</code></pre>
+<h3 id="3_6">3</h3>
+<pre><code class="language-C++">//201512-3
+#include &lt;iostream&gt;
+#include&lt;cstring&gt;
+#define max  120
+using namespace std;
+int m,n,q;//m是宽度，n是高度，q是行数 
+char canvas[max][max];
+
+int dx[4]={0,0,-1,1};
+int dy[4]={-1,1,0,0};
+
+void dfs(int x,int y,char c){
+        canvas[x][y]=c;
+        for(int i=0;i&lt;4;i++){
+                int nx=x+dx[i];
+                int ny=y+dy[i];
+                if(nx&lt;0||nx&gt;=n||ny&lt;0||ny&gt;=m) continue;
+                if(canvas[nx][ny]=='-'||canvas[nx][ny]=='|'||canvas[nx][ny]=='+'||canvas[nx][ny]==c) continue;
+                dfs(nx,ny,c);
+        }
+}
+
+int main(int argc, char** argv){
+        memset(canvas,'.',sizeof(canvas));
+        cin&gt;&gt;m&gt;&gt;n&gt;&gt;q;
+        int choice;
+        while(q--){
+                cin&gt;&gt;choice;
+                if(choice==1){//填充 
+                        int x,y;
+                        char c;
+                        cin&gt;&gt;y&gt;&gt;x&gt;&gt;c;
+                        dfs(x,y,c);
+                }
+                else if(choice==0){//划线 
+                        int x1,y1,x2,y2;
+                        cin&gt;&gt;y1&gt;&gt;x1&gt;&gt;y2&gt;&gt;x2;//在数组里，画横线是二维的y增加，一维的x不变 
+                        if(x1==x2){//划横线 
+                                if(y1&gt;y2){//找出较小的y 
+                                        int temp=y1;
+                                        y1=y2;
+                                        y2=temp;
+                                } 
+                                for(int i=y1;i&lt;=y2;i++){
+                                        if(canvas[x1][i]=='|'||canvas[x1][i]=='+'){//是竖线或者十字，画横线后是+ 
+                                                canvas[x1][i]='+';
+                                        }
+                                        else{
+                                                canvas[x1][i]='-';
+                                        }
+                                } 
+                        }
+                        if(y1==y2){//画竖线 
+                                if(x1&gt;x2){
+                                        int temp=x1;
+                                        x1=x2;
+                                        x2=temp;
+                                } 
+                                for(int i=x1;i&lt;=x2;i++){
+                                        if(canvas[i][y1]=='-'||canvas[i][y1]=='+'){
+                                                canvas[i][y1]='+'; 
+                                        }
+                                        else{
+                                                canvas[i][y1]='|';
+                                        }
+                                }
+                        }
+                } 
+        }
+        for(int i=n-1;i&gt;=0;i--){
+                for(int j=0;j&lt;m;j++){
+                        cout&lt;&lt;canvas[i][j];
+                }
+                cout&lt;&lt;endl;
+        }
+        return 0;
+}
+
+</code></pre>
+<h2 id="201604">201604</h2>
+<h3 id="1_7">1</h3>
+<p>```Plain Text
+//201604-1</p>
+<h1 id="include_8">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,result;</p>
+<pre><code>    cin&gt;&gt;n;
+    int array[n];
+
+    //输入数组 
+    for(int i=0;i&lt;n;i++){
+            cin&gt;&gt;array[i];
+    }
+
+    //第一天和最后一天不可能是折点 
+    //其余只要保证比前一天和后一天都小就行
+    for(int i=1;i&lt;n-1;i++){
+            if(array[i-1]&lt;array[i]&amp;&amp;array[i+1]&lt;array[i]){
+                    result++;
+            }
+            if(array[i-1]&gt;array[i]&amp;&amp;array[i+1]&gt;array[i]){
+                    result++;
+            }
+    }
+
+    cout&lt;&lt;result;
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201604-2                错误想法：先把落下的部分放到正确的位置，然后每个方块每次下落一，直到有方块的下方有东西为止
+//正确思路：扫描每一列，计算下落距离。总的下落距离为每一列的最小值 
+#include &lt;iostream&gt;
+#include&lt;cmath&gt;
+using namespace std;
+const int row=15;
+const int col=10;
+int map[row][col];
+int object[4][4];
+int position;
+int main(int argc, char** argv){
+        //输入地图 
+        for(int i=0;i&lt;row;i++){
+                for(int j=0;j&lt;col;j++){
+                        cin&gt;&gt;map[i][j];
+                }
+        } 
+        //输入图形 
+        for(int i=0;i&lt;4;i++){
+                for(int j=0;j&lt;4;j++){
+                        cin&gt;&gt;object[i][j];
+                }
+        }
+        //输入开始的列数 
+        cin&gt;&gt;position;
+        position--;
+
+        int down=row;//最大下落距离 
+
+        for(int j=0;j&lt;4;j++){ //扫描每一列，计算下落距离 
+                int t=0;
+                int i;
+                for(i=3;i&gt;=0;i--){//从下往上扫描要下落的图形 
+                        if(object[i][j]==0){//统计这一列0的个数 
+                                t++;
+                        }
+                        else
+                                break;//出现非0就跳出 
+                }
+                if(i&lt;0){//i小于0代表本次扫描这一列全为0，即这一列没有图形 
+                        continue;
+                }
+                //这一列有图形 ，去地图中扫描，计算下落距离 
+                for(i=4;i&lt;row;i++){//前四行为0，不用扫描 
+                        if(map[i][position+j]==0){//从上到下统计地图中这一列0的个数 
+                                t++;
+                        }
+                        else{//出现非0时跳出循环 
+                                break;
+                        } 
+                }
+                down=min(down,t);//每次都取最小值，整个循环结束后，就是物体可以下落的值         
+        }
+        for(int i=0;i&lt;4;i++){//一行一行 
+                if(i+down&gt;=row){//当下落高度超过限制，就结束循环 
+                        break;
+                }
+                for(int j=0;j&lt;4;j++){
+                        if(object[i][j]==1){
+                                map[i+down][j+position]=1;
+                        }
+                }
+        } 
+        for(int i=0;i&lt;row;i++){
+                for(int j=0;j&lt;col;j++){
+                        cout&lt;&lt;map[i][j]&lt;&lt;&quot; &quot;;
+                }
+                cout&lt;&lt;endl;
+        } 
+
+        return 0;
+}
+</code></pre>
+<h2 id="201609">201609</h2>
+<h3 id="1_8">1</h3>
+<p>```Plain Text
+//201609-1</p>
+<h1 id="include_9">include <iostream></h1>
+<h1 id="include_10">include<cmath></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,max,temp;</p>
+<pre><code>    cin&gt;&gt;n;
+
+    int array[n];
+
+    //输入
+    for(int i=0;i&lt;n;i++){
+            cin&gt;&gt;array[i];
+    }
+
+    //求最大值 
+    max=array[1]-array[0];
+    for(int i=0;i&lt;n-1;i++){
+            if(abs(array[i+1]-array[i])&gt;max){
+                    max=abs(array[i+1]-array[i]);
+            }
+    }
+
+    cout&lt;&lt;max;
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201609-2                90分是因为遗漏了当没有相连的座位时的情况 
+#include &lt;iostream&gt;
+using namespace std;
+int seat[20][6];
+
+int main(int argc, char** argv){
+        int snumber=1;
+        for(int i=0;i&lt;20;i++){
+                seat[i][0]=5;
+                for(int j=1;j&lt;6;j++){
+                        seat[i][j]=snumber;
+                        snumber++;
+                }
+        }
+        int n,temp;
+        bool ff=false;
+        cin&gt;&gt;n;
+        for(int i=0;i&lt;n;i++){//n次购买 
+                cin&gt;&gt;temp;                //购买数量 
+                int j;
+                ff=false;
+                for(j=0;j&lt;20;j++){//先确定在哪一排 
+                        if(seat[j][0]&gt;=temp){//这一排剩下的座位足够分配 
+                                seat[j][0]-=temp;//减掉分配过的座位数量 
+                                int k=1;
+                                while(seat[j][k]==0){//为0代表已经售出 
+                                        k++;
+                                } 
+                                for(int l=0;l&lt;temp;l++){//在未售出的票中拿出temp张 
+                                        cout&lt;&lt;seat[j][k]&lt;&lt;&quot; &quot;;
+                                        seat[j][k]=0;
+                                        k++;
+                                }
+                                cout&lt;&lt;endl;
+                                ff=true;
+                                break;//本次分配完毕 
+                        }
+                        else{//这一排座位不够分时继续下一次循环 
+                                continue;
+                        } 
+                }
+                if(j==20&amp;&amp;ff==false){//每一排都没有相连的座位了 
+                        bool flag=false;
+                        int row=0; 
+                        bool aaa=(temp!=0);
+                        while(temp!=0){//座位未分配完毕 
+                                flag=false;
+                                for(int ii=0;ii&lt;20;ii++){
+                                        for(int jj=1;jj&lt;6;jj++){
+                                                if(seat[ii][jj]!=0){
+                                                        temp--;
+                                                        cout&lt;&lt;seat[ii][jj]&lt;&lt;&quot; &quot;;
+                                                        seat[ii][0]--;
+                                                        seat[ii][jj]=0;
+                                                        flag=true;
+                                                }
+                                                if(flag==true){
+                                                        break;
+                                                }
+                                        }
+                                        if(flag==true){//两次break是为了每次循环只改变一次temp 
+                                                break;
+                                        }
+                                }
+                        }
+                }
+        }
+}
+</code></pre>
+<h2 id="201612">201612</h2>
+<h3 id="1_9">1</h3>
+<p>```Plain Text
+//201612-1        求中间数</p>
+<h1 id="include_11">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {</p>
+<pre><code>    int n,more=0,less=0,media;//设置more和less两个计数器
+    bool flag=false;
+
+    cin&gt;&gt;n;
+    int array0[n];
+
+    //输入 
+    for(int i=0;i&lt;n;i++){
+            cin&gt;&gt;array0[i];
+    }
+
+    //依次假设每一个数的值为中间数
+    for(int i=0;i&lt;n;i++){//从头至尾用两层for循环//
+            media=array0[i];
+            more=0;
+            less=0;
+
+
+            for(int j=0;j&lt;n;j++){
+                    if(media&gt;array0[j]){
+                            less++;                                
+                    }
+                    else if(media&lt;array0[j]){
+                            more++;
+                    }
+
+            }
+            if(more==less){//当内层循环结束一次时判断more和less是否相等，
+                    cout&lt;&lt;media;//如果相等，就输出该数并结束
+                    flag=true;//否则等待循环结束都没有出现中间数
+                    break;
+            }
+    }
+
+    if(flag==false){//则输出-1 
+            cout&lt;&lt;-1;
+    }
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201612-2                 
+#include &lt;iostream&gt;
+using namespace std;
+double taxrate[8]={0,0.03,0.1,0.2,0.25,0.30,0.35,0.45};
+double range[7]={3500,1455,2700,3600,19500,14000,16250};
+int main(int argc, char** argv){
+        int T,S=0;
+        cin&gt;&gt;T;
+        int flag=0;
+        while((T-range[flag])&gt;=0&amp;&amp;flag&lt;7){
+                S+=range[flag]/(1-taxrate[flag]);
+                T-=range[flag];
+                flag++;
+        }
+        if(T&gt;0){
+                S+=T/(1-taxrate[flag]);
+        }
+        cout&lt;&lt;S;
+}
+</code></pre>
+<h2 id="201703">201703</h2>
+<h3 id="1_10">1</h3>
+<p>```Plain Text
+//201703-1求中间数</p>
+<h1 id="include_12">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,k;
+        cin&gt;&gt;n&gt;&gt;k;
+        int x=0,y=0,result=0;
+        for(int i=0;i<n;i++){
+                cin>&gt;x;
+                y+=x;
+                if(y&gt;=k){
+                        result++;
+                        y=0;
+                }
+        }
+        if(y!=0){
+                result++;
+        }
+        cout&lt;&lt;result;
+        return 0;
+}</p>
+<pre><code>
+### 2
+
+```C++
+//201703-2                 
+#include &lt;iostream&gt;
+using namespace std;
+
+int main(int argc, char** argv){
+        int n,m,snum,dis,pos;//snum是当前要移动的人的编号，dis是移动的距离
+        cin&gt;&gt;n&gt;&gt;m;
+        int *queue=new int[n+1];
+        for(int i=1;i&lt;n+1;i++){
+                queue[i]=i;
+        }
+        for(int i=0;i&lt;m;i++){
+                cin&gt;&gt;snum&gt;&gt;dis; 
+                for(int i=1;i&lt;n+1;i++){
+                        if(queue[i]==snum){
+                                pos=i;
+                        }
+                } 
+                queue[0]=queue[pos];//queue[0]保存移动的数字
+                if(dis&lt;0){//向前移动:先把前面的向后移动 
+                        for(int i=pos-1;i&gt;=pos+dis;i--){
+                                queue[i+1]=queue[i];
+                        }
+                } 
+                else if(dis&gt;0){//向后移动，先把后面的向前移动 
+                        for(int i=pos+1;i&lt;=pos+dis;i++){
+                                queue[i-1]=queue[i];
+                        }
+                }
+                queue[pos+dis]=queue[0];
+        }
+        for(int i=1;i&lt;n+1;i++){
+                cout&lt;&lt;queue[i]&lt;&lt;&quot; &quot;;
+        }
+}
+</code></pre>
+<h2 id="201709">201709</h2>
+<h3 id="1_11">1</h3>
+<p>```Plain Text
+ //201709-1        打酱油</p>
+<h1 id="include_13">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {</p>
+<pre><code>    int money,bottle=0;
+    cin&gt;&gt;money;
+    while(money&gt;=50){
+            money-=50;
+            bottle+=7;
+    }
+    while(money&gt;=30){
+            money-=30;
+            bottle+=4;
+    }
+    while(money&gt;0){
+            money-=10;
+            bottle+=1;
+    }
+
+    cout&lt;&lt;bottle;
+
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201709-2                 
+#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct node{
+        int id;//钥匙编号 
+        int sta;
+        int t;//开始上课时长 
+        bool operator &lt; (const node &amp;u) const{
+                if(t&gt;u.t) return true;
+                if(t&lt;u.t) return false;
+                if(sta&gt;u.sta) return true;
+                if(sta&lt;u.sta) return false;
+                if(id&gt;u.id) return true;
+                return false;
+        }
+};
+
+priority_queue&lt;node&gt; q;//优先队列q，里面存放结点 
+int a[1001];
+int main(){
+        int n,k,w,s,c;//n个挂钩，k个老师上课。w要用的钥匙，s开始上课时间，c上课时长 
+        cin&gt;&gt;n&gt;&gt;k;
+        node x;
+        while(k--){
+                cin&gt;&gt;w&gt;&gt;s&gt;&gt;c;
+                x.id=w;
+                x.sta=1;
+                x.t=s;
+                q.push(x);//把结点加入队列 
+                x.sta=0;
+                x.t=s+c; 
+                q.push(x);//结束时间作为另一个结点也加入队列 
+        }
+
+        for(int i=0;i&lt;=n;i++)//n+1个挂钩从0到n编号 
+        a[i]=i;
+        while(!q.empty()){//当队列非空时 
+                x=q.top();//获取顶部的结点 
+                q.pop();
+                if(x.sta==0){//等于零意为上课结束还钥匙 
+                        for(int i=0;i&lt;=n;i++)
+                                if(a[i]==-1){//从前到后找到空钥匙盒并放入钥匙并退出 
+                                        a[i]=x.id;
+                                        break;
+                                }
+                }
+                else{//否则为上课开始，借钥匙。这个顺序代表先还后借 
+                        for(int i=0;i&lt;=n;i++)
+                        if(a[i]==x.id){//从前到后找到所需的钥匙并把盒子设为空并返回 
+                                a[i]=-1;
+                                break;
+                        }
+                }
+        }
+        for(int i=1;i&lt;=n;i++)//打印钥匙盒的情况 
+        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;endl;
+        return 0;
+}
+
+</code></pre>
+<h2 id="201712">201712</h2>
+<h3 id="1_12">1</h3>
+<p>```Plain Text
+//201712-1最小差值 </p>
+<h1 id="include_14">include <iostream></h1>
+<h1 id="include_15">include<algorithm></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n,temp,result=0;
+        cin&gt;&gt;n;
+        int *array=new int[n];
+        for(int i=0;i<n;i++){
+                cin>&gt;array[i];
+        }
+        sort(array,array+n);</p>
+<pre><code>    result=array[1]-array[0];
+    for(int i=1;i&lt;n-1;i++){
+            if(array[i+1]-array[i]&lt;result){
+                    result=array[i+1]-array[i];
+            }
+    }
+    cout&lt;&lt;result;
+    return 0;
+</code></pre>
+<p>}</p>
+<pre><code>
+### 2
+
+```C++
+//201712-2                 
+#include &lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+
+int main(int argc, char** argv){
+        queue&lt;int&gt;littlefriend;
+        int n,k;
+        cin&gt;&gt;n&gt;&gt;k;
+        for(int i=1;i&lt;n+1;i++){
+                littlefriend.push(i);
+        }
+        int num=1;
+        while(littlefriend.size()!=1){
+                if(num%k==0||num%10==k){
+                        littlefriend.pop();
+                }
+                else{
+                        int n=littlefriend.front();
+                        littlefriend.pop();
+                        littlefriend.push(n);
+                }
+                num++;
+        }
+        cout&lt;&lt;littlefriend.front();
+}
+</code></pre>
+<h2 id="201803">201803</h2>
+<h3 id="1_13">1</h3>
+<p>```Plain Text</p>
+<h1 id="include_16">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int thisscore=0,result=0;//thisscore代表上次加的分数，result代表游戏总分
+        int thisinput;                //thisinput代表本次跳一跳的结果 
+        cin&gt;&gt;thisinput;
+        while(thisinput!=0){
+                if(thisscore==0){//第一次游戏 
+                        thisscore=thisinput;
+                        result+=thisscore;
+                }
+                else if(thisinput==1){//本次跳了1 
+                        thisscore=1;
+                        result+=thisscore;
+                }
+                else if(thisinput==2&amp;&amp;thisscore==1){//本次跳了2并且上次跳了1 
+                        thisscore=2;
+                        result+=thisscore;
+                }
+                else if(thisinput==2&amp;&amp;thisscore%2==0){
+                        thisscore+=2;
+                        result+=thisscore;
+                }
+                cin&gt;&gt;thisinput;
+        }
+        cout&lt;&lt;result; 
+        return 0;
+}</p>
+<pre><code>
+### 2
+
+#### 解1
+
+```C++
+//201803-2                 
+#include &lt;iostream&gt;
+using namespace std;
+int main(int argc, char** argv){
+        int n,L,t;//n小球数量、L线段长度、t运动时间 
+        int ball[100]={0};
+        int ball2[100]={0};
+        int dir[100]={0};
+        for(int i=0;i&lt;100;i++){
+                dir[i]=1;
+        }
+        cin&gt;&gt;n&gt;&gt;L&gt;&gt;t;
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;ball[i];
+        }//至此输入完成 
+
+        for(int i=0;i&lt;t;i++){//共t秒 
+                for(int j=0;j&lt;n;j++){//将这一秒小球的位置暂存，因为后面判断碰撞后就要直接修改，如果没有备份就会出现问题 
+                        ball2[j]=ball[j];//所以用一个备份，后面所有的判断都是基于这个备份来的 
+                }
+                for(int j=0;j&lt;n;j++){//每次都扫描n个小球的碰撞情况 
+                        if((ball2[j]==L&amp;&amp;dir[j]==1)||(ball2[j]==0&amp;&amp;dir[j]==-1)){//小球碰头尾 
+                                dir[j]=-dir[j];
+                        } 
+                        else{//小球互相碰撞 
+                                for(int k=0;k&lt;n;k++){
+                                        if(ball2[j]==ball2[k]&amp;&amp;j!=k){
+                                                dir[j]=-dir[j];
+                                        } 
+                                }
+                        }
+                        ball[j]+=dir[j];
+                }
+        }
+        for(int i=0;i&lt;n;i++){
+                cout&lt;&lt;ball[i]&lt;&lt;&quot; &quot;;
+        } 
+        cout&lt;&lt;endl;
+}
+
+/*int n,L,t;//n小球数量、L线段长度、t运动时间 
+        int ball[100]={0};
+        int ball2[100]={0};
+        int dir[100]={0};
+
+        //所有小球的初始方向都为右 
+        for(int i=0;i&lt;100;i++){
+                dir[i]=1;
+        }
+        cin&gt;&gt;n&gt;&gt;L&gt;&gt;t;
+        //获取n个小球的初始位置，存储在数组从0到n-1的位置上 
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;ball[i];
+        }
+
+        for(int i=0;i&lt;t;i++){//t次移动 
+                for(int j=0;j&lt;n;j++){//n个小球的位置复制到另一个数组里。 
+                        ball2[j]+=ball[j]; 
+                } 
+                //碰撞检测,本以为小球是从小到大有顺序，但是没有，所以每一次都要遍历 
+                for(int k=0;k&lt;n;k++){//每次监测下标为k的球和后面的球的碰撞情况 
+                        if((ball[k]==0&amp;&amp;dir[k]==-1)||(ball[k]==L&amp;&amp;dir[k]==1)){//球碰头 
+                                dir[k]=-dir[k];
+                        }
+                        else{
+                                for(int l=0;l&lt;n;l++){//除碰头尾，其他的碰撞检测 
+                                        if(ball[k]==ball[l]&amp;&amp;k!=l){
+                                                dir[k]=-dir[k];
+                                                //dir[l]*=-1;
+                                        }
+                                }
+                        }
+                        ball[k]=ball[k]+dir[k];//如果在这里直接修改的话，就会有可能出现在一个周期内，一个小球的位置多次移动， 
+                } 
+                for(int i=0;i&lt;n;i++){
+                        cout&lt;&lt;ball[i]&lt;&lt;&quot; &quot;;
+                }
+                cout&lt;&lt;endl; 
+        }*/ 
+</code></pre>
+<h4 id="2_3">解2</h4>
+<pre><code class="language-C++">/*由题，位置相同时运动方向一定相反，所以任意小球的初始位置不可能相同，
+又因为初始位置都是偶数，所以各个小球至少运动一秒才会发生第一次碰撞，
+计算的逻辑是先判断自己和前后两个球的距离，然后决定方向和移动的位置*/
+#include &lt;iostream&gt;
+using namespace std;
+enum direction {RT,LFT};
+struct ball{
+        int position;
+        int lastposition;
+        bool right=1;
+};
+
+int n,L,t;//n为小球个数、L为线段长度、t为小球位置 
+int main(int argc, char** argv) {
+        //输入
+        cin&gt;&gt;n&gt;&gt;L&gt;&gt;t;
+        struct ball *l=new struct ball[n];
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt;l[i].position;
+                l[i].lastposition=l[i].position;
+                l[i].right=1;
+        } 
+        for(int i=0;i&lt;t;i++){//运行了t秒 
+                for(int j=0;j&lt;n;j++){//每一秒n个小球的变化情况  
+                        if(j==0){//判断自己在2号球和起点之间是否有碰撞: 
+                                if(l[j].position!=l[j+1].position&amp;&amp;l[j].right==1){//方向右，未碰到2，
+
+                                }
+                                else if(l[j].position==l[j+1].position&amp;&amp;l[j].right==1){//方向右已经碰到2； 
+
+                                }
+                                else if(l[j].position!=0&amp;&amp;l[j].right==0){//方向左未碰到起点，
+                                        l[j].position--;
+                                }
+                                else if(l[j].position==0&amp;&amp;l[j].right==0){//方向左碰到起点
+                                        l[j].right=1;
+                                        l[j].position++;
+                                }
+                        } 
+                        else if(j==n-1){
+
+                        }
+                        else{
+
+                        }
+                } 
+
+        }
+        return 0;
+}
+
+</code></pre>
+<h2 id="201809">201809</h2>
+<h3 id="1_14">1</h3>
+<p>```Plain Text
+//201809-1卖菜 </p>
+<h1 id="include_17">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv) {
+        int n;
+        cin&gt;&gt;n;
+        int *array=new int[n];
+        int *result=new int[n];
+        for(int i=0;i<n;i++){
+                cin>&gt;array[i]; 
+        } 
+        result[0]=(array[0]+array[1])/2;
+        result[n-1]=(array[n-2]+array[n-1])/2;
+        for(int i=1;i&lt;n-1;i++){
+                result[i]=(array[i-1]+array[i]+array[i+1])/3;
+        }
+        for(int i=0;i&lt;n;i++){
+                cout&lt;&lt;result[i]&lt;&lt;" ";
+        }
+        return 0;
+}</p>
+<pre><code>
+### 2
+
+```C++
+#include&lt;iostream&gt;
+
+using namespace std;
+
+struct time{
+        int start;
+        int end;
+};
+
+int main(int argc, char *argv[]) {
+
+        int n;
+        cin&gt;&gt;n;
+
+        time *H=new time[n];
+        time *W=new time[n];
+
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt; H[i].start;
+                cin&gt;&gt; H[i].end;
+        } 
+        for(int i=0;i&lt;n;i++){
+                cin&gt;&gt; W[i].start;
+                cin&gt;&gt; W[i].end;
+        } 
+        int maxtime=H[n-1].end&gt;W[n-1].end ? H[n-1].end : W[n-1].end;
+        int *timeline=new int[maxtime];
+        for(int i=0;i&lt;maxtime;i++){
+                timeline[i]=0;
+        }
+        for(int i=0;i&lt;n;i++){//n个时间段 
+                for(int j=H[i].start;j&lt;H[i].end;j++){//每段时间 
+                        timeline[j]++;
+                }
+        }
+        for(int i=0;i&lt;n;i++){//n个时间段 
+                for(int j=W[i].start;j&lt;W[i].end;j++){//每段时间 
+                        timeline[j]++;
+                }
+        }
+        int totaltime=0;
+        for(int i=0;i&lt;maxtime;i++){
+                if(timeline[i]==2){
+                        totaltime++;
+                }
+        }
+        cout&lt;&lt;totaltime;
+        return 0;
+}
+</code></pre>
+<h2 id="201812">201812</h2>
+<h3 id="1_15">1</h3>
+<p>```Plain Text
+//201812-1</p>
+<h1 id="include_18">include <iostream></h1>
+<p>using namespace std;</p>
+<p>int main(int argc, char** argv){
+        long r,y,g,t,totaltime=0;
+        int n,k;
+        cin&gt;&gt;r&gt;&gt;y&gt;&gt;g;
+        cin&gt;&gt;n;
+        while(n--){
+                cin&gt;&gt;k&gt;&gt;t;
+                switch(k){
+                        case 0: 
+                        case 1: totaltime+=t; break;
+                        case 2: totaltime+=t+r; break;
+                        case 3: totaltime+=0;break;
+                }      <br />
+        }
+        cout&lt;&lt;totaltime;
+        return 0;
+}</p>
+<pre><code>
+
+
+# 其他
+
+```C++
+随机数：
+#include &lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include&lt;ctime&gt;
+using namespace std; 
+
+int main(int argc, char** argv) {
+        int a;
+        srand((unsigned)time(NULL));//种子
+        for(int i=0;i&lt;10;i++){
+                a=rand()%100;//生成随机数
+                cout&lt;&lt;a&lt;&lt;endl;
+        }
+        return 0;
+}
+取得(0,x)的随机整数：rand()%x；
+取得(a,b)的随机整数：rand()%(b-a)；
+取得[a,b)的随机整数：rand()%(b-a)+a；
+取得[a,b]的随机整数：rand()%(b-a+1)+a；
+取得(a,b]的随机整数：rand()%(b-a)+a+1；
+取得0-1之间的浮点数：rand()/double(RAND_MAX
+
+//随机数 
+#include &lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include&lt;ctime&gt; 
+using namespace std; 
+
+
+int main(int argc, char** argv) {
+        srand(time(0));
+        for(int i=0;i&lt;1000;i++){
+                cout&lt;&lt;time(0)&lt;&lt;' ';
+        }
+        for(int i=0;i&lt;1000;i++){
+                cout&lt;&lt;rand()&lt;&lt;' ';
+        }
+        return 0;
+}
+
+
+
+
+
+
+
+//函数调用
+#include &lt;iostream&gt;
+
+using namespace std; 
+
+//声明函数计算x的n次方 
+double power(double x,int n); 
+
+int main(int argc, char** argv) {
+        int value=0;
+
+        cout&lt;&lt;&quot;enter an 8 bit binary number&quot;;
+
+        for(int i=7;i&gt;=0;i--){
+                char ch;
+                cin&gt;&gt;ch;
+                if(ch=='1')
+                        value+=static_cast&lt;int&gt;(power(2,i));
+        } 
+
+        cout&lt;&lt;&quot;Decimal value is &quot;&lt;&lt;value&lt;&lt;endl;
+
+        return 0;
+}
+
+double power(double x,int n){
+        double val=1.0;
+        while(n--){
+                val*=x;
+        }
+
+        return val;
+}
+
+
+
+
+
+
+
+//格式控制
+//格式控制 
+#include &lt;iostream&gt;
+#include&lt;iomanip&gt; 
+using namespace std; 
+
+int main(int argc, char** argv) {
+        int a=50;
+        unsigned b=-10;
+        float c=3.14156926;
+        cout&lt;&lt;hex&lt;&lt;a&lt;&lt;endl;
+        cout&lt;&lt;hex&lt;&lt;b&lt;&lt;endl;
+        cout&lt;&lt;setw(2)&lt;&lt;c&lt;&lt;endl;
+        cout&lt;&lt;setprecision(3)&lt;&lt;c&lt;&lt;endl;
+        cout&lt;&lt;setw(5)&lt;&lt;setprecision(3)&lt;&lt;c&lt;&lt;endl;
+        return 0;
+}
+
+
+
+
+
+
+
+//传值，传引用，传指针对比 
+#include &lt;iostream&gt;
+using namespace std; 
+
+//传值
+int exvalue(int value){
+        cout&lt;&lt;&quot;value=&quot;&lt;&lt;value&lt;&lt;endl;
+        value-=1;
+        cout&lt;&lt;&quot;value=&quot;&lt;&lt;value&lt;&lt;endl;
+        return value;
+} 
+
+//传引用
+int exaddress(int &amp;exaddress){
+        cout&lt;&lt;&quot;exaddress=&quot;&lt;&lt;exaddress&lt;&lt;endl;
+        exaddress-=1;
+        cout&lt;&lt;&quot;exaddress=&quot;&lt;&lt;exaddress&lt;&lt;endl;
+} 
+
+//传指针
+int expointer(int *pointer){
+        cout&lt;&lt;&quot;*pointer=&quot;&lt;&lt;*pointer&lt;&lt;endl;
+        *pointer-=1;
+        cout&lt;&lt;&quot;*pointer=&quot;&lt;&lt;*pointer&lt;&lt;endl;
+
+} 
+
+int main(int argc, char** argv) {
+        int x=10;
+
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+        exvalue(x);
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+        exaddress(x);
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+        expointer(&amp;x);
+        cout&lt;&lt;&quot;x=&quot;&lt;&lt;x&lt;&lt;endl;
+
+        return 0;
+}
+
+
+
+
+
+.gitignore
+**/.DS_Store
+.DS_Store
+.DS_Store?
+.vscode/
+201409-1
+201409-2
+201412-2
+201503-2
+201503-3
+201509-1
+./.DS_Store
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+### Above combination will ignore all files without extension ###
+
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3663 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/08-web-network/note-1-csqf5nuf/">
+      
+      
+        <link rel="prev" href="../note-1-c1lccnyg/">
+      
+      
+        <link rel="next" href="../note-1-crosunmg/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>DataBase - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DataBase
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmjvlnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgctfn2j/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-clofunpb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csdxmnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-c1edhnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="database">DataBase</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="database_1">DataBase</h1>
+<p>数据库分为关系型数据库和非关系型数据库</p>
+<h1 id="_1">绪论</h1>
+<ul>
+<li><strong>1.1 数据库基本概念</strong> ：数据、数据库、数据库管理系统、数据库系统的定义与特点。</li>
+<li><strong>1.2 数据库系统结构</strong> ：三级模式结构（外模式、概念模式、内模式）及二级映像（外模式 / 概念模式映像、概念模式 / 内模式映像），多级结构的优点。</li>
+<li><strong>1.3 数据模型</strong> ：概念数据模型（E-R 模型，包括实体、属性、联系等概念及 E-R 图的绘制），逻辑数据模型（关系模型、网状模型、层次模型等，重点介绍关系模型的基本概念如关系、元组、属性、域、主键、外键等）。</li>
+</ul>
+<h2 id="_2">数据库系统概述</h2>
+<p>数据——描述事物的符号记录，具有语义</p>
+<p>数据库——冗余、独立性、可扩展性</p>
+<p>数据库管理系统</p>
+<p>数据库系统DBS：DB、DBMS、APP、DBA</p>
+<p>人工阶段：数据不共享、不独立于应用程序，</p>
+<p>文件系统阶段：数据共享性弱，冗余度高，独立性弱</p>
+<p>数据库系统阶段：数据结构化、共享性强、冗余度低、易于扩充</p>
+<p>数据独立性强-逻辑独立性、物理独立性——两级映像</p>
+<p>数据统一由数据库管理系统管理控制。安全、完整、并发、恢复</p>
+<h2 id="_3">数据模型</h2>
+<h3 id="_4">数据建模</h3>
+<p>概念模型-&gt;数据模型</p>
+<h3 id="_5">概念模型</h3>
+<p>实体entity、属性attribute、码key、实体类型entity type、实体集entity set、联系relationship</p>
+<p>概念模型的表示方法：实体-关系模型——entity-relationship model</p>
+<h3 id="_6">数据模型三要素</h3>
+<p>数据结构 数据操纵 完整性约束</p>
+<h3 id="_7">层次模型</h3>
+<h3 id="_8">网状模型</h3>
+<h3 id="_9">关系模型</h3>
+<p>relation关系=二维表</p>
+<p>tuple元组=表格的一行</p>
+<p>key码  可以唯一确定一个元组</p>
+<p>domain域 属性的取值范围</p>
+<p>关系模式：关系名（属性···）</p>
+<p>关系模型的完整性约束：实体完整性、参照完整性、用户定义完整性</p>
+<h2 id="_10">数据库的三级模式结构</h2>
+<p>外模式-逻辑模式-内模式</p>
+<p>外模式/模式映像：任意多个外模式</p>
+<p>模式/内模式映像：唯一</p>
+<h2 id="_11">数据库系统的组成</h2>
+<p>软硬件、人员用户</p>
+<h2 id="_12">数据库系统的体系结构</h2>
+<p>集中式、CS、并行、分布式、云数据库</p>
+<h1 id="_13">关系模型</h1>
+<h2 id="_14">关系模型的数据结构及形式化定义</h2>
+<ul>
+<li><strong>2.1 关系数据库的基本概念</strong> ：关系数据库的定义，关系的完整性约束（实体完整性、参照完整性、用户自定义完整性）。</li>
+<li><strong>2.2 关系代数</strong> ：传统的集合运算（并、交、差、广义笛卡尔积）、专门的关系运算（投影、选择、连接、除运算）的概念、符号及操作实例。</li>
+<li><strong>2.3 SQL 语言</strong> ：SQL 的发展与特点，SQL 的数据定义功能（创建、修改、删除数据库、表、视图等）、数据查询功能（简单查询、连接查询、嵌套查询、集合查询等）、数据更新功能（插入、删除、修改数据）、数据控制功能（授权、收回权限、事务控制等）。</li>
+</ul>
+<h3 id="_15">关系</h3>
+<p>域：set，里面的内容的数据类型相同</p>
+<p>笛卡尔积</p>
+<p>关系</p>
+<p>关系的三种类型：基本关系、查询结果、视图</p>
+<h3 id="_16">关系模式</h3>
+<h2 id="_17">关系操作</h2>
+<p>query：select、project、join、divide、union、difference、intersection</p>
+<p>refresh（insert、delete、update）</p>
+<h2 id="_18">关系的完整性</h2>
+<h3 id="_19">实体完整性</h3>
+<p>一个表对应一个实体、实体可以区分，以主键为唯一表示、主键非空</p>
+<h3 id="_20">参照完整性</h3>
+<h1 id="sql">关系数据库标准语言SQL</h1>
+<h2 id="sql_1">SQL概述</h2>
+<h2 id="_21">数据定义</h2>
+<h2 id="_22">数据查询</h2>
+<h2 id="_23">数据更新</h2>
+<h2 id="_24">空值的处理</h2>
+<h2 id="_25">视图</h2>
+<h1 id="_26">数据库安全性</h1>
+<h1 id="_27">数据库完整性</h1>
+<h2 id="_28">数据库完整性概述</h2>
+<h2 id="_29">实体完整性</h2>
+<h2 id="_30">参照完整性</h2>
+<h2 id="_31">用户定义的完整性</h2>
+<h2 id="_32">完整性约束命名子句</h2>
+<h2 id="_33">域的完整性限制</h2>
+<h2 id="_34">触发器</h2>
+<h1 id="_35">关系数据理论</h1>
+<h1 id="_36">数据库设计</h1>
+<h1 id="_37">数据库编程</h1>
+<h1 id="_38">关系数据库存储管理</h1>
+<h1 id="_39">关系查询处理和查询优化</h1>
+<h1 id="_40">数据库恢复技术</h1>
+<h1 id="_41">并发控制</h1>
+<h1 id="_42">数据库管理系统</h1>
+<h1 id="_43">数据库发展概述</h1>
+<h1 id="_44">大数据管理系统</h1>
+<h1 id="_45">数据仓库与联机分析处理技术</h1>
+<h1 id="_46">内存数据库技术</h1>
+<h1 id="_47">区块链与数据库</h1>
+<h1 id="_48">《数据库系统概论》大纲及配套习题</h1>
+<h2 id="_49">大纲</h2>
+<h3 id="_50">第一章 数据库基础</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="_51">第二章 关系数据库</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="_52">第三章 数据库设计</h3>
+<ul>
+<li><strong>3.1 数据库设计概述</strong> ：数据库设计的目标与步骤（需求分析、概念结构设计、逻辑结构设计、物理结构设计、数据库实施、数据库运行与维护）。</li>
+<li><strong>3.2 概念结构设计</strong> ：概念结构设计的方法与步骤，如自顶向下、自底向上、逐步扩张等方法，E-R 图的合并与优化。</li>
+<li><strong>3.3 逻辑结构设计</strong> ：将 E-R 图转换为关系模型的方法，关系模型的优化（范式理论，包括 1NF、2NF、3NF、BCNF 的定义与判断，模式分解的方法与步骤）。</li>
+</ul>
+<h3 id="_53">第四章 数据库管理系统</h3>
+<ul>
+<li><strong>4.1 DBMS 的总体结构</strong> ：DBMS 的功能模块划分（存储管理器、查询处理器、事务管理器、数据库定义语言与数据库存取语言翻译器等），各模块的主要功能与协作关系。</li>
+<li><strong>4.2 存储管理</strong> ：数据库的存储结构（数据库在磁盘上的存储方式，如堆文件、排序文件等），缓冲区管理（缓冲区的作用、缓冲区管理策略如 LRU 替换策略等）。</li>
+<li><strong>4.3 查询处理与优化</strong> ：查询处理的过程（词法分析、语法分析、查询优化等），查询优化的目标与策略（如选择运算的下推、连接顺序的优化等）。</li>
+</ul>
+<h3 id="_54">第五章 事务管理</h3>
+<ul>
+<li><strong>5.1 事务的概念与性质</strong> ：事务的定义，事务的特点（原子性、一致性、隔离性、持久性）。</li>
+<li><strong>5.2 并发控制</strong> ：并发操作带来的问题（丢失修改、脏读、不可重复读、死锁等），并发控制的方法（封锁机制，包括排他锁、共享锁、意向锁等，封锁协议的级别与优缺点；乐观控制法与悲观控制法的概念与区别）。</li>
+<li><strong>5.3 数据库恢复技术</strong> ：数据库故障的类型（事务故障、系统故障、介质故障），恢复的实现技术（数据转储、日志记录、数据库镜像等），恢复策略（事务故障的恢复、系统故障的恢复、介质故障的恢复）。</li>
+</ul>
+<h2 id="_55">配套习题</h2>
+<h3 id="20">选择题（20 道）</h3>
+<ol>
+<li>数据库系统的核心是（ B）</li>
+</ol>
+<p>A. 数据库</p>
+<p>B. 数据库管理系统</p>
+<p>C. 数据</p>
+<p>D. 操作系统</p>
+<ol>
+<li>数据库系统的三级模式结构是指（ B）</li>
+</ol>
+<p>A. 外模式、内模式、存储模式</p>
+<p>B. 外模式、概念模式、内模式</p>
+<p>C. 模式、子模式、内模式</p>
+<p>D. 模式、子模式、外模式</p>
+<ol>
+<li>在 E-R 图中，用来表示实体的图形是（ A）</li>
+</ol>
+<p>A. 矩形</p>
+<p>B. 椭圆形</p>
+<p>C. 菱形</p>
+<p>D. 三角形</p>
+<ol>
+<li>关系模型中，一个主键（ B）</li>
+</ol>
+<p>A. 只能由一个属性组成</p>
+<p>B. 可以由一个或多个属性组成，其值能够唯一标识关系中的一个元组</p>
+<p>C. 可由关系中的多个任意属性组成</p>
+<p>D. 以上都不对</p>
+<ol>
+<li>SQL 语言中，用于创建表的命令是（ B）</li>
+</ol>
+<p>A. CREATE SCHEMA</p>
+<p>B. CREATE TABLE</p>
+<p>C. CREATE VIEW</p>
+<p>D. CREATE INDEX</p>
+<ol>
+<li>在关系数据库中，关系的完整性约束不包括（ D）</li>
+</ol>
+<p>A. 实体完整性</p>
+<p>B. 参照完整性</p>
+<p>C. 用户自定义完整性</p>
+<p>D. 关系完整性</p>
+<ol>
+<li>设有关系 R（A，B，C）和 S（B，C，D），则与 R⋈S 等价的 SQL 查询语句是（ ）</li>
+</ol>
+<p>A. SELECT * FROM R，S WHERE R.B=S.B AND R.C=S.C</p>
+<p>B. SELECT * FROM R，S WHERE R.B=S.B OR R.C=S.C</p>
+<p>C. SELECT * FROM R，S WHERE R.B=S.B</p>
+<p>D. SELECT * FROM R，S WHERE R.C=S.C</p>
+<ol>
+<li>下列关于数据库设计的叙述中，正确的是（ ）</li>
+</ol>
+<p>A. 在需求分析阶段建立数据字典</p>
+<p>B. 在概念结构设计阶段建立数据字典</p>
+<p>C. 在逻辑结构设计阶段建立数据字典</p>
+<p>D. 在物理结构设计阶段建立数据字典</p>
+<ol>
+<li>将 E-R 图转换为关系模型时，一个 M:N 的联系应该（ ）</li>
+</ol>
+<p>A. 转换为一个独立的关系模式</p>
+<p>B. 转换为两个关系模式</p>
+<p>C. 合并到 M 端对应的关系模式中</p>
+<p>D. 合并到 N 端对应的关系模式中</p>
+<ol>
+<li>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，则关系模式 R 的主键是（A ）</li>
+</ol>
+<p>A. A</p>
+<p>B. B</p>
+<p>C. C</p>
+<p>D. D</p>
+<ol>
+<li>下列封锁协议中，可能出现死锁的是（ ）</li>
+</ol>
+<p>A. 一级封锁协议</p>
+<p>B. 二级封锁协议</p>
+<p>C. 三级封锁协议</p>
+<p>D. 两段锁协议</p>
+<ol>
+<li>数据库恢复的基本技术不包括（ D）</li>
+</ol>
+<p>A. 数据转储</p>
+<p>B. 日志记录</p>
+<p>C. 数据库镜像</p>
+<p>D. 数据加密</p>
+<ol>
+<li>在 DBMS 的层次结构中，处于最内层的是（D ）</li>
+</ol>
+<p>A. 应用层</p>
+<p>B. 语言翻译处理层</p>
+<p>C. 数据存取层</p>
+<p>D. 数据存储层</p>
+<ol>
+<li>下列关于查询优化的叙述中，错误的是（ A）</li>
+</ol>
+<p>A. 选择运算应尽可能推迟</p>
+<p>B. 将笛卡尔积和随后的投影合并</p>
+<p>C. 将连接分解为多个步骤</p>
+<p>D. 选择适当的连接算法</p>
+<ol>
+<li>设有关系 R（A，B，C）和 S（B，C，D），其中 R 的元组为 {（1，2，3），（4，5，6）}，S 的元组为 {（2，3，4），（5，6，7）}，则 R⋈S 的结果中元组数目为（ ）</li>
+</ol>
+<p>A. 1</p>
+<p>B. 2</p>
+<p>C. 3</p>
+<p>D. 4</p>
+<ol>
+<li>下列关于事务的叙述中，错误的是（ D）</li>
+</ol>
+<p>A. 事务是一个操作序列，具有原子性、一致性、隔离性和持久性</p>
+<p>B. 事务的原子性是指事务中的所有操作要么全做，要么全不做</p>
+<p>C. 事务的一致性是指事务执行前后，数据库从一个一致状态变为另一个一致状态</p>
+<p>D. 事务的隔离性是指并发执行的事务之间不能互相影响，但可以共享数据</p>
+<ol>
+<li>下列关于封锁的叙述中，正确的是（A ）</li>
+</ol>
+<p>A. 共享锁与共享锁相容</p>
+<p>B. 排他锁与排他锁相容</p>
+<p>C. 共享锁与排他锁相容</p>
+<p>D. 意向锁与任何锁都不相容</p>
+<ol>
+<li>在 DBMS 中，负责查询处理和优化的模块是（ B）</li>
+</ol>
+<p>A. 存储管理器</p>
+<p>B. 查询处理器</p>
+<p>C. 事务管理器</p>
+<p>D. 数据库定义语言与数据库存取语言翻译器</p>
+<ol>
+<li>下列关于数据库镜像的叙述中，错误的是（ C）</li>
+</ol>
+<p>A. 数据库镜像可以提高数据库的可用性</p>
+<p>B. 数据库镜像需要额外的存储空间</p>
+<p>C. 数据库镜像可以完全替代数据备份</p>
+<p>D. 数据库镜像可以用于数据恢复</p>
+<ol>
+<li>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，则 R 的候选键是（ A）</li>
+</ol>
+<p>A. A</p>
+<p>B. B</p>
+<p>C. C</p>
+<p>D. D</p>
+<h3 id="10">填空题（10 道）</h3>
+<ol>
+<li>
+<p>数据库系统的三级模式结构是外模式、___模式_____、内模式。</p>
+</li>
+<li>
+<p>在 E-R 图中，用来表示属性的图形是 __椭圆______。</p>
+</li>
+<li>
+<p>关系模型中，一个关系对应一个 __表______。</p>
+</li>
+<li>
+<p>SQL 语言中，用于定义数据库结构的语言是 ________  </p>
+</li>
+<li>
+<p>数据库设计的步骤包括需求分析、概念结构设计、__逻辑结构设计______、物理结构设计、数据库实施、数据库运行与维护。</p>
+</li>
+<li>
+<p>将 E-R 图转换为关系模型时，一个实体类型对应一个 ________。</p>
+</li>
+<li>
+<p>设有关系 R（A，B，C）和 S（B，C，D），则 R 和 S 的自然连接结果中属性数目为 ________  </p>
+</li>
+<li>
+<p>数据库恢复的基本技术包括数据转储、________ 和数据库镜像。</p>
+</li>
+<li>
+<p>在 DBMS 的层次结构中，处于最外层的是 ________。</p>
+</li>
+<li>
+<p>下列关于查询优化的叙述中，正确的是 ________（填 “选择运算应尽可能提前” 或 “选择运算应尽可能推迟”）。</p>
+</li>
+</ol>
+<h3 id="10_1">简答题（10 道）</h3>
+<ol>
+<li>
+<p>简述数据库系统的主要特点。</p>
+</li>
+<li>
+<p>什么是数据模型？常见的数据模型有哪些？</p>
+</li>
+<li>
+<p>简述 SQL 语言的主要功能。</p>
+</li>
+<li>
+<p>数据库设计的需求分析阶段需要完成哪些任务？</p>
+</li>
+<li>
+<p>简述事务的原子性及其重要性。</p>
+</li>
+<li>
+<p>并发控制的目的是什么？常见的并发控制方法有哪些？</p>
+</li>
+<li>
+<p>简述 DBMS 的主要功能模块及其作用。</p>
+</li>
+<li>
+<p>什么是函数依赖？试举例说明。</p>
+</li>
+<li>
+<p>简述数据库恢复的基本原理。</p>
+</li>
+<li>
+<p>简述查询优化的主要策略。</p>
+</li>
+</ol>
+<h3 id="10_2">应用题（10 道）</h3>
+<ol>
+<li>
+<p>设有关系 R（A，B，C）和 S（B，C，D），其中 R 的元组为 {（1，2，3），（4，5，6）}，S 的元组为 {（2，3，4），（5，6，7）}，试求 R 和 S 的自然连接结果。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的所有候选键。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试将 R 分解为 3NF 模式集。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C），函数依赖集 F={A→B，B→C}，试求 R 的主键，并判断 R 属于哪一级范式。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求属性集 A 的闭包。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的所有函数依赖。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的最小函数依赖集。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的所有超键。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的所有候选键。</p>
+</li>
+<li>
+<p>设有关系模式 R（A，B，C，D），函数依赖集 F={A→B，B→C，C→D}，试求 R 的所有主属性和非主属性。</p>
+</li>
+<li>
+<p>数据管理技术共经历了三个阶段：人工管理阶段、  <strong>文件系统</strong>       、      数据库系统          。 </p>
+</li>
+<li>事务具有四个基本特性，分别是：原子性、     一致性        、隔离性和    持续性            。</li>
+<li>关系数据语言主要可以分为以下三类：关系代数语言、关系演算语言和具有关系代数和关系演算双重特点的语言 。</li>
+<li>在数据库系统中，并发控制的基本方法是    封锁机制  ，并发控制的基本单位是   事物     。</li>
+<li>关系模型的组成要素为：数据结构、   数据操作      和       数据的完整性约束              。</li>
+<li>数据库系统的三级模式结构包括：外模式、      模式             和   内模式              。</li>
+<li>数据库设计包括以下几个重要阶段，   需求分析   概念结构分析 ， 逻辑结构设计          ，    物理结构设计  ，数据库的实施，数据库的运行和维护。</li>
+<li>数据库设计过程是     结构（或数据）          和    行为（或处理）          的密切结合。</li>
+<li>数据库的三类完整性是：    实体             ，        参照            和用户自定义完整性。</li>
+</ol>
+<p>事务的特性包括：(   原子性    )、一致性、（  隔离性    ）、和持久性。 </p>
+<p>SQL数据库中的表，可以是基本表，也可以是( 视图   )。</p>
+<p>E-R方法的三要素是：实体、(    属性  )和联系。</p>
+<p>完整性是指数据的（正确性）和（  相容性    ）。</p>
+<p><strong>二、单选题</strong></p>
+<ol>
+<li>下面哪个选项不属于E－R图中的三要素：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>A．实体（型）</th>
+<th>B．码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C．联系</td>
+<td>D．属性</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>SQL中，与“IN”等价的操作符是：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>A．=ANY      B．&lt;&gt;ANY       C．=ALL       D．&lt;&gt;ALL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>从Ｅ-Ｒ模型向关系模式转换时，一个m:n联系转换为关系模式时，该关系的码是：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>A．m端实体的码</th>
+<th>B．n端实体码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C．m端实体的码与n端实体码的组合</td>
+<td>D．重新选取其他属性</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>数据模型用来表示实体间的联系，但不同的数据库管理系统支持不同的数据模型。在常用的数据模型中，不包括     ：</li>
+</ol>
+<p>A. 网状模型</p>
+<p>B. 链状模型</p>
+<p>C. 层次模型</p>
+<p>D. 关系模型</p>
+<ol>
+<li>若用如下的SQL语句创建一个表student：</li>
+</ol>
+<p>CREATE  TABLE  student  (NO  CHAR(4)  NOT  NULL**,**</p>
+<p>NAME   CHAR(8)  NOT  NULL**,**</p>
+<p>SEX  CHAR(2)<strong>,</strong></p>
+<p>AGE  INT)</p>
+<p>可以插入到student表中的是：</p>
+<table>
+<thead>
+<tr>
+<th>A．(‘1031’，‘曾华’，男，23)                                B．(‘1031’，‘曾华’，NULL，NULL)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C．（NULL，‘曾华’， ‘男’， ‘23’）                        D．(‘1031’，NULL，‘男’，23)</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>概念模型独立于：</li>
+</ol>
+<p>A．E-R模型     B．硬件设备和DBMS　   C．现实世界　  D． 信息世界</p>
+<ol>
+<li>关系的规范化是指通过      ，将低一级的范式转化为高一级的范式。</li>
+</ol>
+<p>A．选择运算   B．投影运算  C．连接运算   D．.除法运算</p>
+<ol>
+<li>将查询SC表的权限授予用户U1，并允许该用户将此权限授予其他用户。实现此功能的SQL语句是：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>A．GRANT SELECT TO SC ON U1 WITH PUBLIC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B．GRANT SELECT ON SC TO U1 WITH PUBLIC</td>
+</tr>
+<tr>
+<td>C．GRANT SELECT TO SC ON U1 WITH GRANT OPTION</td>
+</tr>
+<tr>
+<td>D．GRANT SELECT ON SC TO U1 WITH GRANT OPTION</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>数据流图（DFD）是从数据传递和加工的角度来刻画数据从输入到输出的移动变换过程，它用于________阶段。   </li>
+</ol>
+<p>A. 可行性分析</p>
+<p>B. 详细设计</p>
+<p>C. 需求分析</p>
+<p>D. 代码设计</p>
+<ol>
+<li>在关系数据库中，视图(view)是数据库三级模式中的________。   </li>
+</ol>
+<p>A. 内模式</p>
+<p>B. 模式（基本表是三级模式中的模式）</p>
+<p>C. 存储模式</p>
+<p>D. 外模式</p>
+<ol>
+<li>关系数据库中，通过表与表之间的________来实现实体之间的联系。   </li>
+</ol>
+<p>A. 公共关键字</p>
+<p>B. 公共元组</p>
+<p>C. 公共属性（公共属性又叫外码）</p>
+<p>D. 公共索引</p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+B. 数据库备份与恢复</p>
+</blockquote>
+<p>C. 并发控制</p>
+<p>D. 完整性控制</p>
+<ol>
+<li>数据库物理设计完成后，进入数据库实施阶段，下列各项中不属于实施阶段的工作是________。   </li>
+</ol>
+<p>A. 建立数据库</p>
+<p>B. 加载数据</p>
+<p>C. 系统调试</p>
+<p>D. 扩充功能</p>
+<ol>
+<li>设有关系模式R(A,B,C)，其函数依赖集F={A→B,B→C}，则关系R至多满足________。   </li>
+</ol>
+<p>A. 1NF</p>
+<p>B. 2NF</p>
+<p>C. 3NF</p>
+<p>D. BCNF</p>
+<ol>
+<li>如果一个部门有多个员工，并且一个员工只能属于一个部门，那么部门和员工两个实体集之间的关系属于________。   </li>
+</ol>
+<p>A. 一对一关系</p>
+<p>B. 一对多关系</p>
+<p>C. 一对二关系</p>
+<p>D. 多对多关系</p>
+<ol>
+<li>________是专门支持数据库创建、管理和使用的系统软件，它位于应用程序与操作系统之间。   </li>
+</ol>
+<p>A. 数据库  B. 数据库系统  C. 信息管理系统  D. 数据库管理系统</p>
+<ol>
+<li>通过模式/内模式映像，可以保证数据和应用程序之间的________。   </li>
+</ol>
+<p>A. 逻辑数据独立性        B. 物理数据独立性        C. 数据一致性        D. 数据安全性</p>
+<ol>
+<li>在数据库中，产生数据不一致的根本原因是________。   </li>
+</ol>
+<p>A. 数据存储量太大        B. 没有严格保护数据                C. 未对数据进行完整性的控制                D. 数据冗余</p>
+<ol>
+<li>关系模型中，一个主键(主码) ________。   </li>
+</ol>
+<p>A. 由多个任意属性组成                B. 至多由一个属性组成        </p>
+<p>C. 可由一个或多个属性组成        D. 与属性无关</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>A. 从职工表中删除行（'025'，'王百万'，'03'，2900）</p>
+<p>B. 将行（'005'，'乔兴'，'04'，750）插入到职工表中</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<ol>
+<li>多用户数据库系统的目标之一是使在同一时刻它的每个用户好像正在使用各自独立的数据库，为此数据库系统必须进行________。   </li>
+</ol>
+<p>A. 安全性控制                B. 完整性控制                C. 并发控制                D. 数据库恢复</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>A. S和SC                B. SC和C                C. S和C                D. S、SC和C</p>
+<ol>
+<li>有关系R和S,则R-S等价于_________</li>
+</ol>
+<p>A. R-(R∪S)                B. R-(R∩S)                C. (R∪S)-R                D. (R∩S)-R</p>
+<p>14.设关系R和S的元组个数分别是400和400，那么R×S的元组个数是________</p>
+<p>A. 0                B. 400                C. 800                D. 160000</p>
+<ol>
+<li>SQL语句中的revoke语句是用于实现数据库的__________</li>
+</ol>
+<p>A. 安全性                B. 完整性                C. 可靠性                D.一致性</p>
+<p><strong>三、简答题</strong></p>
+<ul>
+<li>
+<p>指出下列缩写的含义：</p>
+</li>
+<li>
+<p>DML数据操纵语言    </p>
+</li>
+</ul>
+<p>⑵DBS        数据库系统  DataBase System</p>
+<p>⑶DDL  数据定义语言 Data Manipulston Language</p>
+<p>⑷DAC        自主存储控制</p>
+<p>MAC   强制存取控制  </p>
+<p>⑸SQL        结构化查询语言Structed Query Language</p>
+<p>DD:   数据字典</p>
+<p>DFD:  数据流图</p>
+<p>DBA： 数据库管理员</p>
+<p>DBMS: 数据库管理系统</p>
+<ul>
+<li>什么是部分依赖，请举例说明。</li>
+</ul>
+<p>答：</p>
+<ul>
+<li>请简述视图的作用。</li>
+</ul>
+<p>答：</p>
+<ul>
+<li>简述数据库设计的几个阶段。</li>
+</ul>
+<p>答：</p>
+<p>需求分析，概念结构设计，逻辑结构设计，物理结构设计，数据库实施，数据库运行与维护</p>
+<ol>
+<li>数据库安全控制的措施：</li>
+</ol>
+<p>答：用户标识，视图，自主安全控制。，审计，加密</p>
+<p><strong>四、综合设计题</strong></p>
+<p>1．<strong>SQL的数据定义(每空1分，共5分)</strong> </p>
+<p>请按照符号“--”后面的说明将下面的SQL语句中加下划线的部分补充完整，以完成关系模式的创建。</p>
+<p>create table <strong>Department</strong></p>
+<p>( <strong>Dno</strong>     char(4)  (1)          ,   --(1)将部门编号定义为主码</p>
+<pre><code>                      **Dname**  varchar(40)  (2)   ,       --(2)将部门名字定义为非空列);
+
+    create table **Employee**
+</code></pre>
+<p>( <strong>Eno</strong> char(4) primary key,     </p>
+<p><strong>Ename</strong>  varchar(40)  (3)    , --(3)将零件名称定义为唯一的列</p>
+<p><strong>Dno</strong>    char(4)     (4)     , --(4)参照部门的部门编号</p>
+<p>);</p>
+<p>create table <strong>Salary</strong></p>
+<p>( <strong>Eno</strong> char(4) </p>
+<pre><code>                   **SalaryDate** datetimr r,
+
+                   **Salary** numeric(11,2) null  (5) , --(5)规定工资必须大于等于0
+
+                   primary key(Eno, SalaryDate)
+</code></pre>
+<p>); </p>
+<ol>
+<li><strong>SQL操纵语句</strong>（本小题共5题，每题3分，共15分）。</li>
+</ol>
+<p>Company数据库模式如下：</p>
+<p><strong>Department（Dno, Dname, Note）</strong></p>
+<p>其中Dno表示部门编号，Dname表示部门名称，Note表示备注。</p>
+<p><strong>Employee（Eno,Ename,Ebirth,Eaddress,Ezipcode,Etel,Email,Dno）</strong></p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p><strong>Salary（Eno, SalaryDate, Salary）</strong> </p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>请在Company数据库中完成可实现以下功能的SQL语句，并填写到各小题空格中。</p>
+<ul>
+<li>查询所有邮编为"210010"的职工的基本信息。</li>
+</ul>
+<p>Select * from employee where ezipcode=’211010’</p>
+<ul>
+<li>查询"经理办公室"的所有职工的姓名、联系电话和电子邮件。</li>
+</ul>
+<p>Select Ename,Etel.Email </p>
+<p>from Employee </p>
+<p>INTER JOIN Department ON Employee.Dno=Dpartment.Dno </p>
+<p>where Dname=’经理办公室’</p>
+<ul>
+<li>查询每个职工的工资总收入，并按照姓名降序排序。</li>
+</ul>
+<p>Select Ename,Group BY Ename,SUM(Salary) </p>
+<p>from Employee,Salary </p>
+<p>WHERE Employee.Eno=Salary.Eno </p>
+<p>GROUP BY Employee.Eno,Ename ORDER BY Ename DESC</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>Update employee SET Etel=’021’&amp;Etel where Dno=’1’;</p>
+<p>（5）删除2010年的所有工资记录。</p>
+<p>Delete from salary where year(salaryDate)=2007</p>
+<p>Delete from salary where  salaryDate&gt;=’2007-1-1’and salaryDate&lt;’2001-1-1’</p>
+<p>3.设有关系模型R(U,F)，其中U={ABCDEG},F={BG→C,BD→E,DG→C,DAG→CB,AG→B,B→D} （10分）</p>
+<p>(1)求出关系模式的候选码。</p>
+<p>(2)此关系模式最高属于哪级范式。</p>
+<ol>
+<li>某医院病房计算机管理中心需要如下信息：（10分）</li>
+</ol>
+<p>科室：科名、科地址、科电话、医生姓名</p>
+<p>病房：病房号、病房类型、所属科室名</p>
+<p>医生：姓名、职称、所属科室名、年龄、工作证号</p>
+<p>病人：病历号、姓名、性别、诊断、主管医生、病房号</p>
+<p>其中，一个科室有多少个病房、多少个医生，一个病房只能属于一个科室，一个医生只属于一个科室，但可负责多个病人的诊治，一个病人的主管医生只有一个。</p>
+<p>完成如下设计：</p>
+<p>（1）设计该计算机管理系统的E-R图。（5分）</p>
+<p>（2）将该E-R图转换为关系模式结构。（4分）</p>
+<p>指出转换结果中每个关系模式的候选码。（1分）</p>
+<h2 id="_56">&gt; 此处含账号、环境或待确认信息，已转存本地。</h2>
+<p>关系模式 R(ABCDE) F(A-&gt;C,c-&gt;d b-&gt;c de-&gt;c ce-&gt;a)</p>
+<p>求所有候选码</p>
+<p>分解成R1(AD) R2(AB) R3(BC) R4(CDE) R5(AE) 判断是否具有无损连接性</p>
+<p>将R分解为BCNF且具有无损连接性</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

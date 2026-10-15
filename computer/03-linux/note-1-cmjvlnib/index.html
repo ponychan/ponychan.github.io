@@ -1,0 +1,4134 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/03-linux/note-1-cmjvlnib/">
+      
+      
+        <link rel="prev" href="../note-1-cmnrlnhg/">
+      
+      
+        <link rel="next" href="../note-1-ceulmnlb/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>文件系统 - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              文件系统
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgctfn2j/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-clofunpb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-csdxmnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-c1edhnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-build/note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-csqf5nuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">文件系统</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="_2">文件系统</h1>
+<p>inode用来存储权限</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>元数据类型</th>
+<th>说明</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件名</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>文件大小(字节)</td>
+<td>实际内容大小</td>
+<td>Size: 1024</td>
+</tr>
+<tr>
+<td>文件块数量</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Inode号</td>
+<td>唯一标识符</td>
+<td>Inode: 658433</td>
+</tr>
+<tr>
+<td>硬链接数</td>
+<td>指向此inode的文件名数量</td>
+<td>Links: 2</td>
+</tr>
+<tr>
+<td>数据块指针</td>
+<td>存储文件内容的磁盘块地址</td>
+<td>（不直接显示）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>文件类型4bits</td>
+<td>普通文件/目录/符号链接等</td>
+<td>File: regular file</td>
+</tr>
+<tr>
+<td>权限模式9bits</td>
+<td>读写执行权限 (rwx)</td>
+<td>Access: (0644/-rw-r--r--)</td>
+</tr>
+<tr>
+<td>所有者UID</td>
+<td>文件所属用户ID</td>
+<td>Uid: (1000/user)</td>
+</tr>
+<tr>
+<td>所属组GID</td>
+<td>文件所属组ID</td>
+<td>Gid: (1000/group)</td>
+</tr>
+<tr>
+<td>Stick Bit</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Access rwx</td>
+<td>umode_t      一个16位无符号数  <br/>高4位文件类型，低12位权限位</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; 此处含账号、环境或待确认信息，已转存本地。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>13</th>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件</td>
+<td>类型</td>
+<td>uid</td>
+<td>gid</td>
+<td>stick</td>
+<td>主</td>
+<td></td>
+<td></td>
+<td>组</td>
+<td></td>
+<td></td>
+<td>其他</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>uid和gid控制程序执行特殊操作</p>
+<p>stick限制目录内文件的删除/重命名权限。只有文件所有者、目录所有者或root才能删除或重命名文件</p>
+<h1 id="rwx">rwx权限</h1>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>对文件：read读取、write写入、execute执行</p>
+<p>对文件的删除权限由父目录的写权限控制</p>
+<p>对目录：</p>
+<p>read，允许列出目录下的文件和子目录的名称及属性</p>
+<p>write，允许在目录内部创建新文件/目录，删除文件/子目录</p>
+<p>execute，搜索：允许访问目录内的文件和子目录的元数据</p>
+<p>wrx读写执行-文件所有者-文件所属用户组-其他</p>
+<p>拥有文件的读写执行权限就可以对文件进行读写执行操作。</p>
+<p>但是对文件夹来说不同：</p>
+<p>r：是否允许看到文件夹内的文件</p>
+<p>w：是否允许重命名、创建、删除文件夹内的文件</p>
+<p>如果有文件的写权限，但是没有文件所在文件夹的写权限，就无法删除该文件。因为删除文件会写该文件夹。</p>
+<p>x：文件夹的执行权限代表搜索权限。如果想cd进一个文件夹，必须有文件夹所有父文件夹和文件夹本身的x权限</p>
+<p>wrx以外还有s、t、i、a</p>
+<p>默认权限</p>
+<pre><code>    umask是默认掩码
+
+            022
+
+    对文件来说，全权限是666，没有执行权限
+
+      666-022=644，也就是本人可读写，同组和其他可读
+
+    对目录来说全权限是777
+
+     777-022=755，本人可读写可执行(打开)，同组和其他可读可执行(打开)
+</code></pre>
+<h3 id="_3">文件类型</h3>
+<ul>
+<li>d directory 目录 蓝色。被绿色阴影框住的，是获得了最高权限(777)的文件夹</li>
+<li>- 文件</li>
+<li>l link  链接文档(link file)；</li>
+<li>b  block       装置文件里面的可供储存的接口设备(可随机存取装置)；</li>
+<li>c  char          装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</li>
+<li>p pipe           管道文件和命名管道FIFO</li>
+<li>socket             套接字</li>
+<li>绿色 可执行文件</li>
+<li>红色----&gt;表示tar压缩文件或包文件</li>
+<li>黄色----&gt;表示设备文件，在/dev下全是这类文件</li>
+<li>浅蓝色---&gt;表示链接文件，红色闪烁：表示链接的文件有问题</li>
+<li>白色(灰色)--&gt;普通文件</li>
+<li>wrx表示写、读、执行。三组分别是文件所有者、文件所属组、其他用户的权限。</li>
+</ul>
+<p>1表示硬连接有1个--第一个root为文件所有者的名字--第二个root是文件所属组的名字--文件大小--修改日期--文件名</p>
+<blockquote>
+<p>&gt; file filename</p>
+</blockquote>
+<p>查看文件的类型</p>
+<pre><code class="language-Kotlin">stat
+</code></pre>
+<h3 id="_4"><strong>权限</strong></h3>
+<p>id——显示用户id</p>
+<p>chmod——改变文件权限</p>
+<p>umask——设置默认文件权限</p>
+<p>su——以另一用户身份执行命令</p>
+<p>chown——改变文件所有者，需要root权限</p>
+<p>chgrp——改变文件组所有权</p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+su - 或 su -l 切换到root用户</p>
+</blockquote>
+<p>输入exit，退回到普通用户</p>
+<h2 id="_5"><strong>操作系统启动过程</strong></h2>
+<p>磁盘分区格式：</p>
+<p>MBR——Main boot record主分区引导记录是给磁盘分区的技术，最大支持2TB的分区。</p>
+<p>GPT——GUID partition table，GUID分区表，可以支持更大的硬盘，同时分区的数量没有限制。首位都有分区表，可以恢复。</p>
+<h2 id="file-system"><strong>File System</strong></h2>
+<p>&gt;ls -al</p>
+<p>d 则是目录</p>
+<p>- 则是文件；</p>
+<p>l 则表示为链接文档(link file)；</p>
+<p>b 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；</p>
+<p>c 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</p>
+<p>p 管道文件 </p>
+<p>wrx表示写、读、执行。三组分别是文件所有者、文件所属组、其他用户的权限。</p>
+<p>1表示硬连接有1个--第一个root为文件所有者的名字--第二个root是文件所属组的名字--文件大小--修改日期--文件名</p>
+<blockquote>
+<p>&gt; file filename</p>
+</blockquote>
+<p>查看文件的类型</p>
+<p>蓝色----&gt;表示文件夹。被绿色阴影框住的，是获得了最高权限(777)的文件夹</p>
+<p>绿色----&gt;表示可执行文件</p>
+<p>红色----&gt;表示tar压缩文件</p>
+<p>黄色----&gt;表示设备文件，在/dev下全是这类文件</p>
+<p>浅蓝色---&gt;表示链接文件，红色闪烁：表示链接的文件有问题</p>
+<p>白色(灰色)--&gt;普通文件</p>
+<p>红色文件：压缩文件或者包文件</p>
+<h2 id="_6"><strong>启动过程</strong></h2>
+<p>BIOS自检→BootLoader（GNU GRUB）→kernel加载→kernel初始化→kernel启动初始化进程systemd</p>
+<h2 id="bios">传统BIOS启动流程:</h2>
+<p>开机&gt;BIOS初始化&gt;BIOS自检&gt;引导操作系统&gt;进入系统</p>
+<p>1、电脑开机后，开始启动BIOS，开始BIOS自检。</p>
+<p>2、通过自检后，bios找到硬盘上的主引导记录MBR.</p>
+<p>3、MBR开始读取硬盘分区表DPT，找到活动分区中的分区引导记录PBR，并且把控制权交给PBR.</p>
+<p>4、PBR搜索活动区中的启动管理器bootmgr，找到后，PBR把控制权交给bootmgr(相当于xp里的ntldr文件)。</p>
+<p>5、Bootmgr寻找活动分区中的boot文件夹中的BCD文件（启动配置数据，相当于xp里的boot.ini文件）</p>
+<p>6、找到BCD后，Bootmgr首先从BCD 中读取启动管理器bootmgr菜单的语言版本信息，没多系统直接加载系统，有多系统会显示多操作系统选择画面。</p>
+<h2 id="uefi">UEFI</h2>
+<p>开机&gt;UEFI初始化&gt;引导操作系统&gt;进入系统</p>
+<p>1、电脑开机后，上电自检,UEFI固件被载，并由它初始化启动要用的硬件。</p>
+<p>2、UEFI固件寻找EFI分区中的启动文件(efiMicrosoftbootbootmgfw.efi)启动管理器</p>
+<p>3、启动管理器读取硬盘EFI分区中BCD文件(efiMicrosoftBCD)系统菜单</p>
+<p>4、最后根据配置内容加载引导程序winload.efi(Windowssystem32winload.efi)加载系统</p>
+<p>UEFI统一可扩展接口，从软件一致方向定义规范，使用者包括OS Loader，installer，来自引导设备的ROM（adapter ROMS），操作系统预诊断程序，工具，操作系统运行时服务。ACPI从硬件抽象的角度抽象硬件。</p>
+<p>Linux分区</p>
+<p>主分区，相当于一个逻辑磁盘，1-3个</p>
+<p>扩展分区，至多1个。不能直接使用，必须划分为逻辑分区，逻辑分区是扩展分区的一部分</p>
+<p>操作系统层面的逻辑磁盘：主分区、逻辑分区、称作驱动器或卷。激活的主分区成为引导分区，即第一个逻辑磁盘</p>
+<pre><code> 创建分区fdisk-格式化成相应的文件系统-mount挂载
+</code></pre>
+<p>fat————file allocate table用一张表记录区域内的文件起始位置和大小</p>
+<p>NTFS支持了文件加密，同时采用日志式文件系统，记录所有读写操作，提高了安全性，也突破了4GB大小的限制，但是对于flash存储器，过多读取造成介质老化加快，所以对于移动设备和固态硬盘推出了exFAT。</p>
+<p>如果你用UEFI安装了Windows , 用windows自带的磁盘管理工具打开磁盘，你会发现有两个很小的隐藏分区。</p>
+<p>一个ESP(EFI系统分区)：ESP对UEFI启动很重要，UEFI的操作系统引导程序是以后缀名为.efi的文件存放在ESP分区中的，启动操作系统本质上就是运行ESP分区内的app：bootloader而已。各种操作系统的Bootloader各有不同，甚至可以混合放在一起，做成双启动或多启动，但其存放位置都应该符合UEFI spec的规定</p>
+<p>一个MSR(Microsoft保留分区，通常为128MB)。MSR是windows要求的。</p>
+<p>磁盘分区格式：</p>
+<p>MBR——Main boot record主分区引导记录是给磁盘分区的技术，最大支持2TB的分区。</p>
+<p>GPT——GUID partition table，GUID分区表，可以支持更大的硬盘，同时分区的数量没有限制。首位都有分区表，可以恢复。</p>
+<h2 id="_7">目录结构</h2>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>思维导图（本地资料，未发布）</p>
+<p>可执行程序路径：<strong>/bin, /usr/bin, /usr/sbin</strong></p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>hd-IDE设备、通常硬盘</p>
+<p>sd- SATA设备、优盘</p>
+<p>lp-打印机</p>
+<h2 id="_8">权限</h2>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+<p>部分环境或待审核信息已转存本地。</p>
+</blockquote>
+<h3 id="_9"><strong>权限</strong></h3>
+<p>id——显示用户id</p>
+<p>chmod——改变文件权限</p>
+<p>umask——设置默认文件权限</p>
+<p>su——以另一用户身份执行命令</p>
+<p>chown——改变文件所有者，需要root权限</p>
+<p>chgrp——改变文件组所有权</p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+su - 或 su -l 切换到root用户</p>
+</blockquote>
+<p>输入exit，退回到普通用户</p>
+<p>sudo也是一个program</p>
+<p>Sudo echo 500 &gt; brightness</p>
+<p>使用sudo程序运行echo 500，但是打开brightness的是shell，shell还是用户的权限</p>
+<p>Sudo su</p>
+<pre><code class="language-Bash">echo 500 ｜ sudo tee brightness
+#tee接收一个参数，把它输出到标准输出的同时输出到文件里，
+#既要看又要存。此时tee是打开brightness的程序，拥有管理员权限
+</code></pre>
+<h2 id="_10">文件操作</h2>
+<p>touch创建文件</p>
+<pre><code>    touch 工具实际上的功能是修改文件的访问时间（access time, atime）和修改时间（modification time, mtime），可以当作是摸（touch）了一下文件，使得它的访问与修改时间发生了变化。当文件不存在时，touch 会创建新文件，所以创建文件也就成为了 touch 最常见的用途。
+</code></pre>
+<p>stat或file查看文件信息</p>
+<p>pwd查看当前目录</p>
+<p>ls列出目录文件</p>
+<p>mkdir创建文件夹</p>
+<p>rm删除文件</p>
+<p>rmdir删除文件夹</p>
+<p>mv移动文件</p>
+<p>cp复制文件</p>
+<p>tar压缩解压</p>
+<pre><code>    tar 名字来源于英文 tape archive，原先被用来向只能顺序写入的磁带写入数据。tar 格式本身所做的事情非常简单：把所有文件（包括它们的“元数据”，包含了文件权限、时间戳等信息）放在一起，打包成一个文件。注意，这中间没有压缩的过程。
+
+    为了得到更小的打包文件，方便存储和网络传输，就需要使用一些压缩算法，缩小 tar 文件的大小。这就是 tar 处理它自己的打包文件的逻辑。在 Windows 下的一部分压缩软件中，为了获取压缩后的 tar 打包文件的内容，用户需要手动先把被压缩的 tar 包解压出来，然后再提取 tar 包中的文件。
+
+    unar/lsar
+
+            \$ unar archive.zip -o output # 将存档文件提取到 output 文件夹中
+</code></pre>
+<p>\$ lsar archive.zip # 浏览存档文件内容</p>
+<p>\$ lsar -l archive.zip # 查看详细信息</p>
+<p>\$ lsar -L archive.zip # 查看特别详细的信息</p>
+<h2 id="_11">查找文件</h2>
+<p>find . -name src -type d在当前目录查找名字为src的文件夹</p>
+<p>find . -name "*.pdf"</p>
+<p>find . -path '**/test/*.py'  -type f</p>
+<p>find . -mtime -1一天内修改过的文件</p>
+<p>find . -name "*.tmp" -exec rm {} \;</p>
+<p>fd也可以用来查找，而且默认使用正则表达式，并且忽略gitfile</p>
+<p>locate命令是建立索引的查找方式，更新索引用updatedb</p>
+<p>fzf模糊搜索</p>
+<p>tree/broot列出文件</p>
+<p>nnn浏览文件</p>
+<p>查看文件</p>
+<pre><code>    cat
+
+    concatenate，意思是连接。因为 cat 工具实际的功能是连接多个文件，然后输出。但是当只有一个文件的时候，cat 就会直接输出这个文件，所以 cat 最常见的用途就是输出单个文件。
+
+    less/more/tail
+</code></pre>
+<h2 id="io">IO操作</h2>
+<h3 id="io_1">IO模型</h3>
+<p>文件IO与进程</p>
+<pre><code>    链接
+
+    库的制作
+
+    查看命令源码
+
+    命令
+</code></pre>
+<p>思维导图（本地资料，未发布）</p>
+<p>&gt;重定向</p>
+<p>&gt;&gt;追加输出</p>
+<p>PIPE</p>
+<p>tee</p>
+<p>xargs</p>
+<p>IO设备</p>
+<pre><code>    /dev/null
+
+    /dev/zero
+
+    /dev/random
+
+    文件描述符
+
+            0-stdin（键盘）
+
+            1-stdout（屏幕）
+
+            2-stderr  错误输出
+</code></pre>
+<p>重定向命令：</p>
+<p>cat   连接文件</p>
+<p>sort  排序文本行</p>
+<p>uniq  报道或省略重复行</p>
+<p>grep  打印匹配行</p>
+<p>wc    统计字符</p>
+<p>head  打印文件头</p>
+<p>tail  打印文件尾</p>
+<p>tee   从标准输入读入，同时写到标准输出和文件</p>
+<p>重定向符：</p>
+<p>"&gt;"  从开头重写</p>
+<p>“&gt;&gt;" 向末尾追加</p>
+<p>"&lt;" 把文件输入到程序</p>
+<p>把标准输出和错误输出重定向到一个文件里</p>
+<p>command &gt; filename 2&gt;&amp;1</p>
+<p>"|" 管道符</p>
+<p>command1 | command2 </p>
+<p>把command1的输出送给command2作为输入</p>
+<p>管道pipe用于进程间通信</p>
+<p>Int pipe(int filedes[2]);</p>
+<p>0是读端，1是写端。调用成功返回0，失败返回-1</p>
+<ol>
+<li>父进程调用pipe开辟管道，得到两个文件描述符指向管道的两端。</li>
+<li>父进程调用fork创建子进程，那么子进程也有两个文件描述符指向同一管道。</li>
+<li>父进程关闭管道读端，子进程关闭管道写端。父进程可以往管道里写，子进程可以从管道里读，管道是用环形队列实现的，数据从写端流入从读端流出，这样就实现了进程间通信。</li>
+</ol>
+<p>grep pattern file...</p>
+<p>head -n 10 filename</p>
+<p>tail -n 10 filename</p>
+<p>tail -f filename  实时监测文件的新增内容，用于查看日志</p>
+<p>echo \$((expre)) 算术表达式</p>
+<p>echo front_{A,B,C}_Back将会打印</p>
+<p>front_A_Back front_B_Back front_C_Back</p>
+<p>echo fr{1..5}ed 将会打印</p>
+<p>fr1ed fr2ed fr3ed fr4ed fr5ed</p>
+<h2 id="linux-io-stack">Linux IO Stack</h2>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h2 id="io_2">第九章      I/O复用</h2>
+<p>I/O复用技术是重要的提高服务器工作效率和性能的手段，Linux下实现I/O复用的系统调用主要有select、poll和epoll。</p>
+<p>首先我们来看一下select的函数原型和常用的宏：</p>
+<pre><code class="language-C">#include&lt;sys/select.h&gt;
+int select(int nfds, fd_set* readfds, 
+           fd_set* writefds, fd_set* exceptfds, 
+           struct timeval* timeout);
+FD_ZERO(fd_set fdset);           //清除fdset所有位
+FD_SET(int fd, fd_set fdset);    //设置fdset的位fd
+FD_CLR(int fd, fd_set* fdset);   //清除fdset的位fd
+int FD_ISSET(int fd, fd_set* fdset);//测试fdset的位fd是否被设置 
+</code></pre>
+<p>首先来看select函数原型，nfds指定了被监听的文件描述符的总数，其值通常被设定为所有文件描述符的最大值加一，接下来的三个fd_set*类型的参数分别指向可读可写和异常事件对应的文件描述符集合，最后一个参数是一个微秒级的定时器，表示select阻塞这个时间后继续执行，如果为0则立即返回，如果为NULL将一直阻塞。</p>
+<p>通过观察fd_set结构体的原型，我们发现其仅包含一个整形数组，该数组的每一位都标记了一个文件描述符，所以select有最大可监控的文件描述符的限制。后面的宏是为了简化对于fd_set的位操作。select函数成功时返回就绪文件描述符的总数，如果在超时时间内没有任何文件描述符就绪，则select返回0，如果在select阻塞期间程序收到信号，则select立即返回-1并置errno为EINTR。</p>
+<p>select在何种情况下会认为文件描述符产生了可读、可写或异常情况呢？首先，当socket处于以下状态会认为其可读：1）socket内核接收缓冲区中的字节数大于或等于其低水位标记，此时我们可以无阻塞地读该socket，且读操作返回值大于0；2）socket的对端关闭连接，此时读操作返回0；3）监听socket上有新的请求；4）socket上有未处理的错误。而以下状态会认为socket可写：1）socket内核发送缓冲区中的可用字节数大于或等于其低水位标记，此时我们可以无阻塞地写该socket，且写操作返回值大于0；2）socket的写操作被关闭，对写操作关闭的socket执行写操作会触发SIGPIPE信号；3）socket使用非阻塞connect连接成功或者失败（超时）之后；4）socket上有未处理的错误。而异常情况只有一种，就是产生了带外数据。</p>
+<p>我们来用一个例子看一下select程序如何来写以及select如何同时处理普通数据和带外数据的：</p>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+</blockquote>
+<p>客户端我们使用了前面的5-6程序发送普通数据和带外数据。在实际测试过程中发现了一个问题，即原书上的FD_ISSET里面判断是readfd还是exceptionfd那里是if和else if，测试时只输出了普通数据而没有输出带外数据，将客户端发送带外数据后sleep一下就可以正常接收，或者像我上面程序一样使用两个if判断也可以正常接收。分析一下原因，如果是if和else if，则这两个分支只能触发一个，而对面发送的数据是既有普通数据又有带外数据的，所以导致了这个结果，而如果客户端sleep，则服务器端可以返回后重新读取一次带外数据，而改为两个if，就需要判断两次，这样就不会有处理不了带外数据的情况了。</p>
+<p>poll的系统调用和select相似，也是在一段时间内轮询一定数量的文件描述符。当timeout值为-1时poll调用将阻塞直到某个事件发生。</p>
+<p>epoll是Linux特有的I/O复用函数，其实现和select、poll有很大区别。epoll将用户关心的文件描述符上的事件放在内核里的一个事件表中，从而无须像select和poll那样每次调用都要重复传入文件描述符集或事件集，但是epoll需要一个额外的文件描述符来标识内核中的这个事件表。与poll不同的是，epoll如果检测到事件，就将所有就绪时间从内核时间表中复制到events指向的数组中，这样就极大提高了应用程序检索就绪文件描述符的效率，从O(n)的时间复杂度降为了O(1)。我们来看一下epoll的几个函数：</p>
+<p>1 #include<sys/epoll.h><br />
+ 2 int epoll_create(int size);<br />
+ 3 int epoll_ctl(int epfd, int op, int fd, struct epoll_event* event);<br />
+ 4 int epoll_wait(int epfd, struct epoll_event* events, int maxevents, int timeout); </p>
+<p>创建epoll的函数size参数现在是没有用处的，只是给内核一个提示，告诉它事件表需要多大。操作epoll的函数中op参数指定了操作类型，一共有注册、修改和删除三种，而event参数则描述了事件。</p>
+<p>epoll对于文件描述符的操作有两种模式：LT和ET，其中LT是默认模式，这种模式下其效率相当于一个稍微改进的poll，效率没有显著提高，而ET模式则是epoll的高效工作模式。对于LT模式的文件描述符，当epoll_wait检测到其上有事件发生并将此事件通知应用程序后，因公程序可以不立即处理该事件，这样当epoll_wait再次被触发，还会再向应用程序通告此事件，知道该事件被处理。而对于ET模式，当epoll_wait检测到其上有事件发生，将其通告应用程序，应用程序必须马上处理，因为后续的epoll_wait将不再向应用程序通知这一事件。可见，ET模式降低了同一个epoll事件被重复触发的次数，所以效率更高。我们用一个实例来看一下：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+  2    &gt; File Name: 9-3.cpp<br />
+  3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+  6 <em>**********</em>**/<br />
+  7 <br />
+  8 #include"head.h"<br />
+  9 using namespace std;<br />
+ 10 <br />
+ 11 #define MAX_EVENT_NUMBER 1024<br />
+ 12 #define BUFFER_SIZE 10<br />
+ 13 <br />
+ 14 //设置文件描述符为非阻塞模式<br />
+ 15 int setnonblocking(int fd) {<br />
+ 16     int old_option = fcntl(fd, F_GETFL);<br />
+ 17     int new_option = old_option | O_NONBLOCK;<br />
+ 18    fcntl(fd, F_SETFL, new_option);<br />
+ 19     return old_option;<br />
+ 20 }<br />
+ 21 <br />
+ 22 //以两种不同模式将事件注册到epoll中<br />
+ 23 void addfd(int epollfd, int fd, bool enable_et) {<br />
+ 24     epoll_event event;<br />
+ 25     event.data.fd = fd;<br />
+ 26     event.events = EPOLLIN;<br />
+ 27     if(enable_et) event.events |= EPOLLET;<br />
+ 28     epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &amp;event);<br />
+ 29    setnonblocking(fd);<br />
+ 30 }<br />
+ 31 <br />
+ 32 void lt(epoll_event* events, int number, int epollfd, int listenfd) {<br />
+ 33     char buf[BUFFER_SIZE];<br />
+ 34     for(int i = 0; i &lt; number; i ++) {<br />
+ 35         int sockfd = events[i].data.fd;<br />
+ 36         if(sockfd == listenfd) {<br />
+ 37             struct sockaddr_in client_address;<br />
+ 38             socklen_t client_addrlength = sizeof(client_address);<br />
+ 39             int connfd = accept(listenfd, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 40             addfd(epollfd, connfd, false);<br />
+ 41        }<br />
+ 42         else if(events[i].events &amp; EPOLLIN) {<br />
+ 43             printf("event trigger once\n");<br />
+ 44             memset(buf, 0, sizeof(buf));<br />
+ 45             int ret = recv(sockfd, buf, BUFFER_SIZE, 0);<br />
+ 46             if(ret &lt;= 0) {<br />
+ 47                close(sockfd);<br />
+ 48                 continue;<br />
+ 49            }<br />
+ 50             printf("get %d bytes of content: %s\n", ret, buf);<br />
+ 51        }<br />
+ 52         else printf("something else happened\n");<br />
+ 53    }<br />
+ 54 }<br />
+ 55 <br />
+ 56 void et(epoll_event* events, int number, int epollfd, int listenfd) {<br />
+ 57     char buf[BUFFER_SIZE];<br />
+ 58     for(int i = 0; i &lt; number; i ++) {<br />
+ 59         int sockfd = events[i].data.fd;<br />
+ 60         if(sockfd == listenfd) {<br />
+ 61             struct sockaddr_in client_address;<br />
+ 62             socklen_t client_addrlength = sizeof(client_address);<br />
+ 63             int connfd = accept(listenfd, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 64             addfd(epollfd, connfd, true);<br />
+ 65        }<br />
+ 66         else if(events[i].events &amp; EPOLLIN) {<br />
+ 67             //这段代码不会被重复触发，所以我们循环读取<br />
+ 68             printf("event trigger once\n");<br />
+ 69             while(1) {<br />
+ 70                 memset(buf, 0, sizeof(buf));<br />
+ 71                 int ret = recv(sockfd, buf, BUFFER_SIZE, 0);<br />
+ 72                 if(ret &lt; 0) {<br />
+ 73                     //非阻塞模式的I/O，当下面的条件成立表示数据已经全部取走<br />
+ 74                     if((errno == EAGAIN) || (errno == EWOULDBLOCK)) {<br />
+ 75                         printf("read later\n");<br />
+ 76                         break;<br />
+ 77                    }<br />
+ 78                    close(sockfd);<br />
+ 79                     break;<br />
+ 80                }<br />
+ 81                 else if(ret == 0) close(sockfd);<br />
+ 82                 else printf("get %d bytes of content: %s\n", ret, buf);<br />
+ 83            }<br />
+ 84        }<br />
+ 85         else printf("something else happened\n");<br />
+ 86    }<br />
+ 87 }<br />
+ 88 <br />
+ 89 int main(int argc, char** argv) {<br />
+ 90     if(argc &lt;= 2) {<br />
+ 91         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 92         return 1;<br />
+ 93    }<br />
+ 94 <br />
+ 95     const char* ip = argv[1];<br />
+ 96     int port = atoi(argv[2]);<br />
+ 97 <br />
+ 98     int ret = 0;<br />
+ 99     struct sockaddr_in address;<br />
+ 100     bzero(&amp;address, sizeof(address));<br />
+ 101     address.sin_family = AF_INET;<br />
+ 102     address.sin_port = htons(port);<br />
+ 103     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 104 <br />
+ 105     int listenfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 106     assert(listenfd &gt;= 0);<br />
+ 107 <br />
+ 108     ret = bind(listenfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 109     assert(ret != -1);<br />
+ 110 <br />
+ 111     ret = listen(listenfd, 5);<br />
+ 112     assert(ret != -1);<br />
+ 113 <br />
+ 114    epoll_event events[MAX_EVENT_NUMBER];<br />
+ 115     int epollfd = epoll_create(5);<br />
+ 116     assert(epollfd != -1);<br />
+ 117     addfd(epollfd, listenfd, true);<br />
+ 118 <br />
+ 119     while(1) {<br />
+ 120         int ret = epoll_wait(epollfd, events, MAX_EVENT_NUMBER, -1);<br />
+ 121         if(ret &lt; 0) {<br />
+ 122             printf("epoll failure\n");<br />
+ 123             break;<br />
+ 124        }<br />
+ 125         //lt(events, ret, epollfd, listenfd);<br />
+ 126        et(events, ret, epollfd, listenfd);<br />
+ 127    }<br />
+ 128    close(listenfd);<br />
+ 129     return 0;<br />
+ 130 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>在上面的实验中，同样发送25个字符，第一个LT工作模式下epoll一共向应用程序通知了三次，而第二种的ET工作模式仅仅通知一次。</p>
+<p>即使我们使用ET模式，那一个socket上的事件也有可能被触发多次，比如一个线程读取socket上的数据后开始处理这些数据，而在数据的处理过程中该socket上又有新数据可读，此时另外一个线程来读取这些数据，于是就出现了两个线程同时操作一个socket的情况。而我们期望一个socket连接在任意时刻都只被一个线程处理，这一点我们可以用EPOLLONESHOT事件实现。对于注册了EPOLLONESHOT的文件描述符，操作系统最多触发其上注册的一个可读、可写或异常事件，且只触发一次，除非我们使用epoll_ctl重新注册，这样当一个线程在处理某个socket时，其他线程是不可能有机会操作这个socket的。所以当这个线程操作完毕，应该马上注册EPOLLONESHOT事件以确保其可以再次被触发EPOLLIN事件。用一段代码来看一下：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+  2    &gt; File Name: 9-4.cpp<br />
+  3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+  6 <em>**********</em>**/<br />
+  7 <br />
+  8 #include"head.h"<br />
+  9 using namespace std;<br />
+ 10 <br />
+ 11 #define MAX_EVENT_NUMBER 1024<br />
+ 12 #define BUFFER_SIZE 1024<br />
+ 13 struct fds {<br />
+ 14     int epollfd;<br />
+ 15     int sockfd;<br />
+ 16 };<br />
+ 17 <br />
+ 18 int setnonblocking(int fd) {<br />
+ 19     int old_option = fcntl(fd, F_GETFL);<br />
+ 20     int new_option = old_option | O_NONBLOCK;<br />
+ 21    fcntl(fd, F_SETFL, new_option);<br />
+ 22     return old_option;<br />
+ 23 }<br />
+ 24 <br />
+ 25 void addfd(int epollfd, int fd, bool enable_et) {<br />
+ 26     epoll_event event;<br />
+ 27     event.data.fd = fd;<br />
+ 28     event.events = EPOLLIN | EPOLLET;<br />
+ 29     if(enable_et) event.events |= EPOLLONESHOT;<br />
+ 30     epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &amp;event);<br />
+ 31    setnonblocking(fd);<br />
+ 32 }<br />
+ 33 <br />
+ 34 void reset_oneshot(int epollfd, int fd) {<br />
+ 35     epoll_event event;<br />
+ 36     event.data.fd = fd;<br />
+ 37     event.events = EPOLLIN | EPOLLONESHOT | EPOLLET;<br />
+ 38     epoll_ctl(epollfd, EPOLL_CTL_MOD, fd, &amp;event);<br />
+ 39 }<br />
+ 40 <br />
+ 41 void* worker(void* arg) {<br />
+ 42     int sockfd = ((fds*)arg)-&gt;sockfd;<br />
+ 43     int epollfd = ((fds*)arg)-&gt;epollfd;<br />
+ 44     printf("start new thread to receive data on fd: %d\n", sockfd);<br />
+ 45     char buf[BUFFER_SIZE];<br />
+ 46     memset(buf, 0, sizeof(buf));<br />
+ 47     while(1) {<br />
+ 48         int ret = recv(sockfd, buf, BUFFER_SIZE, 0);<br />
+ 49         if(ret == 0) {<br />
+ 50            close(sockfd);<br />
+ 51             printf("foreiner closed the connection\n");<br />
+ 52             break;<br />
+ 53        }<br />
+ 54         else if(ret &lt; 0) {<br />
+ 55             if(errno == EAGAIN) {<br />
+ 56                reset_oneshot(epollfd, sockfd);<br />
+ 57                 printf("read later\n");<br />
+ 58                 break;<br />
+ 59            }<br />
+ 60        }<br />
+ 61         else {<br />
+ 62             printf("get content: %s\n", buf);<br />
+ 63             memset(buf, 0, sizeof(buf));<br />
+ 64             sleep(5);<br />
+ 65        }<br />
+ 66    }<br />
+ 67     printf("end thread receiving data on fd: %d\n", sockfd);<br />
+ 68 }<br />
+ 69 <br />
+ 70 int main(int argc, char** argv) {<br />
+ 71     if(argc &lt;= 2) {<br />
+ 72         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 73         return 1;<br />
+ 74    }<br />
+ 75 <br />
+ 76     const char* ip = argv[1];<br />
+ 77     int port = atoi(argv[2]);<br />
+ 78 <br />
+ 79     int ret = 0;<br />
+ 80     struct sockaddr_in address;<br />
+ 81     bzero(&amp;address, sizeof(address));<br />
+ 82     address.sin_family = AF_INET;<br />
+ 83     address.sin_port = htons(port);<br />
+ 84     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 85 <br />
+ 86     int listenfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 87     assert(listenfd &gt;= 0);<br />
+ 88 <br />
+ 89     ret = bind(listenfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 90     assert(ret != -1);<br />
+ 91 <br />
+ 92     ret = listen(listenfd, 5);<br />
+ 93     assert(ret != -1);<br />
+ 94 <br />
+ 95    epoll_event events[MAX_EVENT_NUMBER];<br />
+ 96     int epollfd = epoll_create(5);<br />
+ 97     assert(epollfd != -1);<br />
+ 98     addfd(epollfd, listenfd, false);<br />
+ 99     <br />
+ 100     while(1) {<br />
+ 101         int ret = epoll_wait(epollfd, events, MAX_EVENT_NUMBER, -1);<br />
+ 102         if(ret &lt; 0) {<br />
+ 103             printf("epoll failure\n");<br />
+ 104             break;<br />
+ 105        }<br />
+ 106         for(int i = 0; i &lt; ret; i ++) {<br />
+ 107             int sockfd = events[i].data.fd;<br />
+ 108             if(sockfd == listenfd) {<br />
+ 109                 struct sockaddr_in client_address;<br />
+ 110                 socklen_t client_addrlength = sizeof(client_address);<br />
+ 111                 int connfd = accept(listenfd, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 112                 addfd(epollfd, connfd, true);<br />
+ 113            }<br />
+ 114             else if(events[i].events &amp; EPOLLIN) {<br />
+ 115                pthread_t thread;<br />
+ 116                fds fds_for_new_worker;<br />
+ 117                 fds_for_new_worker.epollfd = epollfd;<br />
+ 118                 fds_for_new_worker.sockfd = sockfd;<br />
+ 119                 pthread_create(&amp;thread, NULL, worker, (void*)&amp;fds_for_new_worker);<br />
+ 120            }<br />
+ 121             else printf("something else happened\n");<br />
+ 122        }<br />
+ 123    }<br />
+ 124    close(listenfd);<br />
+ 125     return 0;<br />
+ 126 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>代码中我们用sleep(5)来模拟数据处理的过程，当数据在处理时，我们又一次发送了数据，而此时服务器并没有调用另外一个线程继续工作，而是由原线程处理，我们看到两次数据都是由5号线程处理的。这样保证了连接的完整性，从而避免了很多可能的竞态条件。</p>
+<p>具体分析了三种I/O复用模式，我们来对比一下他们的异同与优缺点。这三个函数都能在一定时间内监听一定数量的文件描述符，若一个或多个文件描述符有时间返回时函数返回就绪的文件描述符的个数。select的参数类型fd_set没有把文件描述符和事件绑定，因此我们需要提供这三个集合，而且select也只能监听这三种事件，另一方面内核对fd_set集合会在线修改，所以应用程序下次调用select需要重置三个集合。而poll将所有事件放在了一起，使编程接口更加简洁，且内核每次操作的是pollfd中的revents成员，events并未改变。最后epoll则完全不同，它在内核维护一个内核事件表，每次epoll_wait操作都是直接从该内核事件表中取得用户注册的事件，而无需从用户空间重复读入这些事件。</p>
+<p>另外，poll和epoll可以监听的最大文件描述符数目都能达到系统允许的最大值，即65535，而select由于fd_set的本质是一个整形数组，每一位代表一个文件描述符，所以其能监听的最大数量有限制。</p>
+<p>从效率和原理上来讲，select和poll都工作在低效的LT模式，而且采用轮询的方式，而epoll则不同，他支持高效的ET模式，而且可以支持EPOLLONESHOT事件以进一步减少可读可写和异常事件的触发次数，不仅如此，它采用了回调的方式，内核检测到就绪的文件描述符就触发回调函数，回调函数将该文件描述符上的对应事件插入内核的就绪队列，最后将就绪队列中的内容拷贝到用户空间。但是当活动连接较多时，epoll的效率未必比select和poll高，所以epoll_wait适用于连接数量多但是活动连接少的情况。</p>
+<p>当我们对一个非阻塞的socket调用一个connect，而连接又没有被马上建立，这时，我们可以调用select、poll等函数来监听socket上的可写事件，当函数返回时利用getsockopt读取错误码并清除错误，如果错误码是0则表示连接成功建立，否则失败。我们来看一下这种情况怎么实现：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+ 2    &gt; File Name: 9-5.cpp<br />
+ 3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+ 6 <em>**********</em>**/<br />
+ 7 <br />
+ 8 #include"head.h"<br />
+ 9 using namespace std;<br />
+ 10 <br />
+ 11 #define BUFFER_SIZE 1024<br />
+ 12 <br />
+ 13 int setnonblocking(int fd) {<br />
+ 14     int old_option = fcntl(fd, F_GETFL);<br />
+ 15     int new_option = old_option | O_NONBLOCK;<br />
+ 16    fcntl(fd, F_SETFL, new_option);<br />
+ 17     return old_option;<br />
+ 18 }<br />
+ 19 <br />
+ 20 //非阻塞连接，如果函数成功则返回连接的socket，不成功返回-1<br />
+ 21 int unblock_connect(const char* ip, int port, int time) {<br />
+ 22     int ret = 0;<br />
+ 23     struct sockaddr_in address;<br />
+ 24     bzero(&amp;address, sizeof(address));<br />
+ 25     address.sin_family = AF_INET;<br />
+ 26     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 27     address.sin_port = htons(port);<br />
+ 28 <br />
+ 29     int sockfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 30     int fdopt = setnonblocking(sockfd);<br />
+ 31     ret = connect(sockfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 32     if(ret == 0) {<br />
+ 33         printf("connect with server immediately\n");<br />
+ 34        fcntl(sockfd, F_SETFL, fdopt);<br />
+ 35         return sockfd;<br />
+ 36    }<br />
+ 37     else if(errno != EINPROGRESS) {<br />
+ 38         printf("unblock connect not support\n");<br />
+ 39         return -1;<br />
+ 40    }<br />
+ 41    fd_set readfds;<br />
+ 42    fd_set writefds;<br />
+ 43     struct timeval timeout;<br />
+ 44 <br />
+ 45     FD_ZERO(&amp;readfds);<br />
+ 46     FD_ZERO(&amp;writefds);<br />
+ 47 <br />
+ 48     timeout.tv_sec = time;<br />
+ 49     timeout.tv_usec = 0;<br />
+ 50 <br />
+ 51     ret = select(sockfd + 1, NULL, &amp;writefds, NULL, &amp;timeout);<br />
+ 52     if(ret &lt;= 0) {<br />
+ 53         printf("connection time out\n");<br />
+ 54        close(sockfd);<br />
+ 55         return -1;<br />
+ 56    }<br />
+ 57     <br />
+ 58     if(!FD_ISSET(sockfd, &amp;writefds)) {<br />
+ 59         printf("no events on sockfd found\n");<br />
+ 60        close(sockfd);<br />
+ 61         return -1;<br />
+ 62    }<br />
+ 63 <br />
+ 64     int error = 0;<br />
+ 65     socklen_t length = sizeof(error);<br />
+ 66     if(getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &amp;error, &amp;length) &lt; 0) {<br />
+ 67         printf("get socket option failed\n");<br />
+ 68        close(sockfd);<br />
+ 69         return -1;<br />
+ 70    }<br />
+ 71 <br />
+ 72     if(errno != 0) {<br />
+ 73         printf("connection failed after select with the error: %d\n", error);<br />
+ 74        close(sockfd);<br />
+ 75         return -1;<br />
+ 76    }<br />
+ 77 <br />
+ 78     printf("connection ready after select with the socket: %d\n", sockfd);<br />
+ 79    fcntl(sockfd, F_SETFL, fdopt);<br />
+ 80     return sockfd;<br />
+ 81 }<br />
+ 82 <br />
+ 83 int main(int argc, char** argv) {<br />
+ 84     if(argc &lt;= 2) {<br />
+ 85         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 86         return 1;<br />
+ 87    }<br />
+ 88     const char* ip = argv[1];<br />
+ 89     int port = atoi(argv[2]);<br />
+ 90     int sockfd = unblock_connect(ip, port, 10);<br />
+ 91     if(sockfd &lt; 0) return 1;<br />
+ 92    close(sockfd);<br />
+ 93     return 0;<br />
+ 94 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>很多服务器要一边处理网络连接一边处理用户输入，比如聊天室程序，这样的就可以用I/O复用来实现，我们以一个poll实现的聊天室程序来举例说明一下：</p>
+<p>首先看下客户端：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+ 2    &gt; File Name: 9-6.cpp<br />
+ 3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+ 6 <em>**********</em>**/<br />
+ 7 <br />
+ 8 #define _GNU_SOURCE 1<br />
+ 9 #include"head.h"<br />
+ 10 using namespace std;<br />
+ 11 <br />
+ 12 #define BUFFER_SIZE 64<br />
+ 13 <br />
+ 14 int main(int argc, char** argv) {<br />
+ 15     if(argc &lt;= 2) {<br />
+ 16         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 17         return 1;<br />
+ 18    }<br />
+ 19     const char* ip = argv[1];<br />
+ 20     int port = atoi(argv[2]);<br />
+ 21 <br />
+ 22     struct sockaddr_in server_address;<br />
+ 23     bzero(&amp;server_address, sizeof(server_address));<br />
+ 24     server_address.sin_family = AF_INET;<br />
+ 25     server_address.sin_port = htons(port);<br />
+ 26     inet_pton(AF_INET, ip, &amp;server_address.sin_addr);<br />
+ 27 <br />
+ 28     int sockfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 29     assert(sockfd &gt;= 0);<br />
+ 30     if(connect(sockfd, (struct sockaddr*)&amp;server_address, sizeof(server_address)) &lt; 0) {<br />
+ 31         printf("connection failed\n");<br />
+ 32        close(sockfd);<br />
+ 33         return 1;<br />
+ 34    }<br />
+ 35     pollfd fds[2];<br />
+ 36     fds[0].fd = 0;<br />
+ 37     fds[0].events = POLLIN;<br />
+ 38     fds[0].revents = 0;<br />
+ 39     fds[1].fd = sockfd;<br />
+ 40     fds[1].events = POLLIN | POLLRDHUP;<br />
+ 41     fds[1].revents = 0;<br />
+ 42     char read_buf[BUFFER_SIZE];<br />
+ 43     int pipefd[2];<br />
+ 44     int ret = pipe(pipefd);<br />
+ 45     assert(ret != -1);<br />
+ 46 <br />
+ 47     while(1) {<br />
+ 48         ret = poll(fds, 2, -1);<br />
+ 49         if(ret &lt; 0) {<br />
+ 50             printf("poll failure\n");<br />
+ 51             break;<br />
+ 52        }<br />
+ 53         <br />
+ 54         if(fds[1].revents &amp; POLLRDHUP) {<br />
+ 55             printf("server close the connection\n");<br />
+ 56             break;<br />
+ 57        }<br />
+ 58         else if(fds[1].revents &amp; POLLIN) {<br />
+ 59             memset(read_buf, 0, sizeof(read_buf));<br />
+ 60             recv(fds[1].fd, read_buf, BUFFER_SIZE, 0);<br />
+ 61             printf("%s\n", read_buf);<br />
+ 62        }<br />
+ 63 <br />
+ 64         if(fds[0].revents &amp; POLLIN) {<br />
+ 65             ret = splice(0, NULL, pipefd[1], NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);<br />
+ 66             ret = splice(pipefd[0], NULL, sockfd, NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);<br />
+ 67        }<br />
+ 68    }<br />
+ 69    close(sockfd);<br />
+ 70     return 0;<br />
+ 71 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>再看下服务器端：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+  2    &gt; File Name: 9-7.cpp<br />
+  3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+  6 <em>**********</em>**/<br />
+  7 <br />
+  8 #define _GNU_SOURCE 1<br />
+  9 #include"head.h"<br />
+ 10 using namespace std;<br />
+ 11 <br />
+ 12 #define USER_LIMIT 5<br />
+ 13 #define BUFFER_SIZE 64<br />
+ 14 #define FD_LIMIT 65535<br />
+ 15 <br />
+ 16 struct client_data {<br />
+ 17    sockaddr_in address;<br />
+ 18     char* write_buf;<br />
+ 19     char buf[BUFFER_SIZE];<br />
+ 20 };<br />
+ 21 <br />
+ 22 int setnonblocking(int fd) {<br />
+ 23     int old_option = fcntl(fd, F_GETFL);<br />
+ 24     int new_option = old_option | O_NONBLOCK;<br />
+ 25    fcntl(fd, F_SETFL, new_option);<br />
+ 26     return old_option;<br />
+ 27 }<br />
+ 28 <br />
+ 29 int main(int argc, char** argv) {<br />
+ 30     if(argc &lt;= 2) {<br />
+ 31         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 32         return 1;<br />
+ 33    }<br />
+ 34     const char* ip = argv[1];<br />
+ 35     int port = atoi(argv[2]);<br />
+ 36 <br />
+ 37     int ret = 0;<br />
+ 38     struct sockaddr_in address;<br />
+ 39     bzero(&amp;address, sizeof(address));<br />
+ 40     address.sin_family = AF_INET;<br />
+ 41     address.sin_port = htons(port);<br />
+ 42     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 43 <br />
+ 44     int listenfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 45     assert(listenfd &gt;= 0);<br />
+ 46     ret = bind(listenfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 47     assert(ret != -1);<br />
+ 48 <br />
+ 49     ret = listen(listenfd, 5);<br />
+ 50     assert(ret != -1);<br />
+ 51 <br />
+ 52     client_data* users = new client_data[FD_LIMIT];<br />
+ 53     pollfd fds[USER_LIMIT + 1];<br />
+ 54     int user_counter = 0;<br />
+ 55     for(int i = 1; i &lt;= USER_LIMIT; i ++) {<br />
+ 56         fds[i].fd = -1;<br />
+ 57         fds[i].events = 0;<br />
+ 58    }<br />
+ 59     fds[0].fd = listenfd;<br />
+ 60     fds[0].events = POLLIN | POLLERR;<br />
+ 61     fds[0].revents = 0;<br />
+ 62 <br />
+ 63     while(1) {<br />
+ 64         ret = poll(fds, user_counter + 1, -1);<br />
+ 65         if(ret &lt; 0) {<br />
+ 66             printf("poll failure\n");<br />
+ 67             break;<br />
+ 68        }<br />
+ 69 <br />
+ 70         for(int i = 0; i &lt; user_counter + 1;i ++) {<br />
+ 71             if((fds[i].fd == listenfd) &amp;&amp; (fds[i].revents &amp; POLLIN)) {<br />
+ 72                 struct sockaddr_in client_address;<br />
+ 73                 socklen_t client_addrlength = sizeof(client_address);<br />
+ 74                 int connfd = accept(listenfd, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 75 <br />
+ 76                 if(connfd &lt; 0) {<br />
+ 77                     printf("errno is: %d\n", errno);<br />
+ 78                     continue;<br />
+ 79                }<br />
+ 80 <br />
+ 81                 if(user_counter &gt;= USER_LIMIT) {<br />
+ 82                     const char* info = "too many users\n";<br />
+ 83                     printf("%s", info);<br />
+ 84                     send(connfd, info, sizeof(info), 0);<br />
+ 85                    close(connfd);<br />
+ 86                     continue;<br />
+ 87                }<br />
+ 88 <br />
+ 89                 user_counter ++;<br />
+ 90                 users[connfd].address = client_address;<br />
+ 91                setnonblocking(connfd);<br />
+ 92                 fds[user_counter].fd = connfd;<br />
+ 93                 fds[user_counter].events = POLLIN | POLLERR | POLLRDHUP;<br />
+ 94                 fds[user_counter].revents = 0;<br />
+ 95                 printf("comes a new user, now have %d users\n", user_counter);<br />
+ 96            }<br />
+ 97             else if(fds[i].revents &amp; POLLERR) {<br />
+ 98                 printf("get an error from %d\n", fds[i].fd);<br />
+ 99                 char errors[100];<br />
+ 100                 memset(errors, 0, sizeof(errors));<br />
+ 101                 socklen_t length = sizeof(errors);<br />
+ 102                 if(getsockopt(fds[i].fd, SOL_SOCKET, SO_ERROR, &amp;errors, &amp;length) &lt; 0) {<br />
+ 103                     printf("get socket option failed\n");<br />
+ 104                }<br />
+ 105                 continue;<br />
+ 106            }<br />
+ 107             else if(fds[i].revents &amp;POLLRDHUP) {<br />
+ 108                 users[fds[i].fd] = users[fds[user_counter].fd];<br />
+ 109                close(fds[i].fd);<br />
+ 110                 fds[i] = fds[user_counter];<br />
+ 111                 user_counter --;<br />
+ 112                 printf("a client left\n");<br />
+ 113            }<br />
+ 114             else if(fds[i].revents &amp; POLLIN) {<br />
+ 115                 int connfd = fds[i].fd;<br />
+ 116                 memset(users[connfd].buf, '\0', BUFFER_SIZE);<br />
+ 117                 ret = recv(connfd, users[connfd].buf, BUFFER_SIZE, 0);<br />
+ 118                 if(ret &lt; 0) {<br />
+ 119                     if(errno != EAGAIN) {<br />
+ 120                        close(connfd);<br />
+ 121                         users[fds[i].fd] = users[fds[user_counter].fd];<br />
+ 122                         fds[i] = fds[user_counter];<br />
+ 123                         user_counter --;<br />
+ 124                         i --;<br />
+ 125                    }<br />
+ 126                }<br />
+ 127                 else if(ret == 0) {}<br />
+ 128                 else {<br />
+ 129                     for(int j = 1; j &lt;= user_counter; j ++) {<br />
+ 130                         if(fds[j].fd == connfd) continue;<br />
+ 131                         fds[j].events |= \~POLLIN;<br />
+ 132                         fds[j].events |= POLLOUT;<br />
+ 133                         users[fds[j].fd].write_buf = users[connfd].buf;<br />
+ 134                    }<br />
+ 135                }<br />
+ 136            }<br />
+ 137             else if(fds[i].revents &amp; POLLOUT) {<br />
+ 138                 int connfd = fds[i].fd;<br />
+ 139                 if(!users[connfd].write_buf) continue;<br />
+ 140                 ret = send(connfd, users[connfd].write_buf, strlen(users[connfd].write_buf), 0);<br />
+ 141                 users[connfd].write_buf = NULL;<br />
+ 142 <br />
+ 143                 fds[i].events |= \~POLLOUT;<br />
+ 144                 fds[i].events |= POLLIN;<br />
+ 145            }<br />
+ 146        }<br />
+ 147    }<br />
+ 148     delete []users;<br />
+ 149    close(listenfd);<br />
+ 150     return 0;<br />
+ 151 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>对于这个程序，其难点只有一个，就是当用户退出的时候，我们将整个用户列表的最后一项移动到退出用户的这一项，可以保证前user_counter项都是有客户的。但是对于执行完POLLIN事件后，我们取消注册了POLLIN，转而注册了POLLOUT，在我的理解下可能有些问题。我们考虑一个极端情况，如果取消注册了POLLIN，注册POLLOUT后，主线程转而处理下一个poll事件，但此时刚刚处理过的文件描述符上由发来了数据，而由于此时POLLIN事件已经被取消注册，那么就不会在下一轮轮询中被触发POLLIN。 我将代码中下一步的else if改为了if，这样判断完POLLIN事件后会在判断一次POLLOUT事件，经测试没有问题。但是仍有待商榷，暂留疑问待日后解决。</p>
+<p>最后，I/O复用还可以用于同时监听TCP和UDP服务：</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>1 /**<em>**********</em>*<br />
+  2    &gt; File Name: 9-8.cpp<br />
+  3    &gt; Author: Torrance_ZHANG  </p>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+  6 <em>**********</em>**/<br />
+  7 <br />
+  8 #include"head.h"<br />
+  9 using namespace std;<br />
+ 10 <br />
+ 11 #define MAX_EVENT_NUMBER 1024<br />
+ 12 #define TCP_BUFFER_SIZE 512<br />
+ 13 #define UDP_BUFFER_SIZE 1024<br />
+ 14 <br />
+ 15 int setnonblocking(int fd) {<br />
+ 16     int old_option = fcntl(fd, F_GETFL);<br />
+ 17     int new_option = old_option | O_NONBLOCK;<br />
+ 18    fcntl(fd, F_SETFL, new_option);<br />
+ 19     return old_option;<br />
+ 20 }<br />
+ 21 <br />
+ 22 void addfd(int epollfd, int fd) {<br />
+ 23     epoll_event event;<br />
+ 24     event.data.fd = fd;<br />
+ 25     event.events = EPOLLIN | EPOLLET;<br />
+ 26     epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &amp;event);<br />
+ 27    setnonblocking(fd);<br />
+ 28 }<br />
+ 29 <br />
+ 30 int main(int argc, char** argv) {<br />
+ 31     if(argc &lt;= 2) {<br />
+ 32         printf("usage: %s ip_address port_number\n", basename(argv[0]));<br />
+ 33         return 1;<br />
+ 34    }<br />
+ 35     const char* ip = argv[1];<br />
+ 36     int port = atoi(argv[2]);<br />
+ 37 <br />
+ 38     int ret = 0;<br />
+ 39     struct sockaddr_in address;<br />
+ 40     bzero(&amp;address, sizeof(address));<br />
+ 41     address.sin_family = AF_INET;<br />
+ 42     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 43     address.sin_port = htons(port);<br />
+ 44 <br />
+ 45     int listenfd = socket(AF_INET, SOCK_STREAM, 0);<br />
+ 46     assert(listenfd &gt;= 0);<br />
+ 47 <br />
+ 48     ret = bind(listenfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 49     assert(ret != -1);<br />
+ 50 <br />
+ 51     ret = listen(listenfd, 5);<br />
+ 52     assert(ret != -1);<br />
+ 53 <br />
+ 54     bzero(&amp;address, sizeof(address));<br />
+ 55     address.sin_family = AF_INET;<br />
+ 56     inet_pton(AF_INET, ip, &amp;address.sin_addr);<br />
+ 57     address.sin_port = htons(port);<br />
+ 58     int udpfd = socket(AF_INET, SOCK_DGRAM, 0);<br />
+ 59     assert(udpfd &gt;= 0);<br />
+ 60 <br />
+ 61     ret = bind(udpfd, (struct sockaddr*)&amp;address, sizeof(address));<br />
+ 62     assert(ret != -1);<br />
+ 63    epoll_event events[MAX_EVENT_NUMBER];<br />
+ 64     int epollfd = epoll_create(5);<br />
+ 65     assert(epollfd != -1);<br />
+ 66 <br />
+ 67    addfd(epollfd, listenfd);<br />
+ 68    addfd(epollfd, udpfd);<br />
+ 69 <br />
+ 70     while(1) {<br />
+ 71         int number = epoll_wait(epollfd, events, MAX_EVENT_NUMBER, -1);<br />
+ 72         if(number &lt; 0) {<br />
+ 73             printf("epoll failure\n");<br />
+ 74             break;<br />
+ 75        }<br />
+ 76         for(int i = 0; i &lt; number; i ++) {<br />
+ 77             int sockfd = events[i].data.fd;<br />
+ 78             if(sockfd == listenfd) {<br />
+ 79                 struct sockaddr_in client_address;<br />
+ 80                 socklen_t client_addrlength = sizeof(client_address);<br />
+ 81                 int connfd = accept(listenfd, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 82                addfd(epollfd, connfd);<br />
+ 83            }<br />
+ 84             else if(sockfd == udpfd) {<br />
+ 85                 char buf[UDP_BUFFER_SIZE];<br />
+ 86                 memset(buf, 0, UDP_BUFFER_SIZE);<br />
+ 87                 struct sockaddr_in client_address;<br />
+ 88                 socklen_t client_addrlength = sizeof(client_address);<br />
+ 89 <br />
+ 90                 ret = recvfrom(udpfd, buf, UDP_BUFFER_SIZE, 0, (struct sockaddr*)&amp;client_address, &amp;client_addrlength);<br />
+ 91                 if(ret &gt; 0) {<br />
+ 92                     sendto(udpfd, buf, UDP_BUFFER_SIZE, 0, (struct sockaddr*)&amp;client_address, client_addrlength);<br />
+ 93                }<br />
+ 94            }<br />
+ 95             else if(events[i].events &amp; EPOLLIN) {<br />
+ 96                 char buf[TCP_BUFFER_SIZE];<br />
+ 97                 while(1) {<br />
+ 98                     memset(buf, 0, TCP_BUFFER_SIZE);<br />
+ 99                     ret = recv(sockfd, buf, TCP_BUFFER_SIZE, 0);<br />
+ 100                     if(ret &lt; 0) {<br />
+ 101                         if((errno == EAGAIN) || (errno == EWOULDBLOCK)) break;<br />
+ 102                        close(sockfd);<br />
+ 103                         break;<br />
+ 104                    }<br />
+ 105                     else if(ret == 0) {<br />
+ 106                        close(sockfd);<br />
+ 107                    }<br />
+ 108                     else send(sockfd, buf, ret, 0);<br />
+ 109                }<br />
+ 110            }<br />
+ 111        }<br />
+ 112    }<br />
+ 113    close(listenfd);<br />
+ 114     return 0;<br />
+ 115 } </p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>已剪辑自: <a href="https://www.cnblogs.com/Torrance/p/8439714.html">https://www.cnblogs.com/Torrance/p/8439714.html</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

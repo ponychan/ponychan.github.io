@@ -1,0 +1,3534 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ponychan.github.io/computer/07-build/note-1-c1edhnib/">
+      
+      
+        <link rel="prev" href="../note-1-csdxmnib/">
+      
+      
+        <link rel="next" href="../note-1-cwzvynxb/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>包管理器 - 蓝色爪印的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="蓝色爪印的博客" class="md-header__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            蓝色爪印的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              包管理器
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="蓝色爪印的博客" class="md-nav__button md-logo" aria-label="蓝色爪印的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    蓝色爪印的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人简历
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../post2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    个人思考体系
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../think/think-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个人思考体系1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生活分享
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../share/life-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生活分享1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机基础与软件开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机基础与软件开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线与计算机文化
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习路线与计算机文化
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cyy9sn8e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机文化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-roadmap/note-1-cywllnfc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一些心得
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机组成与操作系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成与操作系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cydorneb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cgtrdnef/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    编码——机器和人之间传递信息的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-1-cwksmnza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字节序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cq3qynfe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组成原理和操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cfhtfnuc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cxyranhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运算器&控制器——CPU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwayknrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储系统-寄存器-Cache-主存-辅存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-czvinnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总线和IO设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cyyafnjh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理和处理器分配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-cwbdqnob/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-ceywqnnp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-architecture-os/note-2-c4lasnye/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux 内核与系统接口
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux 内核与系统接口
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c26monpj/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-coq73nvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cif8jn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运行库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cisgnncb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    源码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-clpn7nab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入Linux内核架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-crtomnth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux0.11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c2awnn3c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmnrlnhg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程与 IPC 补充笔记（原题：内存管理）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cmjvlnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ceulmnlb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Dev
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-cgphjnme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccczbngb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-c0by9nyh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UID机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-chemin4c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设备管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-1-ccptsnsg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    the linux programming interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-linux/note-2-c9hkankf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内存管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell、编辑器与工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shell、编辑器与工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-c5pfbnhd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cbtp9nmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgctfn2j/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cji8mnwh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-shell-tools/note-1-cgwnqn2c/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    正则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C 与 C++
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C 与 C++
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-ca4xinff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-cyznunsc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5-C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-c-cpp/note-1-clwjpngd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针、引用、static、const专题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cbxg5nkp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6-Data Structure & Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-clofunpb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-csnvfnzg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-algorithms/note-1-cwjqfnkf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_8" id="__nav_7_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建、包管理与开发实践
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    构建、包管理与开发实践
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-csgdln4e/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    软件工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-csdxmnib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI-CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包管理器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-cwzvynxb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../note-1-czb1hn5g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_9" id="__nav_7_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络、Web 与数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    网络、Web 与数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-c1lccnyg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    计算机网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-csqf5nuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataBase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-crosunmg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-web-network/note-1-czv51n0g/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么VPN打不开
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_10" id="__nav_7_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python 学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-chszznre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-python/note-1-cihjcnrc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SICP in python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">包管理器</h1>
+<blockquote>
+<p>学习笔记待审稿。来自既有笔记整理，未逐项核验技术结论；涉及环境与隐私的内容已隔离。</p>
+</blockquote>
+<h1 id="_2">包管理器</h1>
+<p>然后有了软件包，把所有安装需要的数据存成一个单独的文件。不同的Linux有不同的发型版</p>
+<p>软件仓库就是命令行版的app store</p>
+<p>包管理器就是手机里的App Store软件</p>
+<h1 id="v1-cmmi">V1 原始阶段 CMMI</h1>
+<h2 id="_3">安装方式</h2>
+<p>最早的程序分发方式是直接在中心化的FTP或邮件列表里发布source。</p>
+<p>用户下载下来后，通过Confugure make等构建</p>
+<p>makefile进行黑盒安装</p>
+<ol>
+<li>解压</li>
+<li>cd到该目录，执行./configure配置脚本，检查环境，配置编译器，检查依赖，创建makefile文件。</li>
+<li>执行make命令编译出二进制可执行文件。（使用makefile文件控制GCC编译所需要的可执行二进制文件）</li>
+<li>运行make install 安装软件到电脑上。通常需要加sudo（这一步是把二进制文件放到系统的指定位置，方便后续运行）</li>
+</ol>
+<h2 id="_4">引入的问题</h2>
+<p>安装过程繁琐，所需的文件分散</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h1 id="v2-rpm-dpkg">V2 初级包管理阶段RPM DPKG</h1>
+<p>包：</p>
+<p>包含软件版本和依赖关系</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>rpm和deb是一样的</p>
+<h2 id="_5">包管理器分类：</h2>
+<p>一、和操作系统深度绑定的：</p>
+<p>homebrew就和macOS系统深度绑定，</p>
+<p>RPM就和红帽Linux深度绑定</p>
+<p>nix和nixos深度绑定</p>
+<p>Windows和winget</p>
+<p>二、和语言深度绑定的：</p>
+<p>python的包管理器是pip</p>
+<p>java的包管理用的是maven、gradle</p>
+<p>javascript的包管理器npm、yarn、pnpm</p>
+<h2 id="_6">包管理器提供两种下载方式</h2>
+<p>一种是二进制下载。另一种是源码下载自动编译</p>
+<p>软件包将软件安装所需的所有文件打包成为一个单独的文件，这样就无需CMMI的第一和第二步，直接执行安装这一过程就可以了。</p>
+<h2 id="-">引入的问题-依赖地狱</h2>
+<p>当软件变多了之后，软件的依赖项的解决就成为了一个问题。写过C/C++的都知道include头文件。软件体积大起来之后A includeB，B includeC，C includeD，有可能成为一个很长的依赖链。同时ABCD各自的版本也不尽相同。导致了新的问题</p>
+<p>参考：</p>
+<p>https://zhuanlan.zhihu.com/p/496454042</p>
+<p>https://www.jianshu.com/p/daa3fb669c58</p>
+<p>在java、javascript等项目开发中往往会引入大量的依赖项。依赖项之间也会产生依赖，最后有可能升级一个依赖项就会引起连锁的未知反应。急需软件对依赖项进行自动化的管理</p>
+<h1 id="v3-yum-apt">V3 高级包管理阶段YUM APT</h1>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>etc/apt/apt.conf</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h2 id="apt-get"><strong>apt-get常用命令使用</strong></h2>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p><strong>一，什么的是apt-get</strong></p>
+<p>高级包装工具（英语：Advanced Packaging Tools,简称：APT）是Debian及其衍生发行版（如：Ubuntu）的软件包管理器。APT可以自动下载，配置，安装二进制或者源代码格式的软件包，因此简化了Unix系统上管理软件的过程，apt-get命令一般需要root权限执行，所以一般跟着sudo命令。</p>
+<p><strong>二，apt-get中文参数</strong></p>
+<p>用法：</p>
+<p>apt-get [选项] 命令 apt-get [选项] install|remove pkg1 [pkg2 ...]</p>
+<p>apt-get [选项] source pkg1 [pkg2 ...]</p>
+<p>apt-get 是一个下载安装软件包的简单命令行接口。 最常用的命令是update(更新) 和install(安装)。</p>
+<p>命令： </p>
+<p>update - 重新获取软件包列表 </p>
+<p>upgrade - 进行更新 </p>
+<p>install - 安装新的软件包 </p>
+<p>remove - 移除软件包 </p>
+<p>autoremove - 自动移除全部不使用的软件包 </p>
+<p>purge - 移除软件包和配置文件 </p>
+<p>source - 下载源码档案 </p>
+<p>build-dep - 为源码包配置编译依赖 </p>
+<p>dist-upgrade - 发行版升级</p>
+<p>dselect-upgrade - 依照 dselect 的选择更新 </p>
+<p>clean - 清除下载的归档文件 </p>
+<p>autoclean - 清除旧的的已下载的归档文件 </p>
+<p>check - 检验是否有损坏的依赖 </p>
+<p>选项： </p>
+<p>-h 本帮助文件。 </p>
+<p>-q 输出到日志 - 无进展指示 </p>
+<p>-qq 不输出信息，错误除外 </p>
+<p>-d 仅下载 - 不安装或解压归档文件 </p>
+<p>-s 不实际安装。模拟执行命令</p>
+<p>-y 假定对所有的询问选是，不提示 </p>
+<p>-f 尝试修正系统依赖损坏处 </p>
+<p>-m 如果归档无法定位，尝试继续</p>
+<p>-u 同时显示更新软件包的列表 </p>
+<p>-b 获取源码包后编译 -V 显示详细的版本号</p>
+<p>-c=? 阅读此配置文件</p>
+<p>-o=? 设置自定的配置选项，如 -o dir::cache=/tmp</p>
+<p><strong>三，apt-get 常用实例</strong></p>
+<p>apt-cache search packagename 搜索包<br />
+ apt-cache show packagename 获取包的相关信息，如说明、大小、版本等<br />
+ apt-get install packagename 安装包<br />
+ apt-get install packagename --reinstall 重新安装包<br />
+ apt-get -f install 修复安装”-f = –fix-missing”<br />
+ apt-get remove packagename 删除包<br />
+ apt-get remove packagename --purge 删除包，包括删除配置文件等<br />
+ apt-get update 更新源<br />
+ apt-get upgrade 更新已安装的包<br />
+ apt-get dist-upgrade 升级系统<br />
+ apt-get dselect-upgrade 使用 dselect 升级<br />
+ apt-cache depends packagename 了解使用依赖<br />
+ apt-cache rdepends packagename 是查看该包被哪些包依赖<br />
+ apt-get build-dep packagename 安装相关的编译环境<br />
+ apt-get source packagename 下载该包的源代码<br />
+ apt-get clean 清理无用的包<br />
+ apt-get autoclean 清理无用的包<br />
+ apt-get check 检查是否有损坏的依赖</p>
+<p>来自 &lt;<a href="http://www.qishunwang.net/news_show_77945.aspx">http://www.qishunwang.net/news_show_77945.aspx</a>&gt; </p>
+<p><a href="https://www.cnblogs.com/flyinggod/p/12506918.html">ubuntu 常见包管理方式</a></p>
+<p>博客转自：https://www.cnblogs.com/forward/archive/2012/01/10/2318483.html</p>
+<p>一、Ubuntu中软件安装方法</p>
+<p>1、APT方式</p>
+<p>（1）普通安装：apt-get install softname1 softname2 …;</p>
+<p>（2）修复安装：apt-get -f install softname1 softname2... ;(-f Atemp to correct broken dependencies)</p>
+<p>（3）重新安装：apt-get --reinstall install softname1 softname2...;</p>
+<p>2、Dpkg方式</p>
+<p>（1）普通安装：dpkg -i package_name.deb</p>
+<p>3、源码安装（.tar、tar.gz、tar.bz2、tar.Z）</p>
+<p>首先解压缩源码压缩包然后通过tar命令来完成</p>
+<p>a．解xx.tar.gz：tar zxf xx.tar.gz </p>
+<p>b．解xx.tar.Z：tar zxf xx.tar.Z </p>
+<p>c．解xx.tgz：tar zxf xx.tgz </p>
+<p>d．解xx.bz2：bunzip2 xx.bz2 </p>
+<p>e．解xx.tar：tar xf xx.tar</p>
+<p>然后进入到解压出的目录中，建议先读一下README之类的说明文件，因为此时不同源代码包或者预编译包可能存在差异，然后建议使用ls -F --color或者ls -F命令（实际上我的只需要 l 命令即可）查看一下可执行文件，可执行文件会以*号的尾部标志。</p>
+<p>一般依次执行</p>
+<p>./configure<br />
+ make<br />
+ sudo make install</p>
+<p>即可完成安装。</p>
+<p>二、Ubuntu中软件包的卸载方法</p>
+<p>1、APT方式</p>
+<p>（1）移除式卸载：apt-get remove softname1 softname2 …;（移除软件包，当包尾部有+时，意为安装）</p>
+<p>（2）清除式卸载 ：apt-get --purge remove softname1 softname2...;(同时清除配置)</p>
+<pre><code>    清除式卸载：apt-get purge sofname1 softname2...;(同上，也清除配置文件)
+</code></pre>
+<p>2、Dpkg方式</p>
+<p>（1）移除式卸载：dpkg -r pkg1 pkg2 ...;</p>
+<p>（2）清除式卸载：dpkg -P pkg1 pkg2...;</p>
+<p>三、Ubuntu中软件包的查询方法</p>
+<p>Dpkg 使用文本文件来作为数据库.通称在 /var/lib/dpkg 目录下. 通称在 status 文件中存储软件状态,和控制信息. 在 info/ 目录下备份控制文件, 并在其下的 .list 文件中记录安装文件清单, 其下的 .mdasums 保存文件的 MD5 编码.</p>
+<p>体验使用数据库的时刻到了:</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>每条记录对应一个软件包, 注意每条记录的第一, 二, 三个字符. 这就是软件包的状态标识, 后边依此是软件包名称, 版本号, 和简单描述.</p>
+<ul>
+<li>
+<p>第一字符为期望值,它包括:</p>
+</li>
+<li>
+<p>u       状态未知,这意味着软件包未安装,并且用户也未发出安装请求.</p>
+</li>
+<li>i 用户请求安装软件包.</li>
+<li>r 用户请求卸载软件包.</li>
+<li>p 用户请求清除软件包.</li>
+<li>h 用户请求保持软件包版本锁定.</li>
+<li>
+<p>第二列,是软件包的当前状态.此列包括软件包的六种状态.</p>
+</li>
+<li>
+<p>n 软件包未安装.</p>
+</li>
+<li>i 软件包安装并完成配置.</li>
+<li>c       软件包以前安装过,现在删除了,但是它的配置文件还留在系统中.</li>
+<li>u 软件包被解包,但还未配置.</li>
+<li>f 试图配置软件包,但是失败了.</li>
+<li>h 软件包安装,但是但是没有成功.</li>
+<li>
+<p>第三列标识错误状态,可以总结为四种状态.      第一种状态标识没有问题,为空. 其它三种符号则标识相应问题.</p>
+</li>
+<li>
+<p>h       软件包被强制保持,因为有其它软件包依赖需求,无法升级.</p>
+</li>
+<li>r       软件包被破坏,可能需要重新安装才能正常使用(包括删除).</li>
+<li>x 软包件被破坏,并且被强制保持.</li>
+</ul>
+<p>也可以以统配符模式进行模糊查询, 比如我要查找以nano字符开始的所有软件包:</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>以上状态说明: 系统中安装了 nano 版本为 1.3.10-2 ;安装过 nano-tiny , 后来又清除了; 从未安装过nanoblogger .</p>
+<p>如果觉得 dpkg 的参数过多, 不利于记忆的话, 完全可以使用 dpkg-query 进行 dpkg 数据库查询.</p>
+<p>应用范例:</p>
+<ul>
+<li>查询系统中属于nano的文件:</li>
+</ul>
+<p>dpkg --listfiles nano</p>
+<ul>
+<li>查看软件nano的详细信息：</li>
+</ul>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<ul>
+<li>查看系统中软件包状态,      支持模糊查询:</li>
+</ul>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<ul>
+<li>查看某个文件的归属包: </li>
+</ul>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>三、其他应用总结</p>
+<p>apt-cache search # ------(package 搜索包)</p>
+<p>apt-cache show #------(package 获取包的相关信息，如说明、大小、版本等)</p>
+<p>apt-get install # ------(package 安装包)</p>
+<p>apt-get install # -----(package --reinstall 重新安装包)</p>
+<p>apt-get -f install # -----(强制安装, "-f = --fix-missing"当是修复安装吧...)</p>
+<p>apt-get remove #-----(package 删除包)</p>
+<p>apt-get remove --purge # ------(package 删除包，包括删除配置文件等)</p>
+<p>apt-get autoremove --purge # ----(package 删除包及其依赖的软件包+配置文件等（只对6.10有效，强烈推荐）)</p>
+<p>apt-get update #------更新源</p>
+<p>apt-get upgrade #------更新已安装的包</p>
+<p>apt-get dist-upgrade # ---------升级系统</p>
+<p>apt-get dselect-upgrade #------使用 dselect 升级</p>
+<p>apt-cache depends #-------(package 了解使用依赖)</p>
+<p>apt-cache rdepends # ------(package 了解某个具体的依赖,当是查看该包被哪些包依赖吧...)</p>
+<p>apt-get build-dep # ------(package 安装相关的编译环境)</p>
+<p>apt-get source #------(package 下载该包的源代码)</p>
+<p>apt-get clean &amp;&amp; apt-get autoclean # --------清理下载文件的存档 &amp;&amp; 只清理过时的包</p>
+<p>apt-get check #-------检查是否有损坏的依赖</p>
+<p>dpkg -S filename -----查找filename属于哪个软件包</p>
+<p>apt-file search filename -----查找filename属于哪个软件包</p>
+<p>apt-file list packagename -----列出软件包的内容</p>
+<p>apt-file update --更新apt-file的数据库</p>
+<p>dpkg --info "软件包名" --列出软件包解包后的包名称.</p>
+<p>dpkg -l --列出当前系统中所有的包.可以和参数less一起使用在分屏查看. (类似于rpm -qa)</p>
+<p>dpkg -l |grep -i "软件包名" --查看系统中与"软件包名"相关联的包.</p>
+<p>dpkg -s 查询已安装的包的详细信息.</p>
+<p>dpkg -L 查询系统中已安装的软件包所安装的位置. (类似于rpm -ql)</p>
+<p>dpkg -S 查询系统中某个文件属于哪个软件包. (类似于rpm -qf)</p>
+<p>dpkg -I 查询deb包的详细信息,在一个软件包下载到本地之后看看用不用安装(看一下呗).</p>
+<p>dpkg -i 手动安装软件包(这个命令并不能解决软件包之前的依赖性问题),如果在安装某一个软件包的时候遇到了软件依赖的问题,可以用apt-get -f install在解决信赖性这个问题.</p>
+<p>dpkg -r 卸载软件包.不是完全的卸载,它的配置文件还存在.</p>
+<p>dpkg -P 全部卸载(但是还是不能解决软件包的依赖性的问题)</p>
+<p>dpkg -reconfigure 重新配置</p>
+<p>apt-get install</p>
+<p>下载软件包，以及所有依赖的包，同时进行包的安装或升级。如果某个包被设置了 hold (停止标志，就会被搁在一边(即不会被升级)。更多 hold 细节请看下面。</p>
+<p>apt-get remove [--purge]</p>
+<p>移除 以及任何依赖这个包的其它包。</p>
+<p>--purge 指明这个包应该被完全清除 (purged) ，更多信息请看 dpkg -P。</p>
+<p>apt-get update</p>
+<p>升级来自 Debian 镜像的包列表，如果你想安装当天的任何软件，至少每天运行一次，而且每次修改了</p>
+<p>/etc/apt/sources.list 後，必须执行。</p>
+<p>apt-get upgrade [-u]</p>
+<p>升 级所有已经安装的包为最新可用版本。不会安装新的或移除老的包。如果一个包改变了依赖关系而需要安装一个新的包，那么它将不会被升级，而是标志为 hold。apt-get update 不会升级被标志为 hold 的包 (这个也就是 hold 的意思)。请看下文如何手动设置包为 hold。我建议同时使用 '-u' 选项，因为这样你就能看到哪些包将会被升级。</p>
+<p>apt-get dist-upgrade [-u]</p>
+<p>和 apt-get upgrade 类似，除了 dist-upgrade 会安装和移除包来满足依赖关系。因此具有一定的危险性。</p>
+<p>apt-cache search</p>
+<p>在软件包名称和描述中，搜索包含xxx的软件包。</p>
+<p>apt-cache show</p>
+<p>显示某个软件包的完整的描述。</p>
+<p>apt-cache showpkg</p>
+<p>显示软件包更多细节，以及和其它包的关系。</p>
+<p>dselect</p>
+<p>console-apt</p>
+<p>aptitude</p>
+<p>gnome-apt</p>
+<p>APT 的几个图形前端(其中一些在使用前得先安装)。这里 dselect 无疑是最强大的，也是最古老，最难驾驭。</p>
+<p>普通 Dpkg 用法</p>
+<p>dpkg -i</p>
+<p>安装一个 Debian 包文件，如你手动下载的文件。</p>
+<p>dpkg -c</p>
+<p>列出 的内容。</p>
+<p>dpkg -I</p>
+<p>从 中提取包信息。</p>
+<p>dpkg -r</p>
+<p>移除一个已安装的包。</p>
+<p>dpkg -P</p>
+<p>完全清除一个已安装的包。和 remove 不同的是，remove 只是删掉数据和可执行文件，purge 另外还删除所有的配制文件。</p>
+<p>dpkg -L</p>
+<p>列出 安装的所有文件清单。同时请看 dpkg -c 来检查一个 .deb 文件的内容。</p>
+<p>dpkg -s</p>
+<p>显示已安装包的信息。同时请看 apt-cache 显示 Debian 存档中的包信息，以及 dpkg -I 来显示从一个 .deb 文件中提取的包信息。</p>
+<p>dpkg-reconfigure</p>
+<p>重 新配制一个已经安装的包，如果它使用的是 debconf (debconf 为包安装提供了一个统一的配制界面)。你能够重新配制 debconf 它本身，如你想改变它的前端或提问的优先权。例如，重新配制 debconf，使用一个 dialog 前端，简单运行：</p>
+<p>dpkg-reconfigure --frontend=dialog debconf (如果你安装时选错了，这里可以改回来哟：)</p>
+<p>echo " hold" | dpkg --set-selections</p>
+<p>设置 的状态为 hlod (命令行方式)</p>
+<p>dpkg --get-selections ""</p>
+<p>取的 的当前状态 (命令行方式)</p>
+<p>支持通配符，如：</p>
+<p>Debian:\~# dpkg --get-selections <em>wine</em></p>
+<p>libwine hold</p>
+<p>libwine-alsa hold</p>
+<p>libwine-arts hold</p>
+<p>libwine-dev hold</p>
+<p>libwine-nas hold</p>
+<p>libwine-print hold</p>
+<p>libwine-twain hold</p>
+<p>wine hold</p>
+<p>wine+ hold</p>
+<p>wine-doc hold</p>
+<p>wine-utils hold</p>
+<p>例如：</p>
+<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+<p>方法一：</p>
+<p>Debian:\~# echo "gaim hold" | dpkg --set-selections</p>
+<p>然後用下面命令检查一下：</p>
+<p>Debian:\~# dpkg --get-selections "gaim"</p>
+<p>gaim hold</p>
+<p>现在的状态标志是 hold，就不能被升级了。</p>
+<p>如果想恢复怎么办呢?</p>
+<p>Debian:\~# echo "gaim install" | dpkg --set-selections</p>
+<p>Debian:\~# dpkg --get-selections "gaim"</p>
+<p>gaim install</p>
+<p>这时状态标志又被重置为 install，可以继续升级了。</p>
+<p>同志们会问，哪个这些状态标志都写在哪个文件中呢?</p>
+<p>在 /var/lib/dpkg/status 里，你也可以通过修改这个文件实现 hold。</p>
+<p>有时你会发现有的软件状态标志是 purge，不要奇怪。</p>
+<p>如：事先已经安装了 amsn，然後把它卸了。</p>
+<p>apt-get remove --purge amsn</p>
+<p>那么状态标志就从 install 变成 purge。</p>
+<p>方法二：</p>
+<p>在/etc/apt 下手动建一个 preferences 文件</p>
+<p>内容：</p>
+<p>Package: gaim</p>
+<p>Pin: version 0.58*</p>
+<p>保存</p>
+<p>dpkg -S</p>
+<p>在包数据库中查找 ，并告诉你哪个包包含了这个文件。(注：查找的是事先已经安装的包)</p>
+<hr />
+<p>Debian的软件包管理工具命令不完全列表</p>
+<hr />
+<p>Debian系统中所有的包信息都在/var/lib/dpkg下.其中/var/lib/dpkg/info目录中保存了各个软件包的信息及管理文件.每个文件的作用如下:</p>
+<p>以 ".conffiles"     结尾的文件记录软件包的配置列表.</p>
+<p>以 ".list"          结尾的文件记录了软件包的文件列表,用户可在文件当中找到软件包文件的具体安装位置.</p>
+<p>以 ".md5sums"       结尾的文件记录了md5信息,用来进行包的验证的.</p>
+<p>以 ".config"        结尾的文件是软件包的安装配置角本.</p>
+<p>以 ".postinst"      角本是完成Debian包解开之后的配置工作,通常用来执行所安装软件包相关的命令和服务的重新启动.</p>
+<p>以 ".preinst"       角本在Debain解包之前运行,主要作用是是停止作用于即将升级的软件包服务直到软件包安装或和升级完成.</p>
+<p>以 ".prerm"         脚本负责停止与软件包关联的daemon服务,在删除软件包关联文件之前执行.</p>
+<p>以 ".postrm"        脚本负责修改软件包链接或文件关联,或删除由它创建的文件.</p>
+<p>/var/lib/dpkg/available是软件包的描述信息.</p>
+<p>包括当前系统中所有使用的Debian安装源中所有的软件包,还包括当前系统中已经安装和未安装的软件包.</p>
+<p>1.dpkg包管理工具</p>
+<p>dpkg -r 卸载软件包.不是完全的卸载,它的配置文件还存在.</p>
+<p>dpkg --info "软件包名" --列出软件包解包后的包名称.</p>
+<p>dpkg -l     --列出当前系统中所有的包.可以和参数less一起使用在分屏查看.</p>
+<p>dpkg -l |grep -i "软件包名" --查看系统中与"软件包名"相关联的包.</p>
+<p>dpkg -s   查询已安装的包的详细信息. dpkg -L   查询系统中已安装的软件包所安装的位置.</p>
+<p>dpkg -S   查询系统中某个文件属于哪个软件包.</p>
+<p>dpkg -I   查询deb包的详细信息,在一个软件包下载到本地之后看看用不用安装(看一下呗).</p>
+<p>dpkg -i 手动安装软件包(这个命令并不能解决软件包之前的依赖性问题),如果在安装某一个软件包的时候遇到了软件依赖的问题,可以用apt-get -f install在解决信赖性这个问题.</p>
+<p>dpkg -reconfigure 重新配置 </p>
+<p>dpkg -P 全部卸载(但是还是不能解决软件包的依赖性的问题)</p>
+<ol>
+<li>apt高级包管理工具</li>
+</ol>
+<p>(1)GTK图形的"synaptic",这是APT的前端工具.</p>
+<p>(2)"aptitude",这也是APT的前端工具.</p>
+<p>用APT管理工具进行包的管理,可以有以下几种方法做源:</p>
+<p>(1)拿安装盘做源,方法如下:</p>
+<pre><code>    apt-cdrom ident        扫描光盘的信息
+
+    apt-cdrom add          添加光盘源
+</code></pre>
+<p>(2)这也是最常用的方法就是把源添加到/etc/apt/source.list中,之后更新列apt-get update</p>
+<p>APT管理工具常用命令</p>
+<p>apt-cache 加上不同的子命令和参数的使用可以实现查找,显示软件,包信息及包信赖关系等功能.</p>
+<p>apt-cache stats 显示当前系统所有使用的Debain数据源的统计信息.</p>
+<p>apt-cache search +"包名",可以查找相关的软件包.</p>
+<p>apt-cache show   +"包名",可以显示指定软件包的详细信息.</p>
+<p>apt-cache depends +"包名",可以查找软件包的依赖关系.</p>
+<p>apt-get upgrade   更新系统中所有的包到最新版</p>
+<p>apt-get install   安装软件包</p>
+<p>apt-get --reindtall install 重新安装软件包</p>
+<p>apt-get remove 卸载软件包</p>
+<p>apt-get --purge remove 完全卸载软件包</p>
+<p>apt-get clean 清除无用的软件包</p>
+<p>在用命令apt-get install之前,是先将软件包下载到/var/cache/apt/archives中,之后再进行安装的.所以我们可以用apt-get clean清除/var/cache/apt/archives目录中的软件包.</p>
+<p>源码包安装</p>
+<p>apt-cache showsrc 查找看源码包的文件信息(在下载之前)</p>
+<p>apt-get source 下载源码包.</p>
+<p>apt-get build-dep +"包名" 构建源码包的编译环境.</p>
+<p>清除处于rc状态的软件包</p>
+<p>dpkg -l |grep ^rc|awk '{print \$2}' |tr ["\n"] [" "] | sudo xargs dpkg -P -</p>
+<p>来自 &lt;<a href="https://www.cnblogs.com/flyinggod/p/12506918.html">https://www.cnblogs.com/flyinggod/p/12506918.html</a>&gt; </p>
+<h2 id="homebrew">Homebrew使用</h2>
+<p>Brew rmtree 软件名      卸载软件和它单独的依赖</p>
+<h1 id="v4-sota-nix">V4 SOTA阶段 NIX 玲珑</h1>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>ldd命令</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<h1 id="_7">手动安装软件教程</h1>
+<p>Linux开源软件通常有多种发布形式，其中最基本的发布方式是以Tarball进行发布：软件开发者将将软件的所有源码文件以 tar 打包，然后再压缩（通常是 gzip），所以 tarball 文件一般的扩展名为 <code>*.tar.gz</code> 或是简写为 <code>*tgz</code>。不过，近来由于 bzip2 与 xz 的压缩率较佳，因此它对应的后缀名为 <code>*.tar.bz2</code> 、<code>*.tar.xz</code> 。</p>
+<p>所以，Tarball 是一个软件包，将它解压之后，里面的文件通常会有：</p>
+<ul>
+<li>源代码文件</li>
+<li>检测程序（可能是 configure 或 config）</li>
+<li>本软件的简易说明与安装说明（INSTALL 或 README）</li>
+</ul>
+<p>通过阅读解压后的项目目录中的<code>INSTALL</code>或<code>README</code>文档就可以按照步骤完成安装，下面为大家展示典型的Tarball安装过程。</p>
+<h2 id="_8">任务</h2>
+<p>我们将上一章的示例代码以Tarball形式进行了发布，依次执行下面的命令完成 <code>angle</code> 的安装。</p>
+<ol>
+<li>执行 <code>cd chapter3</code> 进入章节目录</li>
+<li>执行 <code>ls -l</code> 查看当前目录中的文件情况</li>
+<li>执行 <code>tar -xzvf angle-0.1.tar.gz</code> 将Tarball进行解压缩</li>
+<li>执行 <code>cd angle &amp;&amp; ls -l</code> 进入项目源码目录并查看目录内容，可以看到目录有包含项目源码的 <code>src</code> 文件夹、说明文件 <code>README.md</code> 以及若干其他文件</li>
+<li>执行 <code>mkdir build &amp;&amp; cd build</code> 创建 <code>build</code> 文件夹并进入，这样做的好处是可以保持原项目目录的整洁</li>
+<li>执行 <code>../configure</code> 进行项目配置，这个操作会启动对系统依赖、配置等的自动检查和配置，并生成针对于当前主机的 <code>Makefile</code> ，有关 <code>Makefile</code> 的内容我们已经在前面的章节中介绍过。由于软件开发者与使用者的实际环境可能存在不一致的情况(架构不同、软件版本不同等等)，因此对于复杂的项目使用工具根据使用者环境的实际情况生成 <code>Makefile</code> 是最为合理的</li>
+<li>执行 <code>make</code> 完成项目的编译</li>
+<li>执行 <code>sudo make install</code> 完成项目的安装</li>
+<li>执行 <code>angle</code> 并与程序进行交互</li>
+</ol>
+<p>在上一节内容中，我们学习了如何将从网上下载得到的Tarball安装到机器中，虽然只需要简单的几行命令就可以完成配置和安装，但是由于安装过程中包含了配置、编译等等过程，对于复杂庞大的项目来说，还是非常耗时的。同时，也不是每个人都会进行源码编译，因此如果能预先在相同的硬件与操作系统上编译好才发布的话，就可以让相同的操作系统发行版具有完全一致的软件版本了，再加上简易的安装、移除、管理等机制的话，对于软件管理就容易多了。</p>
+<p>基于这个需求，就诞生了软件管理程序，知名的软件管理程序有<code>RPM</code>、<code>DPKG</code>等，下面的内容将以 <code>RPM</code> 为例进行介绍。</p>
+<p>RPM 全名 RPM Package Manager(http://rpm.org/)，是以一种数据库记录的方式将你所需要的软件安装到你的 Linux 系统的一套管理机制</p>
+<p>最大的特点：将你要安装的软件先编译过，并且达成 RPM 机制的包装文件，通过包装文件里面的默认的数据库记录，记录这个软件要安装的时候必须具备的相依属性软件，当安装在你的 Linux 主机时，RPM 会先依照软件里的数据查询 Linux 主机的相依属性是否满足，若满足则安装，若不满足，则不安装。那么安装的时候就将该软件的信息整个写入 RPM 的数据库，以便未来的查询、验证与卸载，优点：</p>
+<ol>
+<li>不需要再重新编译：由于已经变异完成并且打包完毕，所以软件传输与安装上很方便</li>
+<li>由于软件的信息都已经记录在 Linux 主机的数据库上，很方便查询、升级与卸载</li>
+</ol>
+<p>我们已经将之前的三角函数计算软件打包成了名为 <code>anglerpm-0.1-1.x86_64.rpm</code> 的 <code>rpm</code> 软件包，其命名可以体现如下信息：</p>
+<ul>
+<li>文件名通常遵循这样的格式：<code>{Name}-{Version}-{Release}.{Arch}.rpm</code></li>
+<li><code>anglerpm</code>: 软件名为 <code>anglerpm</code> (rpm后缀与手动安装方式区分)</li>
+<li><code>0.1-1</code>: 软件版本为 <code>0.1</code> ,编译版本为 <code>1</code>(在源代码主体版本没有变化的情况下，编译过程中可能加入了新的patch补丁，修改了编译脚本等等情况下需要重新编译时，bump编译版本)</li>
+<li><code>x86_64</code>: 该rpm软件包支持的平台为x86_64，不同架构的rpm版本通常不能通用</li>
+</ul>
+<p>下面我们将展示如何安装该rpm软件包</p>
+<h2 id="_9">任务</h2>
+<blockquote>
+<p>部分环境或待审核信息已转存本地。
+3. 执行 <code>sudo rpm -i anglerpm-0.1-1.x86_64.rpm</code> 安装rpm软件包。
+4. 执行 <code>anglerpm</code> 并与程序交互，查看安装结果</p>
+</blockquote>
+<p>可以看到使用 <code>rpm</code> ，可以仅用一条命令就完成我们编写的软件的安装，非常方便，那么对于更复杂的软件呢？</p>
+<ol>
+<li>执行下面的命令，下载openEuler 20.03 LTS SP1中的 <code>mariadb-server-10.3.9</code> :</li>
+</ol>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+</blockquote>
+<ol>
+<li>执行 <code>sudo rpm -i mariadb-server-10.3.9-9.oe1.x86_64.rpm</code> 尝试安装这个rpm</li>
+</ol>
+<p>可以看到安装失败了，因为软件 <code>mariadb-server</code> 有其他依赖，但是在我们的系统中并没有安装这些依赖，如果要正常安装，则需要先安装完这些依赖的软件。对于庞大且复杂的软件来说，软件的依赖可能达到上百款，同时依赖又有自己的依赖，手动完成软件依赖的查找和安装几乎是不可能完成的任务</p>
+<p>上一节内容的最后我们了解到对于依赖复杂的项目来说，手动完成所有依赖的安装是非常困难的，如果能有工具帮助我们完成这样的工作就好了。</p>
+<p>DNF(Dandified YUM)就是RPM软件包体系下的这样一款工具，DNF通过分析 RPM 的标头数据后，根据各软件的相关性制作出依赖时的解决方案，然后可以自动处理软件的依赖问题，以解决软件安装或移除或升级的问题。</p>
+<p>操作系统发行版首先将软件打包成RPM软件包，然后将软件放置于YUM(DNF的上一代)服务器上，提供客户端的使用。因此我们想要使用DNF的功能时，必须要先找到适合的 yum server 才行，而每个 yum server 可能都会提供许多不同的软件功能，这就"软件库(Repo, Repository)"。</p>
+<h2 id="_10">任务</h2>
+<ol>
+<li>执行 <code>sudo rm -f /etc/yum.repos.d/openEuler.repo</code> 删除旧的yum repo配置文件。</li>
+<li>执行 <code>sudo vi /etc/yum.repos.d/openEuler-2003.repo</code> 创建并编辑yum repo配置文件。</li>
+<li>按照下面的内容进行配置，该命令将会创建一条指向 <code>openEuler-21.09 Everything</code> 软件仓库的配置：</li>
+</ol>
+<pre><code class="language-Plaintext">[everything]
+name=everything
+baseurl=http://mirrors.tuna.tsinghua.edu.cn/openeuler/openEuler-20.03-LTS-SP1/everything/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.tuna.tsinghua.edu.cn/openeuler/openEuler-20.03-LTS-SP1/everything/$basearch/RPM-GPG-KEY-openEuler
+</code></pre>
+<ol>
+<li>执行 <code>sudo dnf install -y mariadb-server</code> ，可以看到 <code>mariadb-server</code> 和它所需要的依赖被一并安装了。</li>
+</ol>
+<p>在本章前面的几节内容中，我们已经了解到了如何使用 <code>Tarball</code>、<code>RPM</code> 以及 <code>DNF</code> 来安装软件。在本节我们将学习如何创建一个简单的RPM软件包。</p>
+<p>RPM软件包使用 <code>rpmbuild</code> 工具进行制作，工具初始化完成后，会在当前用户的家目录下创建相应的工作目录(以root用户为例)：</p>
+<ul>
+<li><code>/root/rpmbuild/SPECS/</code>：该软件的配置文件，例如软件的信息参数、设置项目等</li>
+<li><code>/root/rpmbuild/SOURCES/</code>：软件的原始文件（*.tar.gz 的文件） 以及 config 配置文件</li>
+<li><code>/root/rpmbuild/BUILD/</code>：在编译过程中，有些暂存的数据都会放置在该目录中</li>
+<li><code>/root/rpmbuild/RPMS/</code>：经过编译之后，并且顺利编译成功之后，将打包完成的文件放在该目录中，包含了 x86_64，noarch... 等的次要目录</li>
+<li><code>/root/rpmbuild/SRPMS/</code>：与 RPMS 目录相似，放置的是 SRPM 封装的文件</li>
+</ul>
+<p>在开始制作的过程前，我们需要做的是：</p>
+<ol>
+<li>将源码文件放置到 <code>/root/rpmbuild/SOURCES/</code> 目录中</li>
+<li>编写 <code>*.spec</code> 文件并放置到 <code>/root/rpmbuild/SPECS/</code> 目录中</li>
+</ol>
+<p>SPEC文件是指导 <code>rpmbuild</code> 工作的配置文件，通常包含了该软件包的名称、版本、开源协议等相关信息以及构建各环节的脚本等配置：</p>
+<ul>
+<li><code>Summary</code>：软件的主要说明</li>
+<li><code>Name</code>：软件的名称（最终会是 RPM 文件的名称构成之一）</li>
+<li><code>Version</code>：软件的版本（也是 RPM 文件名构成之一）</li>
+<li><code>Release</code>：该版本打包的次数说明（也是 RPM 文件名构成之一）。</li>
+<li><code>License</code>：软件的授权模式，看起来涵盖了所有知名的 Open source 授权</li>
+<li><code>URL</code>：源码的主要官网</li>
+<li><code>SourceN</code>：软件的来源，如果是网络上下载的软件，通常这里一定会有这个信息来告诉大家这个原始文件的来源，此外，如果有多个软件来源，则会以 Source0、Source1... 开处理源码</li>
+<li><code>PatchN</code>：作为补丁的 patch file，也是可以有多个</li>
+<li><code>BuildRoot</code>：作为编译时，该使用哪个目录来暂存中间文件（如果编译过程的目标文件、链接文件等） 上述信息为必须存在的项目，下面的则为可使用的额外设置</li>
+<li><code>Requires</code>：如果这个软件运行时还需要其他的软件支持，就必须配置，则当你制作成 RPM 后，系统就会自动去检查，这就是软件依赖的来源</li>
+<li><code>BuildRequires</code>：编译过程中所需要的软件。Requires 指的是安装时需要检查，因为与实际运行有关，而 BuildRequires 则是 编译时 所需要的软件，只有在 SRPM 编译为 RPM 时才会检查的项目</li>
+</ul>
+<p>对于软件构建的脚本控制则位于指定的宏定义后：</p>
+<ul>
+<li><code>%description</code>: 将你的软件做一个简短的说明，这个也是必须的，在使用 rpm -qi 软件名称 出现的一些基础说明就包括这里的设置信息</li>
+<li>
+<p><code>%prep</code> 尚未进行设置或安装之前，你要编译完成的 RPM 帮你实现做的事情，就是 prepare 的简写，它的主要任务可以包括：</p>
+</li>
+<li>
+<p>进行软件的补丁（patch）等相关工作</p>
+</li>
+<li>寻找软件所需要的目录是否已经存在</li>
+<li><code>%build</code>: 该段落在配置 make 编译称为可执行的程序。会发现在此部分的程序代码，就是 ./configure,make 等命令。</li>
+<li><code>%install</code>: 编译完成后，就要安装了，也就是类似 Tarball 里面的 make install</li>
+<li><code>%files</code>: 这个软件安装的文件都需要写到这里来，也包括目录，以备查验用。此外也可以指定每个文件的类型，包括帮助文件（%doc 后面接的文件）与配置文件 %config 后面接的文件</li>
+<li><code>%changelog</code>: 主要记录该软件曾经的更新记录，星号 * 后面应该要以时间、修改者、email 与软件版本来作为说明，减号 - 后面则是你详细的说明。</li>
+</ul>
+<h2 id="_11">任务</h2>
+<ol>
+<li>执行 <code>sudo rpm -e anglerpm-0.1-1.x86_64.rpm</code> 卸载上一节中完成安装的软件。<blockquote>
+<p>部分环境或待审核信息已转存本地。</p>
+</blockquote>
+</li>
+<li>按照以下内容编辑 <code>anglerpm.spec</code>, 其中<code>changelog</code>部分请根据实际情况填写 :</li>
+</ol>
+<blockquote>
+<p>此处环境相关命令示例已转存本地，公开稿暂不收录。</p>
+</blockquote>
+<ol>
+<li>执行 <code>rpmbuild -ba anglerpm.spec</code> 开始制作rpm软件包<blockquote>
+<p>此处含账号、环境或待确认信息，已转存本地。</p>
+</blockquote>
+</li>
+<li>执行 <code>sudo rpm -i anglerpm-0.1-1.x86_64.rpm</code> 尝试安装新构建完成的rpm软件包。</li>
+<li>执行 <code>anglerpm</code> 运行并与程序交互。</li>
+</ol>
+<h2 id="tips">Tips</h2>
+<p>更多有关 <code>rpmbuild</code> 的详细内容请参考：</p>
+<p>https://rpm-software-management.github.io/rpm/manual/</p>
+<blockquote>
+<p>原笔记此处有图片或图形，未纳入本次公开稿。</p>
+</blockquote>
+<p>思维导图（本地资料，未发布）</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
